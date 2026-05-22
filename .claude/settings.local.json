@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.siena.film)",
+      "Bash(curl -s \"https://siena-film-foundation.vercel.app/styles/out.css\" -H \"User-Agent: Mozilla/5.0\")",
+      "Read(//tmp/**)",
+      "Bash(curl -s \"https://siena-film-foundation.vercel.app/styles/main.css\" -H \"User-Agent: Mozilla/5.0\")",
+      "Bash(node -e ' *)"
+    ]
+  }
+}
