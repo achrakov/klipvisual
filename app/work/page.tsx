@@ -19,7 +19,7 @@ export default function WorkPage() {
   const xTarget = useRef(0)
   const xLerped = useRef(0)
   const vel = useRef(0)
-  const rafRef = useRef<number>()
+  const rafRef = useRef<number>(0)
   const drag = useRef({ active: false, startX: 0, startOffset: 0, lastVel: 0 })
   const [activeIdx, setActiveIdx] = useState(0)
   const [blurVal, setBlurVal] = useState(0)
