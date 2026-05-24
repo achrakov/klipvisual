@@ -35,8 +35,8 @@ export function ScrollCursor({ containerRef, label = "SCROLL" }: ScrollCursorPro
     }
 
     const animate = () => {
-      pos.current.x += (target.current.x - pos.current.x) * 0.1
-      pos.current.y += (target.current.y - pos.current.y) * 0.1
+      pos.current.x += (target.current.x - pos.current.x) * 0.18
+      pos.current.y += (target.current.y - pos.current.y) * 0.18
       if (visible.current) {
         dot.style.transform = `translate(${pos.current.x}px, ${pos.current.y}px) translate(-50%, -50%)`
       }

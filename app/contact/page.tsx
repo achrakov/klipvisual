@@ -174,7 +174,7 @@ export default function ContactPage() {
                   <Field label="Message" error={errors.message?.message}>
                     <textarea
                       {...register("message", { required: "Please describe your project" })}
-                      placeholder="Tell us about your project — vision, timeline, any details that matter."
+                      placeholder="Tell us about your project: vision, timeline, any details that matter."
                       rows={6}
                       style={{ ...inputStyle, resize: "none" }}
                     />

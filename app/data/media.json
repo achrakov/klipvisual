@@ -1,0 +1,459 @@
+{
+  "lebalcon-events": {
+    "reels": [
+      {
+        "videoId": "SgA1oVoih6c",
+        "cover": "/images/projects/lebalcon-events/reel-cover-0/1779658404442.jpg"
+      },
+      {
+        "videoId": "MLR-42P5Pzo",
+        "cover": "/images/projects/lebalcon-events/reel-cover-1/1779658393329.jpg"
+      },
+      {
+        "videoId": "exfwbKN_dvk",
+        "cover": "/images/projects/lebalcon-events/reel-cover-2/1779658356029.jpg"
+      }
+    ],
+    "creditsCover": "/images/projects/lebalcon-events/credits-cover/1779528258478.jpg",
+    "workCover": "/images/projects/lebalcon-events/work-cover/1779528963392.png",
+    "imagePositions": {
+      "/images/projects/lebalcon-events/work-cover/1779528963392.png": {
+        "x": 47,
+        "y": 50
+      }
+    },
+    "resultsBg": "/images/projects/lebalcon-events/results-bg/1779656934490.jpg",
+    "themes": [
+      {
+        "cover": "/images/projects/lebalcon-events/theme-cover-0/1779657018663.jpg",
+        "images": [
+          "/images/projects/lebalcon-events/theme-0/1779657393731.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657393760.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657393746.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657393773.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657393787.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657393879.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394289.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394309.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394324.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394339.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394352.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394365.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394378.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394391.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394404.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394416.jpg",
+          "/images/projects/lebalcon-events/theme-0/1779657394428.jpg"
+        ]
+      },
+      {
+        "cover": "/images/projects/lebalcon-events/theme-cover-1/1779657283989.jpg",
+        "images": [
+          "/images/projects/lebalcon-events/theme-1/1779657438861.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657438877.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657438909.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657438926.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657438941.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657438954.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657438968.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657438980.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657438996.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439008.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439021.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439034.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439049.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439059.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439071.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439097.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439108.jpg",
+          "/images/projects/lebalcon-events/theme-1/1779657439120.jpg"
+        ]
+      },
+      {
+        "cover": "/images/projects/lebalcon-events/theme-cover-2/1779657308977.jpg",
+        "images": [
+          "/images/projects/lebalcon-events/theme-2/1779657460973.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657460988.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461002.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461016.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461030.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461043.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461057.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461071.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461085.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461098.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461111.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461123.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461137.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461150.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461160.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461173.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461186.jpg",
+          "/images/projects/lebalcon-events/theme-2/1779657461199.jpg"
+        ]
+      },
+      {
+        "cover": "/images/projects/lebalcon-events/theme-cover-3/1779657333900.jpg",
+        "images": [
+          "/images/projects/lebalcon-events/theme-3/1779657476433.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476450.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476464.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476481.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476494.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476507.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476516.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476529.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476542.jpg",
+          "/images/projects/lebalcon-events/theme-3/1779657476555.jpg"
+        ]
+      }
+    ],
+    "posters": [
+      "/images/projects/lebalcon-events/posters/1779659179755.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179715.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179806.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179780.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179703.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179728.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179830.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179818.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179767.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179687.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179792.jpg",
+      "/images/projects/lebalcon-events/posters/1779659179741.jpg",
+      "/images/projects/lebalcon-events/posters/1779659538024.jpg",
+      "/images/projects/lebalcon-events/posters/1779659538002.jpg",
+      "/images/projects/lebalcon-events/posters/1779659538014.jpg"
+    ]
+  },
+  "la-famille-quebec-alimentation": {
+    "imagePositions": {
+      "/images/projects/Qa-Talents-cover/Kimberly Gauthier.jpg": {
+        "x": 65,
+        "y": 33
+      },
+      "/images/projects/LafamilleQa-cover.jpg": {
+        "x": 29,
+        "y": 57
+      },
+      "/images/projects/la-famille-quebec-alimentation/work-cover/1779528937455.png": {
+        "x": 72,
+        "y": 50
+      },
+      "/images/projects/la-famille-quebec-alimentation/results-bg/1779569905747.jpg": {
+        "x": 50,
+        "y": 0
+      },
+      "/images/projects/la-famille-quebec-alimentation/results-bg/1779569956850.png": {
+        "x": 50,
+        "y": 50,
+        "panX": 0,
+        "panY": 0,
+        "scale": 1
+      }
+    },
+    "creditsCover": "/images/projects/la-famille-quebec-alimentation/credits-cover/1779528172064.jpg",
+    "workCover": "/images/projects/la-famille-quebec-alimentation/work-cover/1779528937455.png",
+    "videoIds": [
+      "qAU24ic8ezY",
+      "_n36uSiHs-8",
+      "ckRvn6WhkVU",
+      "iRWw0fqd4zw"
+    ],
+    "stills": [
+      "/images/projects/la-famille-quebec-alimentation/stills/1779569441495.gif",
+      "/images/projects/la-famille-quebec-alimentation/stills/1779569454469.gif",
+      "/images/projects/la-famille-quebec-alimentation/stills/1779569460049.gif",
+      "/images/projects/la-famille-quebec-alimentation/stills/1779569473969.gif",
+      "/images/projects/la-famille-quebec-alimentation/stills/1779569481226.gif",
+      "/images/projects/la-famille-quebec-alimentation/stills/1779569487635.gif"
+    ],
+    "resultsBg": "/images/projects/la-famille-quebec-alimentation/results-bg/1779569956850.png"
+  },
+  "pitch-decks": {
+    "cover": "/images/projects/pitch-decks/cover/1779524874982.jpg",
+    "imagePositions": {
+      "/images/projects/pitch-decks/cover/1779524695807.jpg": {
+        "x": 41,
+        "y": 50
+      },
+      "/images/projects/pitch-decks/work-cover/1779529019029.png": {
+        "x": 28,
+        "y": 50
+      }
+    },
+    "pitchDecks": [
+      {
+        "slides": [
+          "/images/projects/pitch-decks/deck-0/1779524766573.jpg",
+          "/images/projects/pitch-decks/deck-0/1779524766585.jpg",
+          "/images/projects/pitch-decks/deck-0/1779524766596.jpg",
+          "/images/projects/pitch-decks/deck-0/1779524766612.jpg",
+          "/images/projects/pitch-decks/deck-0/1779524766626.jpg",
+          "/images/projects/pitch-decks/deck-0/1779524766689.jpg"
+        ],
+        "client": "KEBWEB",
+        "industry": "Influencers Agency",
+        "year": "2023"
+      },
+      {
+        "slides": [
+          "/images/projects/pitch-decks/deck-1/1779524837641.jpg",
+          "/images/projects/pitch-decks/deck-1/1779524837653.jpg",
+          "/images/projects/pitch-decks/deck-1/1779524837665.jpg",
+          "/images/projects/pitch-decks/deck-1/1779524837676.jpg",
+          "/images/projects/pitch-decks/deck-1/1779524837688.jpg",
+          "/images/projects/pitch-decks/deck-1/1779524837698.jpg",
+          "/images/projects/pitch-decks/deck-1/1779524837708.jpg"
+        ],
+        "client": "New Regime",
+        "industry": "Fashion & Clothing",
+        "year": "2023"
+      },
+      {
+        "client": "Romeo & Fils",
+        "industry": "Production",
+        "year": "2023",
+        "slides": [
+          "/images/projects/pitch-decks/deck-2/1779525307202.jpg",
+          "/images/projects/pitch-decks/deck-2/1779525307214.jpg",
+          "/images/projects/pitch-decks/deck-2/1779525307225.jpg",
+          "/images/projects/pitch-decks/deck-2/1779525307236.jpg",
+          "/images/projects/pitch-decks/deck-2/1779525307247.jpg",
+          "/images/projects/pitch-decks/deck-2/1779525307257.jpg",
+          "/images/projects/pitch-decks/deck-2/1779525307267.jpg",
+          "/images/projects/pitch-decks/deck-2/1779525307279.jpg"
+        ]
+      }
+    ],
+    "creditsCover": "/images/projects/pitch-decks/credits-cover/1779528271764.jpg",
+    "workCover": "/images/projects/pitch-decks/work-cover/1779529019029.png"
+  },
+  "portrait-photography": {
+    "themes": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {
+        "cover": "/images/projects/portrait-photography/theme-cover-6/1779526557040.jpg",
+        "images": [
+          "/images/projects/portrait-photography/theme-6/1779526670063.png",
+          "/images/projects/portrait-photography/theme-6/1779526670208.png",
+          "/images/projects/portrait-photography/theme-6/1779526670308.jpg",
+          "/images/projects/portrait-photography/theme-6/1779526670513.jpg",
+          "/images/projects/portrait-photography/theme-6/1779526670582.jpg",
+          "/images/projects/portrait-photography/theme-6/1779526670660.jpg",
+          "/images/projects/portrait-photography/theme-6/1779526670854.jpg",
+          "/images/projects/portrait-photography/theme-6/1779526670986.jpg",
+          "/images/projects/portrait-photography/theme-6/1779526671100.jpg",
+          "/images/projects/portrait-photography/theme-6/1779526671225.png",
+          "/images/projects/portrait-photography/theme-6/1779526671313.png"
+        ]
+      }
+    ],
+    "cover": "/images/projects/portrait-photography/cover/1779527483960.jpg",
+    "gallery": [],
+    "creditsCover": "/images/projects/portrait-photography/credits-cover/1779528087066.jpg",
+    "workCover": "/images/projects/portrait-photography/work-cover/1779529001668.png"
+  },
+  "boudchart-lolympia": {
+    "creditsCover": "/images/projects/boudchart-lolympia/credits-cover/1779528206012.jpg",
+    "workCover": "/images/projects/boudchart-lolympia/work-cover/1779564494765.png",
+    "gallery": [
+      "/images/projects/boudchart-lolympia/gallery/1779607715699.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779607739513.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779607770683.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779607794090.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779607803067.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779607850449.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779607949597.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779607970050.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779608007020.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779608021902.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779608064099.jpg",
+      "/images/projects/boudchart-lolympia/gallery/1779608088160.jpg"
+    ],
+    "imagePositions": {
+      "/images/projects/boudchart-lolympia/gallery/1779607970050.jpg": {
+        "x": 49.4,
+        "y": 59.5,
+        "scale": 1.3
+      },
+      "/images/projects/boudchart-lolympia/gallery/1779608021902.jpg": {
+        "x": 98.2,
+        "y": 36.3,
+        "scale": 1
+      },
+      "/images/projects/boudchart-lolympia/gallery/1779608088160.jpg": {
+        "x": 49.1,
+        "y": 67.8,
+        "scale": 1
+      },
+      "/images/projects/boudchart-lolympia/gallery/1779607850449.jpg": {
+        "x": 36.9,
+        "y": 54.2,
+        "scale": 1
+      },
+      "/images/projects/boudchart-lolympia/gallery/1779607739513.jpg": {
+        "x": 50.1,
+        "y": 59.5,
+        "scale": 1
+      }
+    },
+    "reels": [
+      {
+        "videoId": "EdqcxlmeCCw",
+        "cover": "/images/projects/boudchart-lolympia/reel-cover-0/1779609936192.jpg"
+      },
+      {
+        "videoId": "SZ4jg1Da0y4",
+        "cover": "/images/projects/boudchart-lolympia/reel-cover-1/1779609953838.jpg"
+      }
+    ]
+  },
+  "terry-osias": {
+    "creditsCover": "/images/projects/terry-osias/credits-cover/1779528216505.jpg",
+    "workCover": "/images/projects/terry-osias/work-cover/1779528909706.png",
+    "imagePositions": {
+      "/images/projects/terry-osias/work-cover/1779528909706.png": {
+        "x": 86,
+        "y": 50
+      },
+      "/images/projects/terry-osias/gallery/1779611770608.png": {
+        "x": 50,
+        "y": 62.3,
+        "scale": 1
+      },
+      "/images/projects/terry-osias/gallery/1779611724648.png": {
+        "x": 49.6,
+        "y": 47.1,
+        "scale": 1
+      }
+    },
+    "gallery": [
+      "/images/projects/terry-osias/gallery/1779611724648.png",
+      "/images/projects/terry-osias/gallery/1779611770608.png",
+      "/images/projects/terry-osias/gallery/1779611985696.png",
+      "/images/projects/terry-osias/gallery/1779612021186.png",
+      "/images/projects/terry-osias/gallery/1779612072435.png",
+      "/images/projects/terry-osias/gallery/1779612117890.png",
+      "/images/projects/terry-osias/gallery/1779612156651.png",
+      "/images/projects/terry-osias/gallery/1779612184522.png"
+    ],
+    "reels": [
+      {
+        "videoId": "vsZNq9lmk24",
+        "cover": "/images/projects/terry-osias/reel-cover-0/1779612677808.png"
+      },
+      {
+        "videoId": "PKS0Ju1LDck",
+        "cover": "/images/projects/terry-osias/reel-cover-1/1779612777007.png"
+      }
+    ]
+  },
+  "jidar-toiles-de-rue": {
+    "creditsCover": "/images/projects/jidar-toiles-de-rue/credits-cover/1779528222820.jpg",
+    "workCover": "/images/projects/jidar-toiles-de-rue/work-cover/1779528876019.png",
+    "videoUrl": "aEM36F0Vwn8",
+    "gallery": [
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614316141.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614348197.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614431899.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614464572.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614480533.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614522952.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614590731.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614632499.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614660101.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614728785.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614789015.png",
+      "/images/projects/jidar-toiles-de-rue/gallery/1779614802756.png"
+    ]
+  },
+  "simo-x-nesrine": {
+    "creditsCover": "/images/projects/simo-x-nesrine/credits-cover/1779528228817.jpg",
+    "workCover": "/images/projects/simo-x-nesrine/work-cover/1779528843958.png",
+    "gallery": [
+      "/images/projects/simo-x-nesrine/gallery/1779615706006.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615728067.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615744187.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615748529.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615752897.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615759686.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615768571.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615772280.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615776217.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615779387.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615784681.jpg",
+      "/images/projects/simo-x-nesrine/gallery/1779615788469.jpg"
+    ],
+    "imagePositions": {
+      "/images/projects/simo-x-nesrine/gallery/1779615706006.jpg": {
+        "x": 44.7,
+        "y": 64.1,
+        "scale": 1
+      }
+    }
+  },
+  "coma": {
+    "creditsCover": "/images/projects/coma/credits-cover/1779528244710.jpg",
+    "workCover": "/images/projects/coma/work-cover/1779528952567.png",
+    "imagePositions": {
+      "/images/projects/coma/work-cover/1779528952567.png": {
+        "x": 78,
+        "y": 50
+      }
+    },
+    "gallery": [
+      "/images/projects/coma/gallery/1779616373054.png",
+      "/images/projects/coma/gallery/1779616397967.png",
+      "/images/projects/coma/gallery/1779616428957.png",
+      "/images/projects/coma/gallery/1779616456047.png",
+      "/images/projects/coma/gallery/1779616517092.png",
+      "/images/projects/coma/gallery/1779616546558.png",
+      "/images/projects/coma/gallery/1779616588111.png",
+      "/images/projects/coma/gallery/1779616616761.png",
+      "/images/projects/coma/gallery/1779616644409.png",
+      "/images/projects/coma/gallery/1779616709786.png"
+    ],
+    "videoUrl": "Pz9JCIUf5xA",
+    "poster": "/images/projects/coma/poster/1779617321230.JPG"
+  },
+  "culinary-photography": {
+    "creditsCover": "/images/projects/culinary-photography/credits-cover/1779528265599.jpg",
+    "workCover": "/images/projects/culinary-photography/work-cover/1779564308224.png",
+    "imagePositions": {
+      "/images/projects/culinary-photography/work-cover/1779564308224.png": {
+        "x": 72,
+        "y": 50
+      }
+    },
+    "albums": [
+      [
+        "/images/projects/culinary-photography/album-0/1779661499190.jpg",
+        "/images/projects/culinary-photography/album-0/1779661499166.jpg",
+        "/images/projects/culinary-photography/album-0/1779661499211.jpg",
+        "/images/projects/culinary-photography/album-0/1779661499201.jpg",
+        "/images/projects/culinary-photography/album-0/1779661499220.jpg",
+        "/images/projects/culinary-photography/album-0/1779661499230.jpg"
+      ],
+      [
+        "/images/projects/culinary-photography/album-1/1779661553025.jpg",
+        "/images/projects/culinary-photography/album-1/1779661553006.jpg",
+        "/images/projects/culinary-photography/album-1/1779661552996.jpg",
+        "/images/projects/culinary-photography/album-1/1779661552984.jpg",
+        "/images/projects/culinary-photography/album-1/1779661553036.jpg",
+        "/images/projects/culinary-photography/album-1/1779661638292.jpg"
+      ],
+      [
+        "/images/projects/culinary-photography/album-2/1779661657192.jpg",
+        "/images/projects/culinary-photography/album-2/1779661657209.jpg",
+        "/images/projects/culinary-photography/album-2/1779661657219.jpg",
+        "/images/projects/culinary-photography/album-2/1779661657233.jpg"
+      ]
+    ]
+  }
+}

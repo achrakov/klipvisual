@@ -30,11 +30,25 @@ body {
   font-family: var(--font-dm-sans), sans-serif;
   font-weight: 300;
   overflow-x: hidden;
-  cursor: none;
 }
 
-/* hide native cursor site-wide */
-*, *::before, *::after { cursor: none !important; }
+/* hide native cursor only inside the hero scroll-cursor frame */
+.hero-frame, .hero-frame * { cursor: none !important; }
+
+/* restore cursor when gallery or any lightbox overlay is open */
+body.overlay-open .cursor-dot { display: none !important; }
+body.overlay-open,
+body.overlay-open * { cursor: default !important; }
+body.overlay-open .gallery-thumb,
+body.overlay-open .gallery-thumb * { cursor: zoom-in !important; }
+body.overlay-open .gallery-zoom-overlay,
+body.overlay-open .gallery-zoom-overlay * { cursor: zoom-out !important; }
+body.overlay-open .gallery-close,
+body.overlay-open .gallery-close * { cursor: pointer !important; }
+body.overlay-open .pos-editor-frame,
+body.overlay-open .pos-editor-frame * { cursor: grab !important; }
+body.overlay-open .pos-editor-frame.dragging,
+body.overlay-open .pos-editor-frame.dragging * { cursor: grabbing !important; }
 
 /* ── Film Grain ──────────────────────────────────── */
 @keyframes grain {
@@ -92,28 +106,27 @@ body {
 .cursor-dot {
   position: fixed;
   top: 0; left: 0;
-  width: 8px; height: 8px;
-  background: #f0ede8;
+  width: 10px; height: 10px;
+  background: #E8181C;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 999999;
   transform: translate(-50%, -50%);
-  transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+  transition: width 0.22s ease, height 0.22s ease, background 0.22s ease, opacity 0.22s ease;
   will-change: transform;
+  mix-blend-mode: normal;
 }
 .cursor-dot.cursor-hover {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   background: transparent;
-  border: 1px solid #f0ede8;
-  mix-blend-mode: difference;
+  border: 1.5px solid rgba(255,255,255,0.6);
 }
 .cursor-dot.cursor-link {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   background: #E8181C;
   border: none;
-  mix-blend-mode: normal;
 }
 
 /* ── Loading Screen ──────────────────────────────── */

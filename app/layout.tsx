@@ -27,7 +27,7 @@ const spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "KLIPVISUAL — Cinematic Production Montreal",
+  title: "KLIPVISUAL | Cinematic Production Montreal",
   description:
     "Montreal-based cinematic production studio. Video production, photography, and brand identity for brands that demand excellence.",
   openGraph: {

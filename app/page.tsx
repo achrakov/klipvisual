@@ -6,6 +6,118 @@ import { motion, AnimatePresence } from "framer-motion"
 import { LoadingIntro } from "./components/LoadingIntro"
 import { HeroGallery } from "./components/HeroGallery"
 import { Footer } from "./components/Footer"
+import { featuredProjects } from "./data/projects"
+import type { Project } from "./data/projects"
+
+const FRAME_RADIUS = "10px 12px 11px 10px / 11px 10px 12px 10px"
+
+const clients = [
+  "TikTok Canada",
+  "Boudchart",
+  "La Famille QA",
+  "Romeo & Fils",
+  "Coach Racicot",
+  "L'Olympia",
+]
+
+function SelectedWorkCard({ project, index }: { project: Project; index: number }) {
+  return (
+    <Link href={`/work/${project.slug}`} style={{ display: "block", textDecoration: "none" }}>
+      <motion.div
+        initial="rest"
+        whileHover="hover"
+        animate="rest"
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          height: index === 0 ? "62vh" : "55vh",
+          borderRadius: FRAME_RADIUS,
+          cursor: "pointer",
+        }}
+      >
+        {/* BG image */}
+        <motion.img
+          variants={{ rest: { scale: 1 }, hover: { scale: 1.04 } }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          src={project.cover}
+          alt={project.shortTitle}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          draggable={false}
+        />
+
+        {/* Gradient overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to top, rgba(4,2,0,0.90) 0%, rgba(4,2,0,0.18) 50%, transparent 100%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Ghost number */}
+        <span
+          className="font-display font-bold pointer-events-none select-none absolute"
+          style={{
+            top: "4%",
+            right: 24,
+            fontSize: "clamp(7rem,16vw,20rem)",
+            lineHeight: 1,
+            color: "rgba(255,255,255,0.03)",
+            letterSpacing: "-0.04em",
+          }}
+          aria-hidden
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        {/* Bottom content */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "28px 32px" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24 }}>
+            <div>
+              <motion.p
+                variants={{ rest: { opacity: 0.35 }, hover: { opacity: 0.65 } }}
+                className="font-mono uppercase"
+                style={{ fontSize: 9, letterSpacing: "0.3em", marginBottom: 10 }}
+              >
+                {project.category.split("+")[0].trim()} · {project.year}
+              </motion.p>
+              <h3
+                className="font-display font-bold uppercase text-[#f0ede8]"
+                style={{ fontSize: "clamp(2.2rem,4.5vw,5rem)", lineHeight: 0.88, letterSpacing: "-0.01em" }}
+              >
+                {project.shortTitle}
+              </h3>
+            </div>
+
+            {/* Arrow — reveals on hover */}
+            <motion.div
+              variants={{ rest: { opacity: 0, y: 10 }, hover: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                flexShrink: 0,
+                width: 52,
+                height: 52,
+                borderRadius: "50%",
+                background: "#E8181C",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 20,
+                color: "white",
+              }}
+            >
+              →
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Film grain */}
+        <div className="grain-overlay-frame absolute inset-0 pointer-events-none" style={{ zIndex: 50 }} aria-hidden />
+      </motion.div>
+    </Link>
+  )
+}
 
 const stats = [
   { value: "7+", label: "Years\nExperience" },
@@ -20,7 +132,7 @@ const services = [
   {
     num: "01",
     label: "Video Production",
-    desc: "From concept to final cut — cinematic content for brand campaigns, live events, and social media. Every frame crafted with a filmmaker's eye.",
+    desc: "From concept to final cut. Cinematic content for brand campaigns, live events, and social media. Every frame crafted with a filmmaker's eye.",
     href: "/services#video",
   },
   {
@@ -32,7 +144,7 @@ const services = [
   {
     num: "03",
     label: "Design & Branding",
-    desc: "Visual identity that commands attention — logos, color systems, typography, and brand guidelines built to last across every medium.",
+    desc: "Visual identity that commands attention. Logos, color systems, typography, and brand guidelines built to last across every medium.",
     href: "/services#design",
   },
   {
@@ -197,6 +309,49 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* ── Selected Work ── */}
+        <section style={{ padding: "80px 28px", borderBottom: "1px solid #1f1f1f" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 32, padding: "0 4px" }}>
+            <div>
+              <p className="font-mono text-[#444] uppercase" style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 14 }}>
+                Selected Work
+              </p>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="font-display font-bold uppercase leading-none text-[#f0ede8]"
+                style={{ fontSize: "clamp(2.5rem,5vw,5rem)" }}
+              >
+                Featured<br />Projects
+              </motion.h2>
+            </div>
+            <Link
+              href="/work"
+              className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#555] uppercase flex-shrink-0"
+              style={{ border: "1px solid #1f1f1f", padding: "14px 28px", fontSize: 10, letterSpacing: "0.25em" }}
+            >
+              <span className="absolute inset-0 bg-[#E8181C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">View All</span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">→</span>
+            </Link>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {featuredProjects.slice(0, 3).map((project, i) => (
+              <motion.div
+                key={project.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ delay: i * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <SelectedWorkCard project={project} index={i} />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
         {/* ── Services Accordion ── */}
         <section style={{ padding: "80px 0 80px", borderBottom: "1px solid #1f1f1f" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px" }}>
@@ -250,6 +405,53 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ── Clients ── */}
+        <section style={{ padding: "80px 40px", borderBottom: "1px solid #1f1f1f" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+            <p className="font-mono text-center uppercase" style={{ fontSize: 9, letterSpacing: "0.4em", marginBottom: 52, color: "#333" }}>
+              Trusted By
+            </p>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+              {clients.map((name, i) => (
+                <div key={name} style={{ display: "flex", alignItems: "center" }}>
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="font-display font-bold uppercase"
+                    style={{
+                      fontSize: "clamp(1.2rem,2.2vw,2.6rem)",
+                      color: "#1e1e1e",
+                      letterSpacing: "0.03em",
+                      padding: "0 24px",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {name}
+                  </motion.span>
+                  {i < clients.length - 1 && (
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.08 + 0.05, duration: 0.4 }}
+                      style={{
+                        width: 5,
+                        height: 5,
+                        borderRadius: "50%",
+                        background: "#E8181C",
+                        flexShrink: 0,
+                        display: "inline-block",
+                      }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── Statement ── */}
         <section style={{ padding: "120px 40px" }}>
           <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
@@ -283,7 +485,7 @@ export default function HomePage() {
               style={{ fontSize: 15, maxWidth: 520, margin: "0 auto", textAlign: "center" }}
             >
               Cinema-trained. Design-educated. Montreal-based. KLIPVISUAL brings
-              a filmmaker&apos;s eye to every frame — whether it&apos;s a brand
+              a filmmaker&apos;s eye to every frame, whether it&apos;s a brand
               campaign, a live event, or a portrait session.
             </motion.p>
           </div>

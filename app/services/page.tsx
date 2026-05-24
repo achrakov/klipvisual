@@ -12,7 +12,7 @@ const processSteps = [
     num: "01",
     title: "Discovery Call",
     duration: "30 min · Free",
-    desc: "We talk goals, timeline, and budget. No pressure, no pitch — just the right questions to understand what you actually need.",
+    desc: "We talk goals, timeline, and budget. No pressure, no pitch. Just the right questions to understand what you actually need.",
   },
   {
     num: "02",
@@ -30,7 +30,7 @@ const processSteps = [
     num: "04",
     title: "Delivery",
     duration: "3–7 business days",
-    desc: "Edited, color-graded, and polished — delivered via private gallery or WeTransfer. Revisions included. You leave with files ready to publish.",
+    desc: "Edited, color-graded, and polished. Delivered via private gallery or WeTransfer. Revisions included. You leave with files ready to publish.",
   },
 ]
 
@@ -39,7 +39,7 @@ const services = [
     id: "video",
     num: "01",
     label: "Video Production",
-    desc: "From brand films to content days — we handle the full production cycle. Concept to final cut, we don't cut corners.",
+    desc: "From brand films to content days. We handle the full production cycle. Concept to final cut, we don't cut corners.",
     offerings: [
       {
         name: "Brand Video",
@@ -58,7 +58,7 @@ const services = [
         ],
       },
       {
-        name: "Content Day — Half Day",
+        name: "Content Day / Half Day",
         price: "$1,200",
         timeline: "5–7 business days",
         best: "Social media, reels, campaigns",
@@ -72,7 +72,7 @@ const services = [
         ],
       },
       {
-        name: "Content Day — Full Day",
+        name: "Content Day / Full Day",
         price: "$2,000",
         timeline: "5–7 business days",
         best: "Content batching, campaigns, multi-platform",
@@ -133,10 +133,10 @@ const services = [
     id: "photography",
     num: "02",
     label: "Photography",
-    desc: "Still images that carry weight. Product, events, portraits, real estate — every frame gets the same cinematic eye.",
+    desc: "Still images that carry weight. Product, events, portraits, real estate. Every frame gets the same cinematic eye.",
     offerings: [
       {
-        name: "Food & Product — Half Day",
+        name: "Food & Product / Half Day",
         price: "$700",
         timeline: "3–5 business days",
         best: "Restaurants, e-commerce, brands",
@@ -149,7 +149,7 @@ const services = [
         ],
       },
       {
-        name: "Food & Product — Full Day",
+        name: "Food & Product / Full Day",
         price: "$1,400",
         timeline: "3–5 business days",
         best: "Full menus, product lines, lookbooks",
@@ -162,7 +162,7 @@ const services = [
         ],
       },
       {
-        name: "Event — Half Day",
+        name: "Event / Half Day",
         price: "$800",
         timeline: "5–7 business days",
         best: "Conferences, launches, exhibitions",
@@ -174,7 +174,7 @@ const services = [
         ],
       },
       {
-        name: "Event — Full Day",
+        name: "Event / Full Day",
         price: "$1,500",
         timeline: "5–7 business days",
         best: "Full-day events, galas, brand activations",
@@ -187,7 +187,7 @@ const services = [
         ],
       },
       {
-        name: "Portrait — 1 Hour",
+        name: "Portrait / 1 Hour",
         price: "$400",
         timeline: "3–5 business days",
         best: "Headshots, personal branding, artists",
@@ -199,7 +199,7 @@ const services = [
         ],
       },
       {
-        name: "Portrait — 2 Hours",
+        name: "Portrait / 2 Hours",
         price: "$700",
         timeline: "3–5 business days",
         best: "Brands, artists, actors, influencers",
@@ -230,7 +230,7 @@ const services = [
     id: "design",
     num: "03",
     label: "Design & Branding",
-    desc: "Brand identity built to last. From logo to full visual system — we create languages that communicate before a word is read.",
+    desc: "Brand identity built to last. From logo to full visual system, we create languages that communicate before a word is read.",
     offerings: [
       {
         name: "Logo Design",
@@ -291,7 +291,7 @@ const services = [
     id: "bundles",
     num: "04",
     label: "Bundles",
-    desc: "The best value is a full ecosystem. Bundles combine video, photo, and design into one seamless production — one team, one vision.",
+    desc: "The best value is a full ecosystem. Bundles combine video, photo, and design into one seamless production. One team, one vision.",
     offerings: [
       {
         name: "Launch Package",
@@ -360,15 +360,15 @@ const notIncluded = [
 const faqs = [
   {
     q: "Do you travel for shoots?",
-    a: "We're based in Montréal and cover the greater area without travel fees. Shoots outside a 40 km radius are quoted separately — typically $0.55/km or a flat day rate for distant cities. We've shot across Québec and are open to projects anywhere.",
+    a: "We're based in Montréal and cover the greater area without travel fees. Shoots outside a 40 km radius are quoted separately, typically $0.55/km or a flat day rate for distant cities. We've shot across Québec and are open to projects anywhere.",
   },
   {
     q: "How far in advance should I book?",
-    a: "We recommend reaching out 2–4 weeks before your ideal shoot date. High-demand periods (summer, Q4) fill up fast. Availability is first-come, first-served — a signed contract and 50% deposit secures your date.",
+    a: "We recommend reaching out 2–4 weeks before your ideal shoot date. High-demand periods (summer, Q4) fill up fast. Availability is first-come, first-served. A signed contract and 50% deposit secures your date.",
   },
   {
     q: "What's your cancellation or reschedule policy?",
-    a: "Rescheduling is free with 72+ hours notice. Cancellations within 72 hours forfeit the deposit. We understand things happen — communicate early and we'll always work something out.",
+    a: "Rescheduling is free with 72+ hours notice. Cancellations within 72 hours forfeit the deposit. We understand things happen. Communicate early and we'll always work something out.",
   },
   {
     q: "How do I receive my final files?",
@@ -376,11 +376,11 @@ const faqs = [
   },
   {
     q: "Do you work with small businesses or solo brands?",
-    a: "Absolutely. A significant portion of our clients are solo entrepreneurs, local restaurants, and emerging brands. We offer the same level of craft regardless of budget tier — and we'll always tell you if a simpler package fits your actual needs better.",
+    a: "Absolutely. A significant portion of our clients are solo entrepreneurs, local restaurants, and emerging brands. We offer the same level of craft regardless of budget tier, and we'll always tell you if a simpler package fits your actual needs better.",
   },
   {
     q: "Can I see examples of past work?",
-    a: "Yes — our full portfolio is at klipvisual.com/work. We have case studies across video, photo, and branding. If you want to see work specific to your industry or project type, just ask during the discovery call.",
+    a: "Yes, our full portfolio is at klipvisual.com/work. We have case studies across video, photo, and branding. If you want to see work specific to your industry or project type, just ask during the discovery call.",
   },
 ]
 
@@ -490,7 +490,7 @@ function OfferingCard({
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 11 }}>
           {offering.deliverables.map((d) => (
             <li key={d} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-              <span style={{ color: "#E8181C", flexShrink: 0, marginTop: 2, fontSize: 11, lineHeight: 1 }}>—</span>
+              <span style={{ color: "#E8181C", flexShrink: 0, marginTop: 2, fontSize: 11, lineHeight: 1 }}>·</span>
               <span className="font-sans text-[#777] font-light" style={{ fontSize: 13, lineHeight: 1.55 }}>
                 {d}
               </span>
@@ -503,7 +503,7 @@ function OfferingCard({
       <div style={{ padding: "14px 28px", borderTop: "1px solid #111", background: "#080808" }}>
         <p className="font-mono text-[#444]" style={{ fontSize: 10, letterSpacing: "0.12em" }}>
           BEST FOR{" "}
-          <span style={{ color: "#555" }}>— {offering.best}</span>
+          <span style={{ color: "#555" }}>{offering.best}</span>
         </p>
       </div>
     </motion.div>
@@ -559,7 +559,7 @@ export default function ServicesPage() {
                 style={{ fontSize: 15, maxWidth: 500 }}
               >
                 Every package is a starting point. Transparent pricing, clear deliverables,
-                no hidden fees. If your project needs something custom — we build the quote from scratch.
+                no hidden fees. If your project needs something custom, we build the quote from scratch.
               </motion.p>
 
               {/* Quick nav anchors */}
@@ -583,7 +583,7 @@ export default function ServicesPage() {
                       display: "inline-block",
                     }}
                   >
-                    {s.num} — {s.label}
+                    {s.num} · {s.label}
                   </a>
                 ))}
               </motion.div>
@@ -662,7 +662,7 @@ export default function ServicesPage() {
                     className="font-mono text-[#333] uppercase"
                     style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 14 }}
                   >
-                    {service.num} — Services
+                    {service.num} Services
                   </motion.p>
                   <div style={{ overflow: "hidden" }}>
                     <motion.h2
@@ -771,7 +771,7 @@ export default function ServicesPage() {
                 style={{ background: "#0a0a0a", padding: "52px 44px" }}
               >
                 <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.22em", marginBottom: 32 }}>
-                  Not included — quoted separately
+                  Not included, quoted separately
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 18 }}>
                   {notIncluded.map((item) => (
@@ -824,7 +824,7 @@ export default function ServicesPage() {
                   className="font-sans text-[#555] font-light leading-relaxed"
                   style={{ fontSize: 13, marginTop: 24 }}
                 >
-                  Still have something specific? Reach out — we reply within 24 hours.
+                  Still have something specific? Reach out. We reply within 24 hours.
                 </motion.p>
                 <Link
                   href="/contact"

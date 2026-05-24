@@ -104,7 +104,7 @@ export function HorizontalGallery() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="font-mono text-[10px] uppercase tracking-[0.45em] text-white/40 mb-3"
           >
-            {project.category.split("+")[0].trim()}&nbsp;&nbsp;—&nbsp;&nbsp;{project.year}
+            {project.category.split("+")[0].trim()}&nbsp;&nbsp;·&nbsp;&nbsp;{project.year}
           </motion.p>
         </AnimatePresence>
 

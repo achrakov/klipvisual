@@ -121,7 +121,7 @@ export function HeroGallery() {
       ══════════════════════════════════════════ */}
       <div
         ref={frameRef}
-        className="absolute overflow-hidden"
+        className="absolute overflow-hidden hero-frame"
         style={{
           top: 66,
           left: 28,
@@ -147,7 +147,7 @@ export function HeroGallery() {
               src={project.cover}
               alt={project.shortTitle}
               className="w-full h-full"
-              style={{ objectFit: "cover", objectPosition: "center" }}
+              style={{ objectFit: project.coverFit ?? "cover", objectPosition: "center" }}
               draggable={false}
             />
           </motion.div>
@@ -247,7 +247,7 @@ export function HeroGallery() {
             {/* Director / Year / Type — left */}
             <div style={{ display: "flex", gap: 0 }}>
               {[
-                { label: "DIRECTOR", value: project.client ?? "—" },
+                { label: "DIRECTOR", value: project.client ?? "" },
                 { label: "YEAR", value: project.year },
                 { label: "CATEGORY", value: project.category.split("+")[0].trim() },
               ].map(({ label, value }, i) => (

@@ -205,19 +205,33 @@ export default function WorkPage() {
                 }}
               >
                 {/* Cover image */}
-                <img
-                  src={project.cover}
-                  alt={project.shortTitle}
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    pointerEvents: "none",
-                  }}
-                  draggable={false}
-                />
+                {(() => {
+                  const src = project.workCover ?? project.cover
+                  const pos = project.imagePositions?.[src]
+                  const s = pos?.scale ?? 1
+                  const x = pos?.x ?? 50
+                  const y = pos?.y ?? 50
+                  const posStyle: React.CSSProperties = {
+                    objectPosition: pos ? `${x}% ${y}%` : "center",
+                    ...(s !== 1 ? { transform: `scale(${s})`, transformOrigin: `${x}% ${y}%` } : {}),
+                  }
+                  return (
+                    <img
+                      src={src}
+                      alt={project.shortTitle}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        pointerEvents: "none",
+                        ...posStyle,
+                      }}
+                      draggable={false}
+                    />
+                  )
+                })()}
 
                 {/* Gradient overlay */}
                 <div

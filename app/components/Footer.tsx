@@ -92,7 +92,7 @@ export function Footer() {
             className="font-mono text-[#555] uppercase"
             style={{ fontSize: 10, letterSpacing: "0.12em" }}
           >
-            Montreal — Toronto — Casablanca
+            Montreal · Toronto · Casablanca
           </p>
         </div>
       </div>
