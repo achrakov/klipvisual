@@ -437,8 +437,6 @@ const _raw: Project[] = [
     ],
     reels: [
       { title: "Portrait Reel 01" },
-      { title: "Portrait Reel 02" },
-      { title: "Portrait Reel 03" },
     ],
     themeSectionLabel: "Browse by Series",
     reelSectionLabel: "Portrait Reels",
