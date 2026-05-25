@@ -6,6 +6,7 @@ import { CustomCursor } from "./components/CustomCursor"
 import { FilmGrain } from "./components/FilmGrain"
 import { SmoothScroll } from "./components/SmoothScroll"
 import { LanguageProvider } from "./i18n/LanguageContext"
+import { Analytics } from "@vercel/analytics/next"
 
 const barlow = Barlow_Condensed({
   weight: ["700", "800"],
@@ -53,6 +54,7 @@ export default function RootLayout({
           <CustomCursor />
           <Navbar />
           <SmoothScroll>{children}</SmoothScroll>
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
