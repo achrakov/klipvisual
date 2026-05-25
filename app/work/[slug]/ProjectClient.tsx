@@ -2130,48 +2130,54 @@ export default function ProjectClient({ project, nextProject }: Props) {
           {/* Logofolio */}
           {(project.logofolio ?? []).length > 0 ? (
             <section style={{ padding: "88px 40px", borderBottom: "1px solid #1f1f1f", background: "#050505" }}>
-              <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+              <div style={{ maxWidth: 1200, margin: "0 auto" }}>
                 <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.18)", marginBottom: 64 }}>
                   Logofolio
                 </p>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
-                  {project.logofolio!.map((src: string, i: number) => (
-                    <div
-                      key={i}
-                      style={{
-                        padding: "52px 40px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRight: i % 3 < 2 ? "1px solid #161616" : "none",
-                        borderBottom: i < project.logofolio!.length - 3 ? "1px solid #161616" : "none",
-                      }}
-                    >
-                      <img src={src} alt="" style={{ maxWidth: "65%", maxHeight: 80, objectFit: "contain" }} draggable={false} />
+                {(() => {
+                  const logos = project.logofolio!
+                  const cols = logos.length % 4 === 0 ? 4 : logos.length % 3 === 0 ? 3 : logos.length > 6 ? 4 : 3
+                  return (
+                    <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+                      {logos.map((src: string, i: number) => (
+                        <div
+                          key={i}
+                          style={{
+                            padding: "56px 32px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            borderRight: i % cols < cols - 1 ? "1px solid #161616" : "none",
+                            borderBottom: i < logos.length - cols ? "1px solid #161616" : "none",
+                          }}
+                        >
+                          <img src={src} alt="" style={{ maxWidth: "80%", maxHeight: 130, objectFit: "contain" }} draggable={false} />
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  )
+                })()}
               </div>
             </section>
           ) : (
             /* Logofolio placeholder */
             <section style={{ padding: "88px 40px", borderBottom: "1px solid #1f1f1f", background: "#050505" }}>
-              <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+              <div style={{ maxWidth: 1200, margin: "0 auto" }}>
                 <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.18)", marginBottom: 64 }}>
                   Logofolio
                 </p>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
-                  {Array.from({ length: 6 }).map((_, i) => (
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
+                  {Array.from({ length: 8 }).map((_, i) => (
                     <div
                       key={i}
                       style={{
-                        padding: "52px 40px",
+                        padding: "56px 32px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        borderRight: i % 3 < 2 ? "1px solid #161616" : "none",
-                        borderBottom: i < 3 ? "1px solid #161616" : "none",
-                        minHeight: 140,
+                        borderRight: i % 4 < 3 ? "1px solid #161616" : "none",
+                        borderBottom: i < 4 ? "1px solid #161616" : "none",
+                        minHeight: 160,
                       }}
                     >
                       <div style={{ width: 120, height: 40, border: "1px dashed rgba(255,255,255,0.07)", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
