@@ -203,7 +203,7 @@ export default function ContactPage() {
               style={{ display: "flex", flexDirection: "column", gap: 36 }}
             >
               {[
-                { label: tc.info.emailLabel,     content: <a href="mailto:contact@klipvisual.com" className="hover-underline" style={{ fontSize: 14, color: "rgba(240,237,232,0.7)", fontWeight: 300 }}>contact@klipvisual.com</a> },
+                { label: tc.info.emailLabel,     content: <a href="mailto:hello@klipvisual.com" className="hover-underline" style={{ fontSize: 14, color: "rgba(240,237,232,0.7)", fontWeight: 300 }}>hello@klipvisual.com</a> },
                 { label: tc.info.locationLabel,  content: <p style={{ fontSize: 14, color: "rgba(240,237,232,0.7)", fontWeight: 300, lineHeight: 1.6, whiteSpace: "pre-line" }}>{tc.info.locationValue}</p> },
                 { label: tc.info.languagesLabel, content: <p style={{ fontSize: 14, color: "rgba(240,237,232,0.7)", fontWeight: 300 }}>{tc.info.languagesValue}</p> },
                 { label: tc.info.responseLabel,  content: <p style={{ fontSize: 14, color: "rgba(240,237,232,0.7)", fontWeight: 300 }}>{tc.info.responseValue}</p> },

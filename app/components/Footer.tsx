@@ -68,11 +68,11 @@ export function Footer() {
               {t.footer.getInTouch}
             </p>
             <a
-              href="mailto:contact@klipvisual.com"
+              href="mailto:hello@klipvisual.com"
               className="hover-underline"
               style={{ fontSize: 14, color: "rgba(240,237,232,0.65)", display: "block", marginBottom: 8 }}
             >
-              contact@klipvisual.com
+              hello@klipvisual.com
             </a>
             <p style={{ fontSize: 14, color: "#555" }}>{t.footer.location}</p>
           </div>

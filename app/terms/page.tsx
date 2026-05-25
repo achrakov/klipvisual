@@ -98,8 +98,8 @@ export default function TermsPage() {
             <Section label="Contact">
               <p>
                 Questions about these terms?{" "}
-                <a href="mailto:contact@klipvisual.com" className="text-[#E8181C] hover:underline">
-                  contact@klipvisual.com
+                <a href="mailto:hello@klipvisual.com" className="text-[#E8181C] hover:underline">
+                  hello@klipvisual.com
                 </a>
               </p>
             </Section>

@@ -81,8 +81,8 @@ export default function PrivacyPage() {
               <p>
                 You have the right to request access to, correction of, or deletion of any personal
                 data we hold about you. To exercise these rights, contact us at{" "}
-                <a href="mailto:contact@klipvisual.com" className="text-[#E8181C] hover:underline">
-                  contact@klipvisual.com
+                <a href="mailto:hello@klipvisual.com" className="text-[#E8181C] hover:underline">
+                  hello@klipvisual.com
                 </a>
                 . We will respond within 30 days.
               </p>
@@ -105,8 +105,8 @@ export default function PrivacyPage() {
             <Section label="Contact">
               <p>
                 Privacy questions or requests:{" "}
-                <a href="mailto:contact@klipvisual.com" className="text-[#E8181C] hover:underline">
-                  contact@klipvisual.com
+                <a href="mailto:hello@klipvisual.com" className="text-[#E8181C] hover:underline">
+                  hello@klipvisual.com
                 </a>
               </p>
             </Section>
