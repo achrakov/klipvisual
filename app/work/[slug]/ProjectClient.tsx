@@ -1553,6 +1553,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
   const [activeVideo, setActiveVideo] = useState<{ id: string; portrait: boolean } | null>(null)
   const [activeTheme, setActiveTheme] = useState<EventTheme | null>(null)
   const [activeDeck, setActiveDeck] = useState<PitchDeck | null>(null)
+  const [activeImage, setActiveImage] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const { pos: objPos, style: imgStyle } = useObjPos(project)
 
@@ -2095,29 +2096,30 @@ export default function ProjectClient({ project, nextProject }: Props) {
                     )}
                   </div>
 
-                  {/* Right: image mosaic */}
+                  {/* Right: masonry image grid */}
                   {bp.images.length > 0 ? (
-                    <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gridTemplateRows: "repeat(3, auto)", gap: 6 }}>
-                      <div style={{ gridRow: "1 / 4", borderRadius: 10, overflow: "hidden", aspectRatio: "3/4" }}>
-                        <img src={bp.images[0]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} draggable={false} />
-                        <div className="grain-overlay-frame absolute inset-0 pointer-events-none" style={{ zIndex: 10 }} aria-hidden />
-                      </div>
-                      {bp.images.slice(1, 7).map((src: string, i: number) => (
-                        <div key={i} style={{ borderRadius: 8, overflow: "hidden", aspectRatio: "4/3", position: "relative" }}>
-                          <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} draggable={false} />
-                          <div className="grain-overlay-frame absolute inset-0 pointer-events-none" style={{ zIndex: 10 }} aria-hidden />
+                    <div style={{ columns: 3, columnGap: 6, lineHeight: 0 }}>
+                      {bp.images.map((src: string, i: number) => (
+                        <div
+                          key={i}
+                          style={{ breakInside: "avoid", marginBottom: 6, borderRadius: 8, overflow: "hidden", cursor: "zoom-in" }}
+                          onClick={() => setActiveImage(src)}
+                        >
+                          <img
+                            src={src}
+                            alt=""
+                            style={{ width: "100%", display: "block", borderRadius: 8 }}
+                            draggable={false}
+                          />
                         </div>
                       ))}
                     </div>
                   ) : (
                     /* Placeholder mosaic */
-                    <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gridTemplateRows: "repeat(3, 1fr)", gap: 6, minHeight: 480 }}>
-                      <div style={{ gridRow: "1 / 4", borderRadius: 10, border: "1px dashed rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <p className="font-mono" style={{ fontSize: 8, color: "rgba(255,255,255,0.12)", letterSpacing: "0.2em" }}>MAIN</p>
-                      </div>
-                      {Array.from({ length: 6 }).map((_, i) => (
-                        <div key={i} style={{ borderRadius: 8, border: "1px dashed rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)", aspectRatio: "4/3", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <p className="font-mono" style={{ fontSize: 7, color: "rgba(255,255,255,0.1)", letterSpacing: "0.2em" }}>{String(i + 2).padStart(2, "0")}</p>
+                    <div style={{ columns: 3, columnGap: 6, lineHeight: 0 }}>
+                      {Array.from({ length: 7 }).map((_, i) => (
+                        <div key={i} style={{ breakInside: "avoid", marginBottom: 6, borderRadius: 8, border: "1px dashed rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)", aspectRatio: i === 0 ? "3/4" : "4/3", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <p className="font-mono" style={{ fontSize: 7, color: "rgba(255,255,255,0.1)", letterSpacing: "0.2em" }}>{String(i + 1).padStart(2, "0")}</p>
                         </div>
                       ))}
                     </div>
@@ -2142,6 +2144,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
                       {logos.map((src: string, i: number) => (
                         <div
                           key={i}
+                          onClick={() => setActiveImage(src)}
                           style={{
                             padding: "56px 32px",
                             display: "flex",
@@ -2149,6 +2152,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
                             justifyContent: "center",
                             borderRight: i % cols < cols - 1 ? "1px solid #161616" : "none",
                             borderBottom: i < logos.length - cols ? "1px solid #161616" : "none",
+                            cursor: "zoom-in",
                           }}
                         >
                           <img src={src} alt="" style={{ maxWidth: "80%", maxHeight: 130, objectFit: "contain" }} draggable={false} />
@@ -2977,6 +2981,43 @@ export default function ProjectClient({ project, nextProject }: Props) {
       <AnimatePresence>
         {activeDeck && (
           <SlideshowLightbox deck={activeDeck} onClose={() => setActiveDeck(null)} />
+        )}
+      </AnimatePresence>
+
+      {/* Image lightbox */}
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            onClick={() => setActiveImage(null)}
+            style={{
+              position: "fixed", inset: 0, zIndex: 9999,
+              background: "rgba(0,0,0,0.92)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "zoom-out", padding: "40px",
+            }}
+          >
+            <motion.img
+              src={activeImage}
+              alt=""
+              initial={{ scale: 0.94, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.94, opacity: 0 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", borderRadius: 6, cursor: "default" }}
+              onClick={(e) => e.stopPropagation()}
+              draggable={false}
+            />
+            <button
+              onClick={() => setActiveImage(null)}
+              style={{ position: "absolute", top: 20, right: 28, background: "none", border: "none", color: "rgba(255,255,255,0.45)", fontSize: 30, lineHeight: 1, cursor: "pointer" }}
+            >
+              ×
+            </button>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
