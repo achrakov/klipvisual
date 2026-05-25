@@ -2,13 +2,8 @@
 
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-
-const NAV = [
-  { num: "01", label: "WORK", href: "/work" },
-  { num: "02", label: "SERVICES", href: "/services" },
-  { num: "03", label: "ABOUT", href: "/about" },
-  { num: "04", label: "CONTACT", href: "/contact" },
-]
+import { useLang } from "../i18n/LanguageContext"
+import { LanguageSwitcher } from "./LanguageSwitcher"
 
 const CORNER_TRANSFORMS = [
   "translate(-50%, -50%)",
@@ -23,11 +18,19 @@ interface BurgerMenuProps {
 }
 
 export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
+  const { t } = useLang()
+
+  const NAV = [
+    { num: "01", label: t.nav.work,     href: "/work"     },
+    { num: "02", label: t.nav.services, href: "/services" },
+    { num: "03", label: t.nav.about,    href: "/about"    },
+    { num: "04", label: t.nav.contact,  href: "/contact"  },
+  ]
+
   return (
     <AnimatePresence>
       {open && (
         <>
-          {/* Invisible backdrop to close on outside click */}
           <motion.div
             className="fixed inset-0 z-[8900]"
             initial={{ opacity: 0 }}
@@ -36,7 +39,6 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
             onClick={onClose}
           />
 
-          {/* Ticket panel */}
           <motion.div
             className="fixed top-16 right-4 z-[9100]"
             initial={{ opacity: 0, scale: 0.96, y: -6 }}
@@ -55,8 +57,7 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
                 overflow: "hidden",
               }}
             >
-              {/* Corner punch holes */}
-              {CORNER_TRANSFORMS.map((t, i) => (
+              {CORNER_TRANSFORMS.map((transform, i) => (
                 <div
                   key={i}
                   style={{
@@ -69,15 +70,14 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
                     ...(i === 1 && { top: 0, right: 0 }),
                     ...(i === 2 && { bottom: 0, left: 0 }),
                     ...(i === 3 && { bottom: 0, right: 0 }),
-                    transform: t,
+                    transform,
                   }}
                 />
               ))}
 
-              {/* Close × */}
               <button
                 onClick={onClose}
-                aria-label="Close menu"
+                aria-label={t.burger.closeLabel}
                 style={{
                   position: "absolute",
                   top: 14,
@@ -92,11 +92,10 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
                 ×
               </button>
 
-              {/* Nav items */}
               <nav style={{ padding: "28px 28px 16px" }}>
                 {NAV.map(({ num, label, href }, i) => (
                   <motion.div
-                    key={label}
+                    key={num}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.04 + i * 0.05, duration: 0.28 }}
@@ -135,34 +134,37 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
                 ))}
               </nav>
 
-              {/* Dashed divider */}
               <div style={{ borderTop: "1px dashed rgba(0,0,0,0.15)", margin: "0 16px" }} />
 
-              {/* Footer */}
               <div style={{ padding: "12px 28px 20px" }}>
-                <div style={{ display: "flex", gap: 16, marginBottom: 12 }}>
-                  {["Cookie", "Terms", "Privacy"].map((item) => (
-                    <Link
-                      key={item}
-                      href={`/${item.toLowerCase()}`}
-                      onClick={onClose}
-                      style={{
-                        fontFamily: "var(--font-space-mono)",
-                        fontSize: 8,
-                        color: "rgba(0,0,0,0.35)",
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                      }}
-                      className="hover:text-black/60 transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  ))}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+                  <div style={{ display: "flex", gap: 16 }}>
+                    {[
+                      { key: "cookie",  label: t.burger.cookie  },
+                      { key: "terms",   label: t.burger.terms   },
+                      { key: "privacy", label: t.burger.privacy  },
+                    ].map(({ key, label }) => (
+                      <Link
+                        key={key}
+                        href={`/${key}`}
+                        onClick={onClose}
+                        style={{
+                          fontFamily: "var(--font-space-mono)",
+                          fontSize: 8,
+                          color: "rgba(0,0,0,0.35)",
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                        }}
+                        className="hover:text-black/60 transition-colors"
+                      >
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                  <LanguageSwitcher variant="light" />
                 </div>
 
-                {/* Social icons */}
                 <div style={{ display: "flex", gap: 12, marginBottom: 10 }}>
-                  {/* Instagram */}
                   <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
                     className="text-black/40 hover:text-black/70 transition-colors">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -171,14 +173,12 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
                       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
                     </svg>
                   </a>
-                  {/* Facebook */}
                   <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
                     className="text-black/40 hover:text-black/70 transition-colors">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                     </svg>
                   </a>
-                  {/* LinkedIn */}
                   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
                     className="text-black/40 hover:text-black/70 transition-colors">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

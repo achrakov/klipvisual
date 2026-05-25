@@ -3,6 +3,8 @@
 import { useRef, useEffect, useState } from "react"
 import Link from "next/link"
 import { projects } from "../data/projects"
+import { useLang } from "../i18n/LanguageContext"
+import { LanguageSwitcher } from "../components/LanguageSwitcher"
 
 const GAP = 20
 const LERP = 0.075
@@ -82,6 +84,8 @@ export default function WorkPage() {
     drag.current.active = false
   }
 
+  const { t } = useLang()
+
   if (!mounted) return null
 
   return (
@@ -124,8 +128,8 @@ export default function WorkPage() {
             draggable={false}
           />
         </a>
-        <div style={{ display: "flex", gap: "2.5rem" }}>
-          {[{ href: "/services", label: "Services" }, { href: "/about", label: "About" }, { href: "/contact", label: "Contact" }].map(({ href, label }) => (
+        <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
+          {[{ href: "/services", label: t.nav.services }, { href: "/about", label: t.nav.about }, { href: "/contact", label: t.nav.contact }].map(({ href, label }) => (
             <a
               key={href}
               href={href}
@@ -137,6 +141,7 @@ export default function WorkPage() {
               {label}
             </a>
           ))}
+          <LanguageSwitcher variant="dark" />
         </div>
       </nav>
 
@@ -345,7 +350,7 @@ export default function WorkPage() {
           className="font-mono uppercase"
           style={{ fontSize: "0.55rem", letterSpacing: "0.25em", color: "rgba(240,237,232,0.22)" }}
         >
-          Drag
+          {t.work.drag}
         </span>
 
         {/* Center — tick indicators */}
@@ -394,7 +399,7 @@ export default function WorkPage() {
             className="absolute inset-0 bg-[#E8181C] translate-y-full group-hover:translate-y-0 transition-transform duration-400"
             style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
           />
-          <span className="relative z-10">Explore</span>
+          <span className="relative z-10">{t.work.explore}</span>
           <span className="relative z-10">→</span>
         </Link>
       </div>

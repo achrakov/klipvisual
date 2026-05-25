@@ -547,6 +547,47 @@
     "cover": "/images/projects/branding-design/cover/1779699444609.jpg",
     "workCover": "/images/projects/branding-design/work-cover/1779699454536.jpg",
     "creditsCover": "/images/projects/branding-design/credits-cover/1779699503738.png",
-    "resultsBg": "/images/projects/branding-design/results-bg/1779699551534.jpg"
+    "resultsBg": "/images/projects/branding-design/results-bg/1779699551534.jpg",
+    "brandProjects": [
+      {
+        "images": [
+          "/images/projects/branding-design/brand-project-0/1779699901995.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902012.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902027.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902041.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902055.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902068.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902080.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902093.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902103.jpg",
+          "/images/projects/branding-design/brand-project-0/1779699902114.jpg"
+        ]
+      },
+      {
+        "images": [
+          "/images/projects/branding-design/brand-project-1/1779699929069.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929085.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929101.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929117.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929131.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929146.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929162.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929176.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929190.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929204.jpg",
+          "/images/projects/branding-design/brand-project-1/1779699929233.jpg"
+        ]
+      }
+    ],
+    "logofolio": [
+      "/images/projects/branding-design/logofolio/1779700106164.png",
+      "/images/projects/branding-design/logofolio/1779700106183.png",
+      "/images/projects/branding-design/logofolio/1779700106201.png",
+      "/images/projects/branding-design/logofolio/1779700106214.png",
+      "/images/projects/branding-design/logofolio/1779700106227.png",
+      "/images/projects/branding-design/logofolio/1779700106240.png",
+      "/images/projects/branding-design/logofolio/1779700106253.png",
+      "/images/projects/branding-design/logofolio/1779700106266.png"
+    ]
   }
 }

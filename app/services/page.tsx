@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Footer } from "../components/Footer"
+import { useLang } from "../i18n/LanguageContext"
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -18,7 +19,7 @@ const processSteps = [
     num: "02",
     title: "Custom Proposal",
     duration: "24–48 hrs",
-    desc: "You get a tailored scope document with a clear quote. Transparent line items. No hidden fees. You approve before anything starts.",
+    desc: "You get a tailored scope document with a clear quote: transparent line items, no hidden fees. You approve before anything starts.",
   },
   {
     num: "03",
@@ -454,6 +455,7 @@ function OfferingCard({
   offering: (typeof services)[0]["offerings"][0]
   index: number
 }) {
+  const { t } = useLang()
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -471,6 +473,7 @@ function OfferingCard({
         <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.25em", marginBottom: 12 }}>
           {offering.timeline}
         </p>
+
         <h3
           className="font-display font-bold uppercase text-[#f0ede8]"
           style={{ fontSize: "clamp(1.3rem,2vw,1.7rem)", lineHeight: 1.1, marginBottom: 14 }}
@@ -485,7 +488,7 @@ function OfferingCard({
       {/* Deliverables */}
       <div style={{ padding: "24px 28px", flex: 1 }}>
         <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.2em", marginBottom: 16 }}>
-          What you get
+          {t.services.offerings.whatYouGet}
         </p>
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 11 }}>
           {offering.deliverables.map((d) => (
@@ -502,7 +505,7 @@ function OfferingCard({
       {/* Footer */}
       <div style={{ padding: "14px 28px", borderTop: "1px solid #111", background: "#080808" }}>
         <p className="font-mono text-[#444]" style={{ fontSize: 10, letterSpacing: "0.12em" }}>
-          BEST FOR{" "}
+          {t.services.offerings.bestFor}{" "}
           <span style={{ color: "#555" }}>{offering.best}</span>
         </p>
       </div>
@@ -513,6 +516,8 @@ function OfferingCard({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
+  const { t } = useLang()
+  const ts = t.services
   return (
     <>
       <main style={{ minHeight: "100vh", background: "#0a0a0a" }}>
@@ -526,7 +531,7 @@ export default function ServicesPage() {
               className="font-mono text-[#3a3a3a] uppercase"
               style={{ fontSize: 10, letterSpacing: "0.32em", marginBottom: 24 }}
             >
-              KLIPVISUAL · Services & Pricing
+              {ts.hero.label}
             </motion.p>
 
             <div style={{ overflow: "hidden" }}>
@@ -537,7 +542,7 @@ export default function ServicesPage() {
                 className="font-display font-bold uppercase text-[#f0ede8] leading-none"
                 style={{ fontSize: "clamp(4.5rem,11vw,10.5rem)", letterSpacing: "-0.025em" }}
               >
-                Services
+                {ts.hero.heading}
               </motion.h1>
             </div>
 
@@ -558,8 +563,7 @@ export default function ServicesPage() {
                 className="font-sans text-[#555] font-light leading-relaxed"
                 style={{ fontSize: 15, maxWidth: 500 }}
               >
-                Every package is a starting point. Transparent pricing, clear deliverables,
-                no hidden fees. If your project needs something custom, we build the quote from scratch.
+                {ts.hero.intro}
               </motion.p>
 
               {/* Quick nav anchors */}
@@ -601,7 +605,7 @@ export default function ServicesPage() {
               className="font-mono text-[#3a3a3a] uppercase"
               style={{ fontSize: 10, letterSpacing: "0.32em", marginBottom: 56 }}
             >
-              The Process
+              {ts.process.label}
             </motion.p>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 1, background: "#141414" }}>
@@ -662,7 +666,7 @@ export default function ServicesPage() {
                     className="font-mono text-[#333] uppercase"
                     style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 14 }}
                   >
-                    {service.num} Services
+                    {service.num}
                   </motion.p>
                   <div style={{ overflow: "hidden" }}>
                     <motion.h2
@@ -716,7 +720,7 @@ export default function ServicesPage() {
               className="font-mono text-[#3a3a3a] uppercase"
               style={{ fontSize: 10, letterSpacing: "0.32em", marginBottom: 48 }}
             >
-              Transparency
+              {ts.included.label}
             </motion.p>
 
             <div style={{ overflow: "hidden", marginBottom: 64 }}>
@@ -728,7 +732,7 @@ export default function ServicesPage() {
                 className="font-display font-bold uppercase text-[#f0ede8] leading-none"
                 style={{ fontSize: "clamp(2.5rem,5.5vw,5.5rem)", letterSpacing: "-0.025em" }}
               >
-                What's Always<br />Included
+                {ts.included.heading1}<br />{ts.included.heading2}
               </motion.h2>
             </div>
 
@@ -748,7 +752,7 @@ export default function ServicesPage() {
                 style={{ background: "#0a0a0a", padding: "52px 44px" }}
               >
                 <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.22em", marginBottom: 32 }}>
-                  Included in every package
+                  {ts.included.always}
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 18 }}>
                   {included.map((item) => (
@@ -771,7 +775,7 @@ export default function ServicesPage() {
                 style={{ background: "#0a0a0a", padding: "52px 44px" }}
               >
                 <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.22em", marginBottom: 32 }}>
-                  Not included, quoted separately
+                  {ts.included.separately}
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 18 }}>
                   {notIncluded.map((item) => (
@@ -802,7 +806,7 @@ export default function ServicesPage() {
                   className="font-mono text-[#3a3a3a] uppercase"
                   style={{ fontSize: 10, letterSpacing: "0.32em", marginBottom: 20 }}
                 >
-                  FAQ
+                  {ts.faq.label}
                 </motion.p>
                 <div style={{ overflow: "hidden" }}>
                   <motion.h2
@@ -813,7 +817,7 @@ export default function ServicesPage() {
                     className="font-display font-bold uppercase text-[#f0ede8] leading-none"
                     style={{ fontSize: "clamp(2.5rem,4vw,4.5rem)", letterSpacing: "-0.025em" }}
                   >
-                    Common<br />Questions
+                    {ts.faq.heading1}<br />{ts.faq.heading2}
                   </motion.h2>
                 </div>
                 <motion.p
@@ -824,7 +828,7 @@ export default function ServicesPage() {
                   className="font-sans text-[#555] font-light leading-relaxed"
                   style={{ fontSize: 13, marginTop: 24 }}
                 >
-                  Still have something specific? Reach out. We reply within 24 hours.
+                  {ts.faq.body}
                 </motion.p>
                 <Link
                   href="/contact"
@@ -840,7 +844,7 @@ export default function ServicesPage() {
                   }}
                 >
                   <span className="absolute inset-0 bg-[#E8181C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">Ask Us</span>
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">{ts.faq.askUs}</span>
                   <span className="relative z-10 group-hover:text-white transition-colors duration-300">→</span>
                 </Link>
               </div>
@@ -866,7 +870,7 @@ export default function ServicesPage() {
               className="font-mono text-[#0a0a0a]/50 uppercase"
               style={{ fontSize: 10, letterSpacing: "0.32em", marginBottom: 36 }}
             >
-              Ready to start?
+              {ts.cta.label}
             </motion.p>
             <div
               style={{
@@ -886,7 +890,7 @@ export default function ServicesPage() {
                   className="font-display font-bold uppercase text-[#0a0a0a] leading-none"
                   style={{ fontSize: "clamp(2.5rem,6vw,6.5rem)", letterSpacing: "-0.025em", maxWidth: 680 }}
                 >
-                  Let's Build Something Worth Watching
+                  {ts.cta.heading}
                 </motion.h2>
               </div>
 
@@ -905,7 +909,7 @@ export default function ServicesPage() {
                 >
                   <span className="absolute inset-0 bg-[#0a0a0a] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
                   <span className="relative z-10 group-hover:text-[#f0ede8] transition-colors duration-300">
-                    Get a Custom Quote
+                    {ts.cta.quote}
                   </span>
                   <span className="relative z-10 group-hover:text-[#f0ede8] transition-colors duration-300">→</span>
                 </Link>
@@ -914,7 +918,7 @@ export default function ServicesPage() {
                   className="font-mono text-[#0a0a0a]/60 uppercase hover:text-[#0a0a0a] transition-colors duration-200"
                   style={{ fontSize: 10, letterSpacing: "0.2em", textAlign: "center", textDecoration: "none" }}
                 >
-                  See Our Work First
+                  {ts.cta.seeWork}
                 </Link>
               </div>
             </div>

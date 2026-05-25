@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import type { Project, ProjectVideo, PhotoAlbum, EventEntry, EventTheme, EventReel, PitchDeck, BrandCaseStudy } from "../../data/projects"
 import { Footer } from "../../components/Footer"
 import { BurgerMenu } from "../../components/BurgerMenu"
+import { useLang } from "../../i18n/LanguageContext"
 
 const FRAME_RADIUS = "10px 12px 11px 10px / 11px 10px 12px 10px"
 
@@ -74,6 +75,7 @@ function SerratedEdge({ side = "right" }: { side?: "left" | "right" }) {
 
 /* ─── Gallery badge ───────────────────────────────── */
 function GalleryBadge() {
+  const { t } = useLang()
   return (
     <div
       style={{
@@ -97,7 +99,7 @@ function GalleryBadge() {
         className="font-mono text-[#080808] uppercase"
         style={{ fontSize: 9, letterSpacing: "0.35em" }}
       >
-        Gallery
+        {t.project.gallery}
       </span>
     </div>
   )
@@ -129,6 +131,7 @@ function StillsViewer({
   onClose: () => void
 }) {
   const [current, setCurrent] = useState(startIndex)
+  const { t } = useLang()
 
   useEffect(() => {
     document.body.classList.add("overlay-open")
@@ -174,7 +177,7 @@ function StillsViewer({
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             style={{ position: "absolute", inset: 0, background: "#E8181C", transformOrigin: "bottom", zIndex: 0 }}
           />
-          <motion.span variants={{ rest: { color: "rgba(255,255,255,0.5)" }, hover: { color: "#fff" } }} transition={{ duration: 0.2 }} className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.3em", position: "relative", zIndex: 1 }}>Close</motion.span>
+          <motion.span variants={{ rest: { color: "rgba(255,255,255,0.5)" }, hover: { color: "#fff" } }} transition={{ duration: 0.2 }} className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.3em", position: "relative", zIndex: 1 }}>{t.project.close}</motion.span>
           <motion.span variants={{ rest: { color: "rgba(255,255,255,0.3)" }, hover: { color: "#fff" } }} transition={{ duration: 0.2 }} style={{ fontSize: 14, position: "relative", zIndex: 1, lineHeight: 1 }}>✕</motion.span>
         </motion.button>
       </div>
@@ -420,6 +423,7 @@ function EventCard({ event, onPlay }: { event: EventEntry; onPlay: (id: string) 
 }
 
 function ThemeCard({ theme, index, onOpen, imgStyle }: { theme: EventTheme; index: number; onOpen: (t: EventTheme) => void; imgStyle: (src: string) => React.CSSProperties }) {
+  const { t } = useLang()
   const coverStyle = theme.cover ? imgStyle(theme.cover) : {}
   const { transform, transformOrigin, ...imgOnlyStyle } = coverStyle
   return (
@@ -461,7 +465,7 @@ function ThemeCard({ theme, index, onOpen, imgStyle }: { theme: EventTheme; inde
           className="font-mono uppercase"
           style={{ fontSize: 8, letterSpacing: "0.35em", color: "#E8181C", marginBottom: 10 }}
         >
-          View Gallery →
+          {t.project.viewGallery}
         </motion.p>
         <h4 className="font-display font-bold uppercase" style={{ fontSize: "clamp(1.4rem,2.5vw,2.4rem)", lineHeight: 0.95, color: "#ffffff" }}>
           {theme.name}
@@ -474,6 +478,7 @@ function ThemeCard({ theme, index, onOpen, imgStyle }: { theme: EventTheme; inde
 }
 
 function ReelCard({ reel, onPlay }: { reel: EventReel; onPlay: (id: string) => void }) {
+  const { t } = useLang()
   return (
     <motion.div
       initial="rest"
@@ -513,7 +518,7 @@ function ReelCard({ reel, onPlay }: { reel: EventReel; onPlay: (id: string) => v
           Teaser
         </p>
         <h4 className="font-display font-bold uppercase" style={{ fontSize: "clamp(1rem,1.5vw,1.4rem)", lineHeight: 1, color: "#ffffff" }}>
-          {reel.title ?? "Coming Soon"}
+          {reel.title ?? t.project.comingSoon}
         </h4>
       </div>
 
@@ -549,6 +554,7 @@ function ConcertSection({
   onPlay: (id: string) => void
   imgStyle: (s: string) => React.CSSProperties
 }) {
+  const { t } = useLang()
   const photos = gallery.slice(0, 12)
   const overflow = gallery.slice(12, 17)
   const [lightbox, setLightbox] = useState<string | null>(null)
@@ -572,7 +578,7 @@ function ConcertSection({
                 Event Coverage
               </p>
               <h2 className="font-display font-bold uppercase text-[#f0ede8]" style={{ fontSize: "clamp(2rem,4vw,3.5rem)", lineHeight: 0.95 }}>
-                Concert Gallery
+                {t.project.concertGallery}
               </h2>
             </div>
             <span className="font-mono" style={{ fontSize: 9, color: "#2a2a2a", letterSpacing: "0.25em" }}>
@@ -936,6 +942,7 @@ function SlideshowLightbox({ deck, onClose }: { deck: PitchDeck; onClose: () => 
 function GalleryLightbox({ theme, onClose }: { theme: EventTheme; onClose: () => void }) {
   const [zoomed, setZoomed] = useState<string | null>(null)
   const cols = theme.aspectRatio === "16/9" ? 3 : 5
+  const { t } = useLang()
 
   useEffect(() => {
     document.body.style.overflow = "hidden"
@@ -967,7 +974,7 @@ function GalleryLightbox({ theme, onClose }: { theme: EventTheme; onClose: () =>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 40px", borderBottom: "1px solid rgba(255,255,255,0.07)", flexShrink: 0 }}>
         <div>
           <p className="font-mono uppercase" style={{ fontSize: 8, letterSpacing: "0.4em", color: "#E8181C", marginBottom: 6 }}>
-            Gallery
+            {t.project.gallery}
           </p>
           <h2 className="font-display font-bold uppercase" style={{ fontSize: "clamp(1.4rem,2.5vw,2.4rem)", lineHeight: 0.9, color: "#f0ede8" }}>
             {theme.name}
@@ -992,7 +999,7 @@ function GalleryLightbox({ theme, onClose }: { theme: EventTheme; onClose: () =>
             className="font-mono uppercase"
             style={{ fontSize: 9, letterSpacing: "0.3em", position: "relative", zIndex: 1 }}
           >
-            Close
+            {t.project.close}
           </motion.span>
           <motion.span
             variants={{ rest: { color: "rgba(255,255,255,0.35)" }, hover: { color: "#ffffff" } }}
@@ -1555,6 +1562,8 @@ export default function ProjectClient({ project, nextProject }: Props) {
   const [activeDeck, setActiveDeck] = useState<PitchDeck | null>(null)
   const [activeImage, setActiveImage] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { t } = useLang()
+  const tp = t.project
   const { pos: objPos, style: imgStyle } = useObjPos(project)
 
   const featuredCrew = project.crew.slice(0, 2)
@@ -1595,7 +1604,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
       <div style={{ position: "fixed", top: 16, right: 16, zIndex: 9000 }}>
         <button
           onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label={t.burger.toggleLabel}
           style={{
             background: "#f5f0e8",
             border: "1px solid rgba(0,0,0,0.12)",
@@ -1664,7 +1673,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
           >
             ←
           </span>
-          All Work
+          {tp.allWork}
         </Link>
         {/* Film frame */}
         <div
@@ -1771,10 +1780,10 @@ export default function ProjectClient({ project, nextProject }: Props) {
           }}
         >
           {[
-            ["Director", "Achraf Chibane"],
-            ["Year", project.year],
-            ["Type", project.category.split("+")[0].trim()],
-            ...(project.client ? [["Client", project.client]] : []),
+            [tp.director, "Achraf Chibane"],
+            [tp.year, project.year],
+            [tp.type, project.category.split("+")[0].trim()],
+            ...(project.client ? [[tp.client, project.client]] : []),
           ].map(([label, value], i, arr) => (
             <div
               key={label}
@@ -1810,7 +1819,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "40px 64px" }}>
             <div className="md:col-span-2">
               <p className="font-mono uppercase" style={{ fontSize: 10, letterSpacing: "0.2em", marginBottom: 20, color: "rgba(0,0,0,0.4)" }}>
-                Overview
+                {tp.overview}
               </p>
               <p className="font-sans font-light leading-relaxed" style={{ fontSize: 17, color: "rgba(0,0,0,0.75)" }}>
                 {project.description}
@@ -1819,7 +1828,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
             <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
               <div>
                 <p className="font-mono uppercase" style={{ fontSize: 10, letterSpacing: "0.2em", marginBottom: 10, color: "rgba(0,0,0,0.4)" }}>
-                  Services
+                  {tp.services}
                 </p>
                 <ul style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   {project.services.map((s) => (
@@ -1832,7 +1841,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
               {project.client && (
                 <div>
                   <p className="font-mono uppercase" style={{ fontSize: 10, letterSpacing: "0.2em", marginBottom: 10, color: "rgba(0,0,0,0.4)" }}>
-                    Client
+                    {tp.client}
                   </p>
                   <p className="font-sans font-light" style={{ fontSize: 13, color: "rgba(0,0,0,0.6)" }}>
                     {project.client}
@@ -1947,12 +1956,12 @@ export default function ProjectClient({ project, nextProject }: Props) {
               {/* Info strip */}
               <div style={{ display: "flex", gap: 36 }}>
                 <div>
-                  <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.3em", color: "rgba(240,237,232,0.28)", marginBottom: 7 }}>Year</p>
+                  <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.3em", color: "rgba(240,237,232,0.28)", marginBottom: 7 }}>{tp.year}</p>
                   <p className="font-mono" style={{ fontSize: 13, color: "#f0ede8" }}>{project.year}</p>
                 </div>
                 {project.client && (
                   <div>
-                    <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.3em", color: "rgba(240,237,232,0.28)", marginBottom: 7 }}>Production</p>
+                    <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.3em", color: "rgba(240,237,232,0.28)", marginBottom: 7 }}>{tp.productionLabel}</p>
                     <p className="font-mono" style={{ fontSize: 13, color: "#f0ede8" }}>{project.client}</p>
                   </div>
                 )}
@@ -2134,7 +2143,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
             <section style={{ padding: "88px 40px", borderBottom: "1px solid #1f1f1f", background: "#050505" }}>
               <div style={{ maxWidth: 1200, margin: "0 auto" }}>
                 <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.18)", marginBottom: 64 }}>
-                  Logofolio
+                  {tp.logofolio}
                 </p>
                 {(() => {
                   const logos = project.logofolio!
@@ -2168,7 +2177,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
             <section style={{ padding: "88px 40px", borderBottom: "1px solid #1f1f1f", background: "#050505" }}>
               <div style={{ maxWidth: 1200, margin: "0 auto" }}>
                 <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.18)", marginBottom: 64 }}>
-                  Logofolio
+                  {tp.logofolio}
                 </p>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
                   {Array.from({ length: 8 }).map((_, i) => (
@@ -2201,7 +2210,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
           <section style={{ padding: "72px 40px", borderBottom: "1px solid #1f1f1f", background: "#080808" }}>
             <div style={{ maxWidth: 1200, margin: "0 auto" }}>
               <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "#E8181C", marginBottom: 48 }}>
-                {project.themeSectionLabel ?? "Explore by Genre"}
+                {project.themeSectionLabel ?? tp.exploreByGenre}
               </p>
 
               {/* Wide (16:9) cards — centered, one per row */}
@@ -2236,7 +2245,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
             <section style={{ padding: "72px 40px", borderBottom: "1px solid #1f1f1f", background: "#060606" }}>
               <div style={{ maxWidth: 1200, margin: "0 auto" }}>
                 <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.25)", marginBottom: 48 }}>
-                  {project.reelSectionLabel ?? "Show Teasers"}
+                  {project.reelSectionLabel ?? tp.showTeasers}
                 </p>
                 <div style={{ display: "flex", justifyContent: "center", gap: 10 }}>
                   {project.reels.map((reel, i) => (
@@ -2261,7 +2270,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               <div style={{ textAlign: "center", marginBottom: 48 }}>
                 <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.2)" }}>
-                  {project.reelSectionLabel ?? "Short Form Content"}
+                  {project.reelSectionLabel ?? tp.shortFormContent}
                 </p>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(project.reels.length, 3)}, 1fr)`, gap: 16, justifyContent: "center" }}>
@@ -2401,10 +2410,10 @@ export default function ProjectClient({ project, nextProject }: Props) {
             {/* Header */}
             <div style={{ marginBottom: 36, paddingBottom: 20, borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
               <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.38em", color: "#E8181C", marginBottom: 10 }}>
-                Recipe Direction
+                {tp.recipeDirection}
               </p>
               <h3 className="font-display font-bold uppercase" style={{ fontSize: "clamp(1.8rem,3vw,3.2rem)", lineHeight: 0.9, color: "#0a0a0a" }}>
-                La Famille QA · Recipes
+                {tp.recipeLabel}
               </h3>
             </div>
             {/* 3 portrait reel cards */}
@@ -2473,7 +2482,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
         <section style={{ padding: "72px 28px", borderBottom: "1px solid rgba(0,0,0,0.1)", background: "#f5f0e8" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <p className="font-mono uppercase" style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 24, textAlign: "center", color: "rgba(0,0,0,0.4)" }}>
-              {project.videos ? "Production Reels" : "Production Reel"}
+              {project.videos ? tp.productionReels : tp.productionReel}
             </p>
 
             {project.videos ? (
@@ -2510,7 +2519,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
                     </svg>
                   </div>
                   <span className="font-display font-bold uppercase text-[#E8181C]" style={{ fontSize: "clamp(1.2rem,2.5vw,2rem)", letterSpacing: "0.1em" }}>
-                    Watch Reel
+                    {tp.watchReel}
                   </span>
                 </button>
                 <div className="grain-overlay-frame absolute inset-0 pointer-events-none" style={{ zIndex: 50 }} aria-hidden />
@@ -2713,7 +2722,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
               <div style={{ borderRadius: 6, overflow: "hidden" }}>
                 <div style={{ background: "#E8181C", height: "2.6rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <span className="font-display font-bold uppercase text-white" style={{ fontSize: "0.65rem", letterSpacing: "0.3em" }}>
-                    Additional Credits
+                    {tp.additionalCredits}
                   </span>
                 </div>
                 <div
@@ -2758,7 +2767,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
         <section style={{ background: "#060606", borderBottom: "1px solid #1f1f1f", padding: "64px 40px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.4em", marginBottom: 52, color: "#333" }}>
-              Full Credits
+              {tp.fullCredits}
             </p>
             <div
               style={{
@@ -2821,7 +2830,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
             <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.72)" }} />
             <div style={{ position: "relative", zIndex: 2, maxWidth: 1100, margin: "0 auto", padding: "96px 40px", textAlign: "center" }}>
               <p className="font-mono uppercase" style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 48, color: "rgba(255,255,255,0.25)" }}>
-                Results
+                {tp.results}
               </p>
               <div style={{ display: "grid", gridTemplateColumns: `repeat(${rows.length}, 1fr)`, gap: 2, background: "rgba(255,255,255,0.06)" }}>
                 {rows.map(({ stat, label }, i) => (
@@ -2873,7 +2882,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
                 className="font-display font-bold uppercase group-hover:text-[#E8181C] transition-colors duration-300"
                 style={{ fontSize: "clamp(1.8rem,3vw,2.8rem)", lineHeight: 1, marginBottom: 24, color: "#0a0a0a" }}
               >
-                All Work
+                {tp.allWork}
               </h3>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.2em", color: "rgba(0,0,0,0.4)" }}>

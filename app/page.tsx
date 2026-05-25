@@ -8,6 +8,7 @@ import { HeroGallery } from "./components/HeroGallery"
 import { Footer } from "./components/Footer"
 import { featuredProjects } from "./data/projects"
 import type { Project } from "./data/projects"
+import { useLang } from "./i18n/LanguageContext"
 
 const FRAME_RADIUS = "10px 12px 11px 10px / 11px 10px 12px 10px"
 
@@ -35,7 +36,6 @@ function SelectedWorkCard({ project, index }: { project: Project; index: number 
           cursor: "pointer",
         }}
       >
-        {/* BG image */}
         <motion.img
           variants={{ rest: { scale: 1 }, hover: { scale: 1.04 } }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -44,8 +44,6 @@ function SelectedWorkCard({ project, index }: { project: Project; index: number 
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           draggable={false}
         />
-
-        {/* Gradient overlay */}
         <div
           style={{
             position: "absolute",
@@ -54,8 +52,6 @@ function SelectedWorkCard({ project, index }: { project: Project; index: number 
             pointerEvents: "none",
           }}
         />
-
-        {/* Ghost number */}
         <span
           className="font-display font-bold pointer-events-none select-none absolute"
           style={{
@@ -70,8 +66,6 @@ function SelectedWorkCard({ project, index }: { project: Project; index: number 
         >
           {String(index + 1).padStart(2, "0")}
         </span>
-
-        {/* Bottom content */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "28px 32px" }}>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24 }}>
             <div>
@@ -89,8 +83,6 @@ function SelectedWorkCard({ project, index }: { project: Project; index: number 
                 {project.shortTitle}
               </h3>
             </div>
-
-            {/* Arrow — reveals on hover */}
             <motion.div
               variants={{ rest: { opacity: 0, y: 10 }, hover: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -111,56 +103,20 @@ function SelectedWorkCard({ project, index }: { project: Project; index: number 
             </motion.div>
           </div>
         </div>
-
-        {/* Film grain */}
         <div className="grain-overlay-frame absolute inset-0 pointer-events-none" style={{ zIndex: 50 }} aria-hidden />
       </motion.div>
     </Link>
   )
 }
 
-const stats = [
-  { value: "7+", label: "Years\nExperience" },
-  { value: "80+", label: "Projects\nDelivered" },
-  { value: "1.2M", label: "Combined\nReach" },
-  { value: "3", label: "Countries\nActive" },
-  { value: "500K+", label: "Social\nImpressions" },
-  { value: "100%", label: "Client\nSatisfaction" },
-]
-
-const services = [
-  {
-    num: "01",
-    label: "Video Production",
-    desc: "From concept to final cut. Cinematic content for brand campaigns, live events, and social media. Every frame crafted with a filmmaker's eye.",
-    href: "/services#video",
-  },
-  {
-    num: "02",
-    label: "Photography",
-    desc: "Editorial portraits, food, events, and lifestyle. Intentional composition, natural light, and a visual language built around your brand.",
-    href: "/services#photography",
-  },
-  {
-    num: "03",
-    label: "Design & Branding",
-    desc: "Visual identity that commands attention. Logos, color systems, typography, and brand guidelines built to last across every medium.",
-    href: "/services#design",
-  },
-  {
-    num: "04",
-    label: "Content Strategy",
-    desc: "Scroll-stopping content built for the algorithm and the audience. Platform-native creative direction that converts views into clients.",
-    href: "/services#content",
-  },
-]
-
 function ServiceAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const { t } = useLang()
+  const items = t.home.services.items
 
   return (
     <div>
-      {services.map((svc, i) => (
+      {items.map((svc, i) => (
         <div key={svc.num} style={{ borderTop: "1px solid #1f1f1f" }}>
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -168,10 +124,7 @@ function ServiceAccordion() {
             style={{ padding: "28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}
           >
             <div style={{ display: "flex", alignItems: "baseline", gap: 24 }}>
-              <span
-                className="font-mono text-[#333]"
-                style={{ fontSize: 10, letterSpacing: "0.3em", flexShrink: 0 }}
-              >
+              <span className="font-mono text-[#333]" style={{ fontSize: 10, letterSpacing: "0.3em", flexShrink: 0 }}>
                 {svc.num}
               </span>
               <span
@@ -210,24 +163,16 @@ function ServiceAccordion() {
                     gap: 40,
                   }}
                 >
-                  <p
-                    className="font-sans text-[#555] font-light leading-relaxed"
-                    style={{ fontSize: 14, maxWidth: 520 }}
-                  >
+                  <p className="font-sans text-[#555] font-light leading-relaxed" style={{ fontSize: 14, maxWidth: 520 }}>
                     {svc.desc}
                   </p>
                   <Link
                     href={svc.href}
                     className="group relative inline-flex items-center gap-2 overflow-hidden font-mono text-[#555] flex-shrink-0"
-                    style={{
-                      border: "1px solid #1f1f1f",
-                      padding: "12px 24px",
-                      fontSize: 9,
-                      letterSpacing: "0.3em",
-                    }}
+                    style={{ border: "1px solid #1f1f1f", padding: "12px 24px", fontSize: 9, letterSpacing: "0.3em" }}
                   >
                     <span className="absolute inset-0 bg-[#E8181C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                    <span className="relative z-10 uppercase group-hover:text-white transition-colors duration-300">Explore</span>
+                    <span className="relative z-10 uppercase group-hover:text-white transition-colors duration-300">{t.home.services.explore}</span>
                     <span className="relative z-10 group-hover:text-white transition-colors duration-300">→</span>
                   </Link>
                 </div>
@@ -243,6 +188,7 @@ function ServiceAccordion() {
 
 export default function HomePage() {
   const [entered, setEntered] = useState(false)
+  const { t } = useLang()
 
   return (
     <>
@@ -253,13 +199,12 @@ export default function HomePage() {
           entered ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* ── Hero Gallery ── */}
         <HeroGallery />
 
-        {/* ── Stats — full width, 6 columns ── */}
+        {/* ── Stats ── */}
         <section style={{ borderTop: "1px solid #1f1f1f" }}>
           <div className="grid grid-cols-3 md:grid-cols-6">
-            {stats.map((s, i) => (
+            {t.home.stats.map((s, i) => (
               <motion.div
                 key={s.label}
                 initial={{ opacity: 0, y: 20 }}
@@ -267,21 +212,15 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  borderRight: i < stats.length - 1 ? "1px solid #1f1f1f" : "none",
+                  borderRight: i < t.home.stats.length - 1 ? "1px solid #1f1f1f" : "none",
                   borderBottom: "1px solid #1f1f1f",
                 }}
                 className="flex flex-col items-center justify-center text-center py-12 px-4"
               >
-                <p
-                  className="font-display font-bold leading-none text-[#f0ede8]"
-                  style={{ fontSize: "clamp(2rem,3.5vw,3.5rem)" }}
-                >
+                <p className="font-display font-bold leading-none text-[#f0ede8]" style={{ fontSize: "clamp(2rem,3.5vw,3.5rem)" }}>
                   {s.value}
                 </p>
-                <p
-                  className="font-mono uppercase text-[#444] mt-2 whitespace-pre-line leading-relaxed"
-                  style={{ fontSize: 9, letterSpacing: "0.18em" }}
-                >
+                <p className="font-mono uppercase text-[#444] mt-2 whitespace-pre-line leading-relaxed" style={{ fontSize: 9, letterSpacing: "0.18em" }}>
                   {s.label}
                 </p>
               </motion.div>
@@ -291,10 +230,7 @@ export default function HomePage() {
 
         {/* ── Marquee ── */}
         <div style={{ borderBottom: "1px solid #1f1f1f", padding: "18px 0", overflow: "hidden" }}>
-          <div
-            className="flex whitespace-nowrap"
-            style={{ animation: "marquee 18s linear infinite" }}
-          >
+          <div className="flex whitespace-nowrap" style={{ animation: "marquee 18s linear infinite" }}>
             {Array.from({ length: 6 }).map((_, i) => (
               <span
                 key={i}
@@ -314,7 +250,7 @@ export default function HomePage() {
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 32, padding: "0 4px" }}>
             <div>
               <p className="font-mono text-[#444] uppercase" style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 14 }}>
-                Selected Work
+                {t.home.selectedWork.label}
               </p>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -323,7 +259,7 @@ export default function HomePage() {
                 className="font-display font-bold uppercase leading-none text-[#f0ede8]"
                 style={{ fontSize: "clamp(2.5rem,5vw,5rem)" }}
               >
-                Featured<br />Projects
+                {t.home.selectedWork.heading1}<br />{t.home.selectedWork.heading2}
               </motion.h2>
             </div>
             <Link
@@ -332,7 +268,7 @@ export default function HomePage() {
               style={{ border: "1px solid #1f1f1f", padding: "14px 28px", fontSize: 10, letterSpacing: "0.25em" }}
             >
               <span className="absolute inset-0 bg-[#E8181C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-              <span className="relative z-10 group-hover:text-white transition-colors duration-300">View All</span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">{t.home.selectedWork.viewAll}</span>
               <span className="relative z-10 group-hover:text-white transition-colors duration-300">→</span>
             </Link>
           </div>
@@ -355,7 +291,6 @@ export default function HomePage() {
         {/* ── Services Accordion ── */}
         <section style={{ padding: "80px 0 80px", borderBottom: "1px solid #1f1f1f" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px" }}>
-            {/* Header */}
             <div
               style={{
                 display: "flex",
@@ -367,11 +302,8 @@ export default function HomePage() {
               }}
             >
               <div>
-                <p
-                  className="font-mono text-[#444] uppercase"
-                  style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 16 }}
-                >
-                  What We Do
+                <p className="font-mono text-[#444] uppercase" style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 16 }}>
+                  {t.home.services.label}
                 </p>
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
@@ -380,27 +312,21 @@ export default function HomePage() {
                   className="font-display font-bold uppercase leading-none text-[#f0ede8]"
                   style={{ fontSize: "clamp(2.5rem,4.5vw,4.5rem)" }}
                 >
-                  Our Services
+                  {t.home.services.heading}
                 </motion.h2>
               </div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
+              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
                 <Link
                   href="/services"
                   className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#555] uppercase"
                   style={{ border: "1px solid #1f1f1f", padding: "14px 28px", fontSize: 10, letterSpacing: "0.25em" }}
                 >
                   <span className="absolute inset-0 bg-[#E8181C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">All Services</span>
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">{t.home.services.allServices}</span>
                   <span className="relative z-10 group-hover:text-white transition-colors duration-300">→</span>
                 </Link>
               </motion.div>
             </div>
-
             <ServiceAccordion />
           </div>
         </section>
@@ -409,7 +335,7 @@ export default function HomePage() {
         <section style={{ padding: "80px 40px", borderBottom: "1px solid #1f1f1f" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <p className="font-mono text-center uppercase" style={{ fontSize: 9, letterSpacing: "0.4em", marginBottom: 52, color: "#333" }}>
-              Trusted By
+              {t.home.clients.label}
             </p>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
               {clients.map((name, i) => (
@@ -436,14 +362,7 @@ export default function HomePage() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.08 + 0.05, duration: 0.4 }}
-                      style={{
-                        width: 5,
-                        height: 5,
-                        borderRadius: "50%",
-                        background: "#E8181C",
-                        flexShrink: 0,
-                        display: "inline-block",
-                      }}
+                      style={{ width: 5, height: 5, borderRadius: "50%", background: "#E8181C", flexShrink: 0, display: "inline-block" }}
                     />
                   )}
                 </div>
@@ -452,7 +371,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── Statement ── */}
+        {/* ── Philosophy ── */}
         <section style={{ padding: "120px 40px" }}>
           <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
             <motion.p
@@ -462,7 +381,7 @@ export default function HomePage() {
               className="font-mono text-[#444] uppercase"
               style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 40 }}
             >
-              Our Philosophy
+              {t.home.philosophy.label}
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
@@ -472,9 +391,9 @@ export default function HomePage() {
               className="font-display font-bold uppercase text-[#f0ede8]"
               style={{ fontSize: "clamp(3rem,6vw,6rem)", lineHeight: 0.9, marginBottom: 40 }}
             >
-              We Don&apos;t Just<br />
-              Document.{" "}
-              <em className="not-italic text-[#E8181C]">We&nbsp;Create.</em>
+              {t.home.philosophy.line1}<br />
+              {t.home.philosophy.line2}{" "}
+              <em className="not-italic text-[#E8181C]">{t.home.philosophy.line3}</em>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
@@ -484,9 +403,7 @@ export default function HomePage() {
               className="font-sans text-[#555] font-light leading-relaxed"
               style={{ fontSize: 15, maxWidth: 520, margin: "0 auto", textAlign: "center" }}
             >
-              Cinema-trained. Design-educated. Montreal-based. KLIPVISUAL brings
-              a filmmaker&apos;s eye to every frame, whether it&apos;s a brand
-              campaign, a live event, or a portrait session.
+              {t.home.philosophy.body}
             </motion.p>
           </div>
         </section>
@@ -502,7 +419,7 @@ export default function HomePage() {
                 className="font-display font-bold uppercase leading-none text-[#0a0a0a]"
                 style={{ fontSize: "clamp(2.5rem,5vw,4.5rem)" }}
               >
-                Ready to Build<br />Something<br />Cinematic?
+                {t.home.cta.line1}<br />{t.home.cta.line2}<br />{t.home.cta.line3}
               </motion.h2>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -517,7 +434,7 @@ export default function HomePage() {
                   style={{ border: "2px solid #0a0a0a", padding: "20px 44px", fontSize: 11, letterSpacing: "0.25em" }}
                 >
                   <span className="absolute inset-0 bg-[#0a0a0a] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                  <span className="relative z-10 group-hover:text-[#f0ede8] transition-colors duration-300">Start a Project</span>
+                  <span className="relative z-10 group-hover:text-[#f0ede8] transition-colors duration-300">{t.home.cta.button}</span>
                   <span className="relative z-10 group-hover:text-[#f0ede8] transition-colors duration-300">→</span>
                 </Link>
               </motion.div>

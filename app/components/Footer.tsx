@@ -1,18 +1,27 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
+import { useLang } from "../i18n/LanguageContext"
 
 export function Footer() {
   const year = new Date().getFullYear()
+  const { t } = useLang()
+
+  const navLinks = [
+    { label: t.nav.work,     href: "/work"     },
+    { label: t.nav.services, href: "/services" },
+    { label: t.nav.about,    href: "/about"    },
+    { label: t.nav.contact,  href: "/contact"  },
+  ]
 
   return (
     <footer style={{ borderTop: "1px solid #1f1f1f", background: "#0a0a0a", padding: "64px 40px 40px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        {/* Top grid */}
         <div
           className="grid grid-cols-1 md:grid-cols-3"
           style={{ gap: "48px 40px", marginBottom: 48 }}
         >
-          {/* Brand */}
           <div>
             <Image
               src="/Logos/Logo.png"
@@ -23,28 +32,21 @@ export function Footer() {
             />
             <p
               className="font-sans text-[#555] font-light leading-relaxed"
-              style={{ fontSize: 13, maxWidth: 240 }}
+              style={{ fontSize: 13, maxWidth: 240, whiteSpace: "pre-line" }}
             >
-              Cinematic production studio based in Montreal.
-              Video, photography & brand identity.
+              {t.footer.tagline}
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
             <p
               className="font-mono text-[#555] uppercase"
               style={{ fontSize: 10, letterSpacing: "0.2em", marginBottom: 20 }}
             >
-              Navigation
+              {t.footer.navigation}
             </p>
             <ul style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {[
-                ["Work", "/work"],
-                ["Services", "/services"],
-                ["About", "/about"],
-                ["Contact", "/contact"],
-              ].map(([label, href]) => (
+              {navLinks.map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
@@ -58,13 +60,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <p
               className="font-mono text-[#555] uppercase"
               style={{ fontSize: 10, letterSpacing: "0.2em", marginBottom: 20 }}
             >
-              Get in Touch
+              {t.footer.getInTouch}
             </p>
             <a
               href="mailto:contact@klipvisual.com"
@@ -73,11 +74,10 @@ export function Footer() {
             >
               contact@klipvisual.com
             </a>
-            <p style={{ fontSize: 14, color: "#555" }}>Montreal, Quebec</p>
+            <p style={{ fontSize: 14, color: "#555" }}>{t.footer.location}</p>
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div
           className="flex flex-col md:flex-row justify-between items-start md:items-center"
           style={{ paddingTop: 24, borderTop: "1px solid #1f1f1f", gap: 12 }}
@@ -86,13 +86,13 @@ export function Footer() {
             className="font-mono text-[#555] uppercase"
             style={{ fontSize: 10, letterSpacing: "0.12em" }}
           >
-            © {year} KLIPVISUAL. All rights reserved.
+            © {year} KLIPVISUAL. {t.footer.copyright}
           </p>
           <p
             className="font-mono text-[#555] uppercase"
             style={{ fontSize: 10, letterSpacing: "0.12em" }}
           >
-            Montreal · Toronto · Casablanca
+            {t.footer.cities}
           </p>
         </div>
       </div>

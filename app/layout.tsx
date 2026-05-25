@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar"
 import { CustomCursor } from "./components/CustomCursor"
 import { FilmGrain } from "./components/FilmGrain"
 import { SmoothScroll } from "./components/SmoothScroll"
+import { LanguageProvider } from "./i18n/LanguageContext"
 
 const barlow = Barlow_Condensed({
   weight: ["700", "800"],
@@ -47,10 +48,12 @@ export default function RootLayout({
       className={`${barlow.variable} ${dmSans.variable} ${spaceMono.variable}`}
     >
       <body className="bg-[#0a0a0a] text-[#f0ede8] antialiased overflow-x-hidden">
-        <FilmGrain />
-        <CustomCursor />
-        <Navbar />
-        <SmoothScroll>{children}</SmoothScroll>
+        <LanguageProvider>
+          <FilmGrain />
+          <CustomCursor />
+          <Navbar />
+          <SmoothScroll>{children}</SmoothScroll>
+        </LanguageProvider>
       </body>
     </html>
   )

@@ -3,19 +3,21 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-
-const links = [
-  { href: "/work", label: "Work" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-]
+import { useLang } from "../i18n/LanguageContext"
+import { LanguageSwitcher } from "./LanguageSwitcher"
 
 export function Navbar() {
   const pathname = usePathname()
+  const { t } = useLang()
 
-  // These pages handle their own nav/logo
   if (pathname === "/" || pathname === "/work" || /^\/work\/.+/.test(pathname)) return null
+
+  const links = [
+    { href: "/work",     label: t.nav.work     },
+    { href: "/services", label: t.nav.services  },
+    { href: "/about",    label: t.nav.about     },
+    { href: "/contact",  label: t.nav.contact   },
+  ]
 
   return (
     <nav
@@ -29,10 +31,8 @@ export function Navbar() {
         padding: "1.4rem 2.1rem",
       }}
     >
-      {/* Top gradient so nav stays readable over any background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/75 via-[#0a0a0a]/20 to-transparent pointer-events-none" />
 
-      {/* Logo */}
       <Link href="/" style={{ position: "relative", zIndex: 10, flexShrink: 0, display: "block" }} aria-label="KLIPVISUAL home">
         <Image
           src="/Logos/Logo.png"
@@ -44,26 +44,28 @@ export function Navbar() {
         />
       </Link>
 
-      {/* Nav links */}
-      <ul style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", gap: "2.5rem", listStyle: "none" }}>
-        {links.map(({ href, label }) => (
-          <li key={href}>
-            <Link
-              href={href}
-              className="font-mono uppercase hover-underline"
-              style={{
-                fontSize: "0.65rem",
-                letterSpacing: "0.22em",
-                color: pathname === href || pathname.startsWith(href + "/") ? "#E8181C" : "rgba(240,237,232,0.75)",
-                textDecoration: "none",
-                transition: "color 0.2s ease",
-              }}
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", gap: "2rem" }}>
+        <ul style={{ display: "flex", alignItems: "center", gap: "2.5rem", listStyle: "none" }}>
+          {links.map(({ href, label }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className="font-mono uppercase hover-underline"
+                style={{
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.22em",
+                  color: pathname === href || pathname.startsWith(href + "/") ? "#E8181C" : "rgba(240,237,232,0.75)",
+                  textDecoration: "none",
+                  transition: "color 0.2s ease",
+                }}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <LanguageSwitcher variant="dark" />
+      </div>
     </nav>
   )
 }
