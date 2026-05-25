@@ -2086,9 +2086,11 @@ export default function ProjectClient({ project, nextProject }: Props) {
                 <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.25)", marginBottom: 48 }}>
                   {project.reelSectionLabel ?? "Show Teasers"}
                 </p>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+                <div style={{ display: "flex", justifyContent: "center", gap: 10 }}>
                   {project.reels.map((reel, i) => (
-                    <ReelCard key={i} reel={reel} onPlay={(id) => setActiveVideo({ id, portrait: true })} />
+                    <div key={i} style={{ width: "min(380px, 100%)" }}>
+                      <ReelCard reel={reel} onPlay={(id) => setActiveVideo({ id, portrait: true })} />
+                    </div>
                   ))}
                 </div>
               </div>
