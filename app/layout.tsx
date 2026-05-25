@@ -4,6 +4,7 @@ import "./globals.css"
 import { Navbar } from "./components/Navbar"
 import { CustomCursor } from "./components/CustomCursor"
 import { FilmGrain } from "./components/FilmGrain"
+import { SmoothScroll } from "./components/SmoothScroll"
 
 const barlow = Barlow_Condensed({
   weight: ["700", "800"],
@@ -49,7 +50,7 @@ export default function RootLayout({
         <FilmGrain />
         <CustomCursor />
         <Navbar />
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   )

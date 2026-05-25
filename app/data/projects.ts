@@ -430,10 +430,10 @@ const _raw: Project[] = [
     ],
     gallery: [],
     themes: [
-      { name: "Ilinca × Sofia", cover: "/images/projects/ilinca-sofia-cover.jpg", images: [], aspectRatio: "16/9" },
-      { name: "Portrait 01", cover: "/images/projects/lebalcon-cover.jpg", images: [] },
-      { name: "Portrait 02", cover: "/images/projects/lebalcon-cover.jpg", images: [] },
-      { name: "Portrait 03", cover: "/images/projects/lebalcon-cover.jpg", images: [] },
+      { name: "Sofia × Ilinca", cover: "/images/projects/ilinca-sofia-cover.jpg", images: [], aspectRatio: "16/9" },
+      { name: "Ahlam", cover: "/images/projects/lebalcon-cover.jpg", images: [] },
+      { name: "Claude", cover: "/images/projects/lebalcon-cover.jpg", images: [] },
+      { name: "Mailys", cover: "/images/projects/lebalcon-cover.jpg", images: [] },
     ],
     reels: [
       { title: "Portrait Reel 01" },

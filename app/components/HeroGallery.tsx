@@ -38,7 +38,7 @@ export function HeroGallery() {
       }
       setActive(next)
       setLocked(true)
-      setTimeout(() => setLocked(false), 900)
+      setTimeout(() => setLocked(false), 600)
     },
     [active, locked]
   )
@@ -48,7 +48,7 @@ export function HeroGallery() {
       if (i === active || locked) return
       setActive(i)
       setLocked(true)
-      setTimeout(() => setLocked(false), 900)
+      setTimeout(() => setLocked(false), 600)
     },
     [active, locked]
   )
@@ -62,9 +62,9 @@ export function HeroGallery() {
       wheelAccum.current += e.deltaY
       if (wheelTimer.current) clearTimeout(wheelTimer.current)
       wheelTimer.current = setTimeout(() => {
-        if (Math.abs(wheelAccum.current) > 50) navigate(wheelAccum.current > 0 ? 1 : -1)
+        if (Math.abs(wheelAccum.current) > 30) navigate(wheelAccum.current > 0 ? 1 : -1)
         wheelAccum.current = 0
-      }, 60)
+      }, 40)
     }
     section.addEventListener("wheel", onWheel, { passive: false })
     return () => section.removeEventListener("wheel", onWheel)
@@ -95,6 +95,7 @@ export function HeroGallery() {
   return (
     <section
       ref={sectionRef}
+      data-lenis-prevent
       className="relative h-screen bg-[#080808] overflow-hidden select-none"
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
@@ -141,7 +142,7 @@ export function HeroGallery() {
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <img
               src={project.cover}
