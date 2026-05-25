@@ -327,7 +327,9 @@
       {
         "videoId": "e1CuhFMhQlY",
         "cover": "/images/projects/portrait-photography/reel-cover-0/1779668045625.jpg"
-      }
+      },
+      {},
+      {}
     ]
   },
   "boudchart-lolympia": {
@@ -540,5 +542,11 @@
         "cover": "/images/projects/culinary-photography/recipe-reel-cover-2/1779664988640.jpg"
       }
     ]
+  },
+  "branding-design": {
+    "cover": "/images/projects/branding-design/cover/1779699444609.jpg",
+    "workCover": "/images/projects/branding-design/work-cover/1779699454536.jpg",
+    "creditsCover": "/images/projects/branding-design/credits-cover/1779699503738.png",
+    "resultsBg": "/images/projects/branding-design/results-bg/1779699551534.jpg"
   }
 }
