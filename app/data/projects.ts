@@ -56,6 +56,16 @@ export interface PitchDeck {
   slides: string[]
 }
 
+export interface BrandCaseStudy {
+  name: string
+  subtitle?: string
+  industry?: string
+  description: string
+  scopeOfWork?: string[]
+  note?: string
+  images: string[]
+}
+
 export interface Project {
   slug: string
   title: string
@@ -84,6 +94,9 @@ export interface Project {
   themeSectionLabel?: string
   reelSectionLabel?: string
   pitchDecks?: PitchDeck[]
+  brandProjects?: BrandCaseStudy[]
+  logofolio?: string[]
+  brandingLayout?: boolean
   noGallery?: boolean
   galleryLandscape?: boolean
   concertLayout?: boolean
@@ -443,6 +456,66 @@ const _raw: Project[] = [
     noGallery: true,
   },
   {
+    slug: "branding-design",
+    title: "Branding & Design: Brand Identity Portfolio",
+    shortTitle: "Branding",
+    category: "Brand Identity + Graphic Design",
+    year: "2024",
+    description:
+      "A collection of brand identity projects built from strategic research through to complete and deployable brand systems. Each project covers logo design, typography, moodboards, mockups, and full visual identity — crafted to hold up across every application and platform.",
+    cover: "/images/projects/lebalcon-cover.jpg",
+    gradient: "linear-gradient(135deg, #0a0800 0%, #1a1400 40%, #2a2200 100%)",
+    accent: "#c8a820",
+    results: ["2 full brand identities delivered", "Logofolio of 6 original marks", "Final graduation projects"],
+    services: ["Brand Identity", "Logo Design", "Typography Systems", "Moodboard Design", "Mockups", "Art Direction"],
+    client: "Various",
+    featured: true,
+    crew: [
+      { role: "Brand Strategy · Visual Identity · Art Direction", name: "Achraf Chibane" },
+      { role: "Full Production", name: "KLIPVISUAL" },
+    ],
+    gallery: [],
+    noGallery: true,
+    brandingLayout: true,
+    brandProjects: [
+      {
+        name: "OHM (HAMME)",
+        subtitle: "Product Launch: HAMME Men's Shampoo",
+        industry: "Men's Grooming / Skincare",
+        description:
+          "OHM is a fictitious men's shampoo brand inspired by Moroccan argan oil and natural care. The project focuses on creating a strong and cohesive visual identity for a product launch, combining bold typography, organic elements, and a premium aesthetic.",
+        scopeOfWork: [
+          "Target audience analysis (persona)",
+          "Visual research & inspiration",
+          "Typography selection",
+          "Image research (royalty-free assets)",
+          "Moodboard creation (keywords, photography, illustrations, textures, colors)",
+          "Fragrance concept & label sketch design",
+        ],
+        note: "Final Graduation Project — Graphic Design & Photography",
+        images: [],
+      },
+      {
+        name: "Jack Black Studio",
+        subtitle: "JB STUDIO",
+        industry: "Tattoo Studio / Men's Lifestyle",
+        description:
+          "Jack Black Studio is a fictitious tattoo studio brand built around a bold, modern, minimal identity. The visual concept focuses on a strong JB monogram merged with a tattoo machine silhouette, creating an iconic mark that feels premium, sharp, and unmistakably tattoo-culture.",
+        scopeOfWork: [
+          "Brand positioning & target audience definition",
+          "Visual research / references",
+          "Logo redesign (monogram + symbol integration)",
+          "Typography system selection",
+          "Brand moodboard (materials, textures, lighting, style)",
+          "Mockups (print, signage, interior, digital)",
+        ],
+        note: "Final Graduation Project — Graphic Design & Photography",
+        images: [],
+      },
+    ],
+    logofolio: [],
+  },
+  {
     slug: "pitch-decks",
     title: "Pitch Decks: Strategy & Brand Presentations",
     shortTitle: "Pitch Decks",
@@ -485,6 +558,8 @@ type MediaEntry = {
   videoCovers?: string[]
   videoIds?: string[]
   pitchDecks?: Array<{ cover?: string; client?: string; industry?: string; year?: string; slides?: string[] }>
+  brandProjects?: Array<{ images?: string[] }>
+  logofolio?: string[]
   videoUrl?: string
   creditsCover?: string
   workCover?: string
@@ -542,6 +617,11 @@ export const projects: Project[] = _raw.map((p) => {
       year: m.pitchDecks?.[i]?.year ?? d.year,
       slides: m.pitchDecks?.[i]?.slides ?? d.slides,
     })),
+    brandProjects: p.brandProjects?.map((bp, i) => ({
+      ...bp,
+      images: m.brandProjects?.[i]?.images ?? bp.images,
+    })),
+    logofolio: m.logofolio ?? p.logofolio,
   }
 })
 

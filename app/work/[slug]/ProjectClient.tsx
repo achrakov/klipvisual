@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import type { Project, ProjectVideo, PhotoAlbum, EventEntry, EventTheme, EventReel, PitchDeck } from "../../data/projects"
+import type { Project, ProjectVideo, PhotoAlbum, EventEntry, EventTheme, EventReel, PitchDeck, BrandCaseStudy } from "../../data/projects"
 import { Footer } from "../../components/Footer"
 import { BurgerMenu } from "../../components/BurgerMenu"
 
@@ -2042,6 +2042,148 @@ export default function ProjectClient({ project, nextProject }: Props) {
             </div>
           </div>
         </section>
+      ) : project.brandingLayout ? (
+        /* ── Brand identity case studies + Logofolio ── */
+        <>
+          {project.brandProjects?.map((bp: BrandCaseStudy, idx: number) => (
+            <section key={idx} style={{ padding: "88px 40px", borderBottom: "1px solid #1f1f1f", background: idx % 2 === 0 ? "#080808" : "#060606" }}>
+              <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+                <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.45em", color: "#E8181C", marginBottom: 56 }}>
+                  Brand Identity · {String(idx + 1).padStart(2, "0")}
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 72, alignItems: "flex-start" }}>
+
+                  {/* Left: project info */}
+                  <div>
+                    {bp.industry && (
+                      <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.3em", color: "rgba(255,255,255,0.28)", marginBottom: 14 }}>
+                        {bp.industry}
+                      </p>
+                    )}
+                    <h2 className="font-display font-bold uppercase" style={{ fontSize: "clamp(2rem,3.5vw,4rem)", lineHeight: 0.9, color: "#fff", letterSpacing: "-0.02em", marginBottom: 20 }}>
+                      {bp.name}
+                    </h2>
+                    {bp.subtitle && (
+                      <p className="font-mono" style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", letterSpacing: "0.05em", marginBottom: 24 }}>
+                        {bp.subtitle}
+                      </p>
+                    )}
+                    <p className="font-sans font-light" style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.85, marginBottom: 36 }}>
+                      {bp.description}
+                    </p>
+                    {bp.scopeOfWork && bp.scopeOfWork.length > 0 && (
+                      <div style={{ marginBottom: 32 }}>
+                        <p className="font-mono uppercase" style={{ fontSize: 8.5, letterSpacing: "0.32em", color: "rgba(255,255,255,0.22)", marginBottom: 16 }}>
+                          Scope of Work
+                        </p>
+                        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                          {bp.scopeOfWork.map((item: string, i: number) => (
+                            <li key={i} style={{ display: "flex", gap: 12, alignItems: "baseline", marginBottom: 9 }}>
+                              <span style={{ color: "#E8181C", fontSize: 10, flexShrink: 0, lineHeight: 1 }}>·</span>
+                              <span className="font-sans font-light" style={{ fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.65 }}>
+                                {item}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {bp.note && (
+                      <p className="font-sans" style={{ fontSize: 11, color: "rgba(255,255,255,0.18)", fontStyle: "italic", paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                        {bp.note}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Right: image mosaic */}
+                  {bp.images.length > 0 ? (
+                    <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gridTemplateRows: "repeat(3, auto)", gap: 6 }}>
+                      <div style={{ gridRow: "1 / 4", borderRadius: 10, overflow: "hidden", aspectRatio: "3/4" }}>
+                        <img src={bp.images[0]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} draggable={false} />
+                        <div className="grain-overlay-frame absolute inset-0 pointer-events-none" style={{ zIndex: 10 }} aria-hidden />
+                      </div>
+                      {bp.images.slice(1, 7).map((src: string, i: number) => (
+                        <div key={i} style={{ borderRadius: 8, overflow: "hidden", aspectRatio: "4/3", position: "relative" }}>
+                          <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} draggable={false} />
+                          <div className="grain-overlay-frame absolute inset-0 pointer-events-none" style={{ zIndex: 10 }} aria-hidden />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    /* Placeholder mosaic */
+                    <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gridTemplateRows: "repeat(3, 1fr)", gap: 6, minHeight: 480 }}>
+                      <div style={{ gridRow: "1 / 4", borderRadius: 10, border: "1px dashed rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <p className="font-mono" style={{ fontSize: 8, color: "rgba(255,255,255,0.12)", letterSpacing: "0.2em" }}>MAIN</p>
+                      </div>
+                      {Array.from({ length: 6 }).map((_, i) => (
+                        <div key={i} style={{ borderRadius: 8, border: "1px dashed rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)", aspectRatio: "4/3", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <p className="font-mono" style={{ fontSize: 7, color: "rgba(255,255,255,0.1)", letterSpacing: "0.2em" }}>{String(i + 2).padStart(2, "0")}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+          ))}
+
+          {/* Logofolio */}
+          {(project.logofolio ?? []).length > 0 ? (
+            <section style={{ padding: "88px 40px", borderBottom: "1px solid #1f1f1f", background: "#050505" }}>
+              <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+                <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.18)", marginBottom: 64 }}>
+                  Logofolio
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+                  {project.logofolio!.map((src: string, i: number) => (
+                    <div
+                      key={i}
+                      style={{
+                        padding: "52px 40px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRight: i % 3 < 2 ? "1px solid #161616" : "none",
+                        borderBottom: i < project.logofolio!.length - 3 ? "1px solid #161616" : "none",
+                      }}
+                    >
+                      <img src={src} alt="" style={{ maxWidth: "65%", maxHeight: 80, objectFit: "contain" }} draggable={false} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ) : (
+            /* Logofolio placeholder */
+            <section style={{ padding: "88px 40px", borderBottom: "1px solid #1f1f1f", background: "#050505" }}>
+              <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+                <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.18)", marginBottom: 64 }}>
+                  Logofolio
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        padding: "52px 40px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRight: i % 3 < 2 ? "1px solid #161616" : "none",
+                        borderBottom: i < 3 ? "1px solid #161616" : "none",
+                        minHeight: 140,
+                      }}
+                    >
+                      <div style={{ width: 120, height: 40, border: "1px dashed rgba(255,255,255,0.07)", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <p className="font-mono" style={{ fontSize: 7.5, color: "rgba(255,255,255,0.1)", letterSpacing: "0.2em" }}>LOGO {String(i + 1).padStart(2, "0")}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+        </>
       ) : project.themes ? (
         /* ── Theme galleries + Show reels (Le Balcon style) ── */
         <>
@@ -2316,7 +2458,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
         </section>
       )}
 
-      {!project.albums && !project.editorialLayout && !project.concertLayout && !project.themes && !project.pitchDecks && (
+      {!project.albums && !project.editorialLayout && !project.concertLayout && !project.themes && !project.pitchDecks && !project.brandingLayout && (
         /* ── Video / Reel section (all other projects) ── */
         <section style={{ padding: "72px 28px", borderBottom: "1px solid rgba(0,0,0,0.1)", background: "#f5f0e8" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -2371,7 +2513,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
       {/* ══════════════════════════════════
           SECTION 4b — GALLERY (auto-scroll marquee)
       ══════════════════════════════════ */}
-      {project.gallery.length > 0 && !project.pitchDecks && !project.concertLayout && !project.reels && !project.editorialLayout && <section style={{ background: "#060606", padding: "64px 0 72px", borderBottom: "1px solid #1f1f1f", overflow: "hidden" }}>
+      {project.gallery.length > 0 && !project.pitchDecks && !project.concertLayout && !project.reels && !project.editorialLayout && !project.brandingLayout && <section style={{ background: "#060606", padding: "64px 0 72px", borderBottom: "1px solid #1f1f1f", overflow: "hidden" }}>
         {/* Badge */}
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <GalleryBadge />
