@@ -12,6 +12,13 @@ export default function TermsPage() {
           <p className="font-mono uppercase text-[#555]" style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 16 }}>
             Legal
           </p>
+          <div style={{ display: "flex", gap: 24, marginBottom: 40 }}>
+            {[{ href: "/cookie", label: "Cookie" }, { href: "/terms", label: "Terms" }, { href: "/privacy", label: "Privacy" }].map(({ href, label }) => (
+              <Link key={href} href={href} className="font-mono uppercase" style={{ fontSize: 10, letterSpacing: "0.2em", color: href === "/terms" ? "#f0ede8" : "#333", borderBottom: href === "/terms" ? "1px solid #E8181C" : "1px solid transparent", paddingBottom: 4, transition: "color 0.2s" }}>
+                {label}
+              </Link>
+            ))}
+          </div>
           <h1 className="font-display font-bold uppercase text-[#f0ede8]" style={{ fontSize: "clamp(3rem,7vw,5.5rem)", lineHeight: 0.9, marginBottom: 56 }}>
             Terms of<br />
             <span style={{ color: "#E8181C" }}>Service</span>
