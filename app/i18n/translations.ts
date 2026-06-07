@@ -24,7 +24,7 @@ const en = {
   },
   home: {
     stats: [
-      { value: "7+",    label: "Years\nExperience"     },
+      { value: "8+",    label: "Years\nExperience"     },
       { value: "80+",   label: "Projects\nDelivered"   },
       { value: "1.2M",  label: "Combined\nReach"       },
       { value: "3",     label: "Countries\nActive"     },
@@ -101,11 +101,11 @@ const en = {
       bio: [
         "I studied cinematography at ISMAC Rabat in Morocco and then moved to Quebec for a diploma in graphic design at Calixa-Lavallée. Both shaped how I see and how I work.",
         "KLIPVISUAL is my one-person operation. I handle the camera, the edit, the color and the creative direction. Every project, start to finish, no middleman.",
-        "Seven years of work across Morocco, Canada and beyond. I speak French, English and Arabic.",
+        "Eight years of work across Morocco, Canada and beyond. I speak French, English and Arabic.",
       ],
     },
     stats: [
-      { value: "7+",  label: "Years"     },
+      { value: "8+",  label: "Years"     },
       { value: "50+", label: "Projects"  },
       { value: "3",   label: "Countries" },
       { value: "∞", label: "Frames" },
@@ -292,7 +292,7 @@ const fr: typeof en = {
   },
   home: {
     stats: [
-      { value: "7+",    label: "Ans\nd’expérience"  },
+      { value: "8+",    label: "Ans\nd’expérience"  },
       { value: "80+",   label: "Projets\nlivrés"         },
       { value: "1.2M",  label: "Portée\ncombinée"   },
       { value: "3",     label: "Pays\nactifs"                 },
@@ -369,11 +369,11 @@ const fr: typeof en = {
       bio: [
         "J’ai étudié la cinématographie à l’ISMAC Rabat au Maroc, puis je me suis installé au Québec pour un diplôme en design graphique à Calixa-Lavallée. Ces deux formations ont façonné ma vision et ma manière de travailler.",
         "KLIPVISUAL, c’est mon studio solo. Je gère la caméra, le montage, l’étalonnage et la direction créative. Chaque projet, de A à Z, sans intermédiaire.",
-        "Sept ans de travail entre le Maroc, le Canada et ailleurs. Je parle français, anglais et arabe.",
+        "Huit ans de travail entre le Maroc, le Canada et ailleurs. Je parle français, anglais et arabe.",
       ],
     },
     stats: [
-      { value: "7+",  label: "Années" },
+      { value: "8+",  label: "Années" },
       { value: "50+", label: "Projets"    },
       { value: "3",   label: "Pays"       },
       { value: "∞", label: "Plans"   },

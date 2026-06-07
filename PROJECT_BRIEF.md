@@ -4,6 +4,16 @@
 
 ---
 
+> ⚠️ **STATUS: PARTIALLY SUPERSEDED (updated 2026-06-05).** This was the original planning brief. Several details below are now stale. Current truth:
+> - **Domain:** `klipvisual.com` (not `.ca`) · **Email:** `hello@klipvisual.com` (not `contact@`)
+> - **Fonts:** Barlow Condensed (display) · DM Sans (body) · Space Mono (mono) — NOT Bebas Neue/Syne
+> - **Stack:** Next.js 16 App Router · Tailwind v4 · Framer Motion · deployed on Vercel · bilingual EN/FR (`app/i18n/`)
+> - **Real projects + pricing:** live source of truth is [app/data/projects.ts](app/data/projects.ts) and [app/services/page.tsx](app/services/page.tsx), not the lists below.
+> - **Brand/content direction for social + marketing:** see `brand/` folder (being built).
+> Keep this file for build history; do not treat the specifics below as current.
+
+---
+
 ## 1. PROJECT OVERVIEW
 
 **Brand:** KLIPVISUAL

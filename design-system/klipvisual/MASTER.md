@@ -7,8 +7,9 @@
 ---
 
 **Project:** KLIPVISUAL
-**Generated:** 2026-05-21 05:16:47
-**Category:** Marketing Agency
+**Corrected:** 2026-06-05 (original auto-generated tokens were wrong; replaced with real brand tokens)
+**Category:** Creative Content Production — solo creative operator, Montréal
+**Theme:** DARK OLED ONLY. No light mode anywhere.
 
 ---
 
@@ -18,25 +19,21 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#EC4899` | `--color-primary` |
-| Secondary | `#F472B6` | `--color-secondary` |
-| CTA/Accent | `#06B6D4` | `--color-cta` |
-| Background | `#FDF2F8` | `--color-background` |
-| Text | `#831843` | `--color-text` |
+| Brand / Accent (red) | `#E8181C` | `--color-brand` |
+| Background (near-black) | `#0a0a0a` | `--color-bg` |
+| Primary text (bone/cream) | `#f0ede8` | `--color-cream` |
+| Muted text | `#555555` | `--color-muted` |
+| Borders / dividers | `#1a1a1a` | — |
 
-**Color Notes:** Bold pink + cyan accent
+**Color Notes:** Dark cinematic OLED. Red is used ONLY for logo, CTAs, hover states, and active/accent elements — never as a fill on large surfaces. Film grain overlay present on every section. No gradients on flat surfaces.
 
 ### Typography
 
-- **Heading Font:** Archivo
-- **Body Font:** Space Grotesk
-- **Mood:** minimal, portfolio, designer, creative, clean, artistic
-- **Google Fonts:** [Archivo + Space Grotesk](https://fonts.google.com/share?selection.family=Archivo:wght@300;400;500;600;700|Space+Grotesk:wght@300;400;500;600;700)
-
-**CSS Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-```
+- **Display / Headings:** Barlow Condensed (700, 800) — uppercase, tight tracking
+- **Body:** DM Sans (300, 400)
+- **Metadata / Labels:** Space Mono (400) — project numbers, dates, categories, uppercase with wide tracking
+- **Mood:** cinematic, editorial, exaggerated minimalism, loud, premium
+- **Note:** Fonts load via `next/font` in `app/layout.tsx`; tokens live in `app/globals.css` `@theme` block.
 
 ### Spacing Variables
 
@@ -62,6 +59,8 @@
 ---
 
 ## Component Specs
+
+> ⚠️ The CSS snippets below are generic boilerplate from the original auto-generation (light bg, pink/cyan, rounded, soft shadows). They do NOT match KLIPVISUAL. For real components, follow the dark tokens above: `#0a0a0a` surfaces, `#f0ede8` text, `#E8181C` accent, sharp corners, red wipe-up hovers (`translate-y-full → 0`), 1px `#1a1a1a` borders. Treat the snippets as structure-only, not styling.
 
 ### Buttons
 
