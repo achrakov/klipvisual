@@ -17,6 +17,7 @@ export function HeroGallery() {
   const [active, setActive] = useState(0)
   const [locked, setLocked] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const frameRef = useRef<HTMLDivElement>(null)
   const wheelAccum = useRef(0)
@@ -53,10 +54,15 @@ export function HeroGallery() {
     [active, locked]
   )
 
+  /* ── Touch detection: keep the hero a simple, natively-scrollable section on phones ── */
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(hover: none), (pointer: coarse)").matches)
+  }, [])
+
   /* ── Wheel ── */
   useEffect(() => {
     const section = sectionRef.current
-    if (!section) return
+    if (!section || isTouch) return
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
       wheelAccum.current += e.deltaY
@@ -68,7 +74,7 @@ export function HeroGallery() {
     }
     section.addEventListener("wheel", onWheel, { passive: false })
     return () => section.removeEventListener("wheel", onWheel)
-  }, [navigate])
+  }, [navigate, isTouch])
 
   /* ── Keyboard ── */
   useEffect(() => {
@@ -80,12 +86,13 @@ export function HeroGallery() {
     return () => window.removeEventListener("keydown", onKey)
   }, [navigate])
 
-  /* ── Drag / swipe ── */
+  /* ── Drag / swipe (desktop only; phones scroll the page natively) ── */
   const onPointerDown = (e: React.PointerEvent<HTMLElement>) => {
+    if (isTouch) return
     dragStart.current = { x: e.clientX, y: e.clientY }
   }
   const onPointerUp = (e: React.PointerEvent<HTMLElement>) => {
-    if (!dragStart.current) return
+    if (isTouch || !dragStart.current) return
     const dy = e.clientY - dragStart.current.y
     const dx = e.clientX - dragStart.current.x
     if (Math.abs(dy) > 60 || Math.abs(dx) > 60) navigate(dy > 0 || dx > 0 ? -1 : 1)
@@ -95,9 +102,9 @@ export function HeroGallery() {
   return (
     <section
       ref={sectionRef}
-      data-lenis-prevent
+      {...(isTouch ? {} : { "data-lenis-prevent": true })}
       className="relative h-screen bg-[#080808] overflow-hidden select-none"
-      style={{ touchAction: "none" }}
+      style={{ touchAction: isTouch ? "auto" : "none" }}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
     >
