@@ -635,7 +635,7 @@ function OfferingCard({
       </div>
 
       {/* Footer */}
-      <div style={{ padding: "14px 28px", borderTop: "1px solid #111", background: "#080808" }}>
+      <div style={{ padding: "14px 28px", borderTop: "1px solid #111", background: "#080808", minHeight: 34, display: "flex", alignItems: "center" }}>
         <p className="font-mono text-[#444]" style={{ fontSize: 10, letterSpacing: "0.12em" }}>
           {t.services.offerings.bestFor}{" "}
           <span style={{ color: "#555" }}>{offering.best}</span>
