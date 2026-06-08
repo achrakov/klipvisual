@@ -245,13 +245,15 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                style={{ aspectRatio: "3/4", position: "relative", overflow: "hidden", background: "#111" }}
+                style={{ aspectRatio: "3/4", position: "relative", overflow: "hidden", background: "linear-gradient(150deg, #1a0505 0%, #380808 45%, #0d0d0d 100%)" }}
               >
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(150deg, #1a0505 0%, #380808 45%, #0d0d0d 100%)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span className="font-mono uppercase" style={{ fontSize: "0.52rem", letterSpacing: "0.3em", color: "rgba(240,237,232,0.12)" }}>
-                    {ta.whoIAm.portraitLabel}
-                  </span>
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/about/portrait.jpg"
+                  alt="Achraf Chibane"
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  draggable={false}
+                />
                 <div style={{ position: "absolute", inset: 0, zIndex: 4, overflow: "hidden", pointerEvents: "none" }} aria-hidden>
                   <div className="grain-overlay-frame" />
                 </div>
