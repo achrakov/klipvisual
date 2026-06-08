@@ -290,7 +290,7 @@ const services = [
   },
   {
     id: "bundles",
-    num: "04",
+    num: "05",
     label: "Bundles",
     desc: "The best value is a full ecosystem. Bundles combine video, photo, and design into one seamless production. One team, one vision.",
     offerings: [
@@ -336,6 +336,138 @@ const services = [
     ],
   },
 ]
+
+// Web Design & Development — bilingual section spliced between Design (03) and Bundles (05).
+const webService = {
+  en: {
+    id: "web",
+    num: "04",
+    label: "Web Design & Development",
+    desc: "Cinematic websites, custom-built. Fast, bilingual, and designed to convert. No templates, no compromises.",
+    offerings: [
+      {
+        name: "One-Page / Landing",
+        price: "From $1,500",
+        timeline: "1–2 weeks",
+        best: "Launches, campaigns, link-in-bio, events",
+        deliverables: [
+          "Single-page custom design",
+          "Mobile-responsive build",
+          "Contact form or booking link",
+          "Basic SEO setup",
+          "1 round of revisions",
+          "Bilingual EN/FR option",
+        ],
+      },
+      {
+        name: "Brand Website",
+        price: "From $3,500",
+        timeline: "3–5 weeks",
+        best: "Brands, creators, small businesses",
+        deliverables: [
+          "Up to 6 custom-designed pages",
+          "Mobile-responsive, fast-loading build",
+          "Custom animations and transitions",
+          "Bilingual EN/FR",
+          "CMS or easy content updates",
+          "Basic SEO + analytics setup",
+          "2 rounds of revisions",
+        ],
+      },
+      {
+        name: "Premium Custom Build",
+        price: "From $7,500",
+        timeline: "5–8 weeks",
+        best: "Premium brands, studios, portfolios",
+        deliverables: [
+          "Fully custom cinematic design and motion",
+          "Video integration and interactive elements",
+          "Bilingual EN/FR",
+          "Advanced animations",
+          "SEO, analytics, performance optimization",
+          "CMS setup + training",
+          "3 rounds of revisions",
+        ],
+      },
+      {
+        name: "Care & Maintenance (optional)",
+        price: "$120–$300/mo",
+        timeline: "Ongoing",
+        best: "Anyone who wants their site handled",
+        deliverables: [
+          "Hosting oversight",
+          "Content updates",
+          "Security + performance monitoring",
+          "Small changes and fixes",
+        ],
+      },
+    ],
+  },
+  fr: {
+    id: "web",
+    num: "04",
+    label: "Web Design & Development",
+    desc: "Des sites web cinématographiques, sur mesure. Rapides, bilingues et conçus pour convertir. Pas de gabarits, pas de compromis.",
+    offerings: [
+      {
+        name: "Page unique / Landing",
+        price: "À partir de 1 500 $",
+        timeline: "1 à 2 semaines",
+        best: "Lancements, campagnes, lien bio, événements",
+        deliverables: [
+          "Design sur mesure d'une page",
+          "Site adaptatif (mobile)",
+          "Formulaire de contact ou lien de réservation",
+          "Configuration SEO de base",
+          "1 ronde de révisions",
+          "Option bilingue FR/EN",
+        ],
+      },
+      {
+        name: "Site de marque",
+        price: "À partir de 3 500 $",
+        timeline: "3 à 5 semaines",
+        best: "Marques, créateurs, petites entreprises",
+        deliverables: [
+          "Jusqu'à 6 pages sur mesure",
+          "Site adaptatif et rapide",
+          "Animations et transitions personnalisées",
+          "Bilingue FR/EN",
+          "CMS ou mises à jour faciles du contenu",
+          "SEO de base + configuration analytique",
+          "2 rondes de révisions",
+        ],
+      },
+      {
+        name: "Site sur mesure premium",
+        price: "À partir de 7 500 $",
+        timeline: "5 à 8 semaines",
+        best: "Marques premium, studios, portfolios",
+        deliverables: [
+          "Design et animations cinématographiques entièrement sur mesure",
+          "Intégration vidéo et éléments interactifs",
+          "Bilingue FR/EN",
+          "Animations avancées",
+          "SEO, analytique, optimisation de la performance",
+          "Configuration CMS + formation",
+          "3 rondes de révisions",
+        ],
+      },
+      {
+        name: "Entretien et maintenance (optionnel)",
+        price: "120 $ à 300 $/mois",
+        timeline: "En continu",
+        best: "Ceux qui veulent que leur site soit pris en charge",
+        deliverables: [
+          "Supervision de l'hébergement",
+          "Mises à jour du contenu",
+          "Surveillance sécurité + performance",
+          "Petits changements et correctifs",
+        ],
+      },
+    ],
+  },
+}
 
 const included = [
   "Pre-production planning call",
@@ -516,8 +648,10 @@ function OfferingCard({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const ts = t.services
+  // Insert Web (04) between Design (03) and Bundles (05); nav + sections derive from this.
+  const sections = [...services.slice(0, 3), webService[lang], ...services.slice(3)]
   return (
     <>
       <main style={{ minHeight: "100vh", background: "#0a0a0a" }}>
@@ -573,7 +707,7 @@ export default function ServicesPage() {
                 transition={{ delay: 0.45 }}
                 style={{ display: "flex", gap: 6, flexWrap: "wrap" }}
               >
-                {services.map((s) => (
+                {sections.map((s) => (
                   <a
                     key={s.id}
                     href={`#${s.id}`}
@@ -640,7 +774,7 @@ export default function ServicesPage() {
         </section>
 
         {/* ── Service Sections ──────────────────────────────── */}
-        {services.map((service) => (
+        {sections.map((service) => (
           <section
             key={service.id}
             id={service.id}
