@@ -13,7 +13,7 @@ export function LoadingIntro({ onComplete }: LoadingIntroProps) {
 
   useEffect(() => {
     if (entered) {
-      const t = setTimeout(() => setVisible(false), 1000)
+      const t = setTimeout(() => setVisible(false), 600)
       return () => clearTimeout(t)
     }
   }, [entered])
@@ -21,7 +21,7 @@ export function LoadingIntro({ onComplete }: LoadingIntroProps) {
   const handleEnter = () => {
     if (entered) return
     setEntered(true)
-    setTimeout(onComplete, 1000)
+    setTimeout(onComplete, 500)
   }
 
   return (
@@ -31,7 +31,7 @@ export function LoadingIntro({ onComplete }: LoadingIntroProps) {
           className="fixed inset-0 z-[9000] overflow-hidden bg-[#080808]"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Full-screen video — object-fit: cover fills every pixel */}
           <video
@@ -39,6 +39,7 @@ export function LoadingIntro({ onComplete }: LoadingIntroProps) {
             muted
             loop
             playsInline
+            preload="metadata"
             src="/logo%20opener/KLIP_Opener.mp4"
             style={{
               position: "absolute",
@@ -64,7 +65,7 @@ export function LoadingIntro({ onComplete }: LoadingIntroProps) {
             className="absolute bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.7, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <button
               onClick={handleEnter}

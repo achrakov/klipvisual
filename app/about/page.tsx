@@ -64,6 +64,8 @@ export default function AboutPage() {
   const mouseCurrent    = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
+    // Skip the mouse-driven 3D parallax + its rAF loop on touch devices.
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none), (pointer: coarse)").matches) return
     const onMove = (e: MouseEvent) => {
       const el = globeSectionRef.current
       if (!el) return
@@ -97,9 +99,10 @@ export default function AboutPage() {
         {/* ── Hero ── */}
         <section
           ref={heroRef}
+          className="m-stack"
           style={{ height: "100svh", display: "grid", gridTemplateColumns: "1fr 1.4fr 1fr", overflow: "hidden", position: "relative" }}
         >
-          <div style={{ position: "relative", overflow: "hidden" }}>
+          <div className="m-hide" style={{ position: "relative", overflow: "hidden" }}>
             <motion.div style={{ position: "absolute", inset: 0, y: leftY }}>
               <motion.div
                 initial={{ clipPath: "inset(100% 0 0 0)" }}
@@ -153,7 +156,7 @@ export default function AboutPage() {
             </motion.p>
           </motion.div>
 
-          <div style={{ position: "relative", overflow: "hidden" }}>
+          <div className="m-hide" style={{ position: "relative", overflow: "hidden" }}>
             <motion.div style={{ position: "absolute", inset: 0, y: rightY }}>
               <motion.div
                 initial={{ clipPath: "inset(100% 0 0 0)" }}
@@ -186,7 +189,7 @@ export default function AboutPage() {
           ref={globeSectionRef}
           style={{ background: "#0a0a0a", display: "flex", alignItems: "center", justifyContent: "center", padding: "6rem 0", overflow: "hidden" }}
         >
-          <div style={{ perspective: 1000, perspectiveOrigin: "50% 50%" }}>
+          <div className="m-globe" style={{ perspective: 1000, perspectiveOrigin: "50% 50%" }}>
             <div
               ref={globeWrapRef}
               style={{ display: "grid", gridTemplateColumns: "repeat(9, 210px)", gridTemplateRows: "repeat(4, 157px)", gap: 4, transformStyle: "preserve-3d", willChange: "transform" }}
@@ -208,7 +211,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Mission ── */}
-        <section style={{ padding: "8rem 40px", borderBottom: "1px solid #1f1f1f" }}>
+        <section className="m-px" style={{ padding: "8rem 40px", borderBottom: "1px solid #1f1f1f" }}>
           <div style={{ maxWidth: 920, margin: "0 auto" }}>
             <motion.p
               initial={{ opacity: 0, y: 24 }}
@@ -224,7 +227,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Who I Am ── */}
-        <section style={{ padding: "8rem 40px", borderBottom: "1px solid #1f1f1f" }}>
+        <section className="m-px" style={{ padding: "8rem 40px", borderBottom: "1px solid #1f1f1f" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <motion.p
               initial={{ opacity: 0 }}
@@ -236,7 +239,7 @@ export default function AboutPage() {
               {ta.whoIAm.label}
             </motion.p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: "5rem", alignItems: "start" }}>
+            <div className="m-stack m-gap" style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: "5rem", alignItems: "start" }}>
               <motion.div
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -284,7 +287,7 @@ export default function AboutPage() {
 
         {/* ── Stats ── */}
         <section style={{ borderBottom: "1px solid #1f1f1f" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
+          <div className="m-stack-2" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
             {ta.stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -306,7 +309,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Timeline ── */}
-        <section style={{ padding: "8rem 40px", borderBottom: "1px solid #1f1f1f" }}>
+        <section className="m-px" style={{ padding: "8rem 40px", borderBottom: "1px solid #1f1f1f" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <motion.p
               initial={{ opacity: 0 }}
@@ -324,6 +327,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="m-stack m-gap-sm"
                 style={{ display: "grid", gridTemplateColumns: "160px 1fr auto", alignItems: "center", gap: "2rem", padding: "1.8rem 0", borderTop: "1px solid #1f1f1f" }}
               >
                 <span className="font-mono" style={{ fontSize: "0.58rem", letterSpacing: "0.2em", color: "rgba(240,237,232,0.28)" }}>{item.year}</span>
@@ -339,7 +343,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Services cards ── */}
-        <section style={{ padding: "8rem 40px", borderBottom: "1px solid #1f1f1f" }}>
+        <section className="m-px" style={{ padding: "8rem 40px", borderBottom: "1px solid #1f1f1f" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: "3.5rem" }}>
               <div style={{ position: "relative" }}>
@@ -354,7 +358,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px dashed rgba(240,237,232,0.2)", borderRadius: 8, overflow: "hidden" }}>
+            <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px dashed rgba(240,237,232,0.2)", borderRadius: 8, overflow: "hidden" }}>
               {ta.services.items.map((svc, i) => (
                 <motion.a
                   key={svc.href}
@@ -416,7 +420,7 @@ export default function AboutPage() {
             style={{ position: "relative", zIndex: 3, display: "flex", flexDirection: "column", alignItems: "center", gap: "2.5rem" }}
           >
             <h2
-              className="font-display font-bold uppercase"
+              className="font-display font-bold uppercase m-h-hero"
               style={{ fontSize: "clamp(3.5rem, 9vw, 10rem)", lineHeight: "0.88em", letterSpacing: "-0.03em", color: "#f0ede8", textAlign: "center" }}
             >
               {ta.ourWork.heading}

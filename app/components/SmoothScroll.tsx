@@ -9,6 +9,9 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
+    // On touch devices, skip Lenis so native momentum scroll stays smooth (no floaty/idle-rAF layer).
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return
+
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

@@ -19,6 +19,9 @@ export function ScrollCursor({ containerRef, label = "SCROLL" }: ScrollCursorPro
     const dot = dotRef.current
     if (!container || !dot) return
 
+    // Skip the scroll-cursor (and its rAF loop) on touch devices.
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return
+
     const onMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect()
       target.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }

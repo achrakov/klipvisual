@@ -5,6 +5,7 @@ import Link from "next/link"
 import { projects } from "../data/projects"
 import { useLang } from "../i18n/LanguageContext"
 import { LanguageSwitcher } from "../components/LanguageSwitcher"
+import { BurgerMenu } from "../components/BurgerMenu"
 
 const GAP = 20
 const LERP = 0.075
@@ -26,13 +27,23 @@ export default function WorkPage() {
   const [activeIdx, setActiveIdx] = useState(0)
   const [blurVal, setBlurVal] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [isPhone, setIsPhone] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  const cardW = () => Math.min(window.innerWidth * 0.33, 416)
+  // Wider cards on phones so they're not tiny stamps; matches the CSS width below.
+  const cardW = () => Math.min(window.innerWidth * (window.innerWidth < 600 ? 0.72 : 0.33), 416)
   const maxX = () => -(projects.length - 1) * (cardW() + GAP)
+  const cardCss = isPhone ? "min(72vw, 26rem)" : "min(33vw, 26rem)"
 
   useEffect(() => {
     setMounted(true)
+    const checkPhone = () => setIsPhone(window.innerWidth < 600)
+    checkPhone()
+    window.addEventListener("resize", checkPhone)
+    return () => window.removeEventListener("resize", checkPhone)
+  }, [])
 
+  useEffect(() => {
     const tick = () => {
       vel.current *= FRICTION
       xTarget.current = clamp(xTarget.current + vel.current, maxX(), 0)
@@ -98,6 +109,7 @@ export default function WorkPage() {
         cursor: "grab",
         userSelect: "none",
         WebkitUserSelect: "none",
+        touchAction: "none",
       }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -128,7 +140,7 @@ export default function WorkPage() {
             draggable={false}
           />
         </a>
-        <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
+        <div className="m-hide" style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
           {[{ href: "/services", label: t.nav.services }, { href: "/about", label: t.nav.about }, { href: "/contact", label: t.nav.contact }].map(({ href, label }) => (
             <a
               key={href}
@@ -143,7 +155,22 @@ export default function WorkPage() {
           ))}
           <LanguageSwitcher variant="dark" />
         </div>
+
+        {/* Mobile burger */}
+        <button
+          onClick={() => setMenuOpen(true)}
+          onPointerDown={e => e.stopPropagation()}
+          aria-label={t.burger.toggleLabel}
+          className="hidden max-[768px]:flex"
+          style={{ flexDirection: "column", gap: 5, padding: "12px 6px", background: "transparent", border: "none" }}
+        >
+          <span style={{ width: 24, height: 1.5, background: "#f0ede8", display: "block" }} />
+          <span style={{ width: 24, height: 1.5, background: "#f0ede8", display: "block" }} />
+          <span style={{ width: 24, height: 1.5, background: "#f0ede8", display: "block" }} />
+        </button>
       </nav>
+
+      <BurgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
       {/* Vertical center guide line */}
       <div
@@ -179,8 +206,8 @@ export default function WorkPage() {
             display: "flex",
             gap: GAP,
             alignItems: "center",
-            paddingLeft: `calc(50vw - min(33vw, 26rem) / 2)`,
-            paddingRight: `calc(50vw - min(33vw, 26rem) / 2)`,
+            paddingLeft: `calc(50vw - ${cardCss} / 2)`,
+            paddingRight: `calc(50vw - ${cardCss} / 2)`,
             willChange: "transform",
             filter: blurVal > 0.4 ? `blur(${blurVal}px)` : "none",
           }}
@@ -197,7 +224,7 @@ export default function WorkPage() {
                 }}
                 style={{
                   flexShrink: 0,
-                  width: "min(33vw, 26rem)",
+                  width: cardCss,
                   aspectRatio: "1 / 1.635",
                   borderRadius: 6,
                   overflow: "hidden",
@@ -371,7 +398,7 @@ export default function WorkPage() {
 
         {/* Right — counter */}
         <span
-          className="font-mono"
+          className="font-mono m-hide"
           style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: "rgba(240,237,232,0.38)" }}
         >
           {String(activeIdx + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}

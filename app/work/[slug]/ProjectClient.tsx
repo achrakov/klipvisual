@@ -251,7 +251,7 @@ function StillsSection({ stills, objPos, imgStyle }: { stills: string[]; objPos:
 
       {/* Mosaic grid */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+        <div className="m-mosaic" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
           {items.map((src, i) => {
             const place = STILL_PLACEMENTS[i]
             return (
@@ -587,7 +587,7 @@ function ConcertSection({
           </div>
 
           {/* Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+          <div className="m-mosaic" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
             {CONCERT_GRID.map((slot, i) => {
               const src = photos[i]
               return src ? (
@@ -1388,7 +1388,7 @@ function EditorialAlbumSection({
 
           /* triptych */
           return (
-            <div key={si} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1.65fr", gap: 3, height: "66vh" }}>
+            <div key={si} className="m-triptych" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1.65fr", gap: 3, height: "66vh" }}>
               {photos.slice(0, 3).map((src, pi) => (
                 <motion.div
                   key={pi}
@@ -1887,6 +1887,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
           </div>
 
           <div
+            className="m-stack m-gap"
             style={{
               maxWidth: 1200,
               margin: "0 auto",
@@ -2045,7 +2046,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
             <p className="font-mono uppercase text-center" style={{ fontSize: 8, letterSpacing: "0.25em", color: "rgba(255,255,255,0.18)", marginBottom: 56 }}>
               Click any deck to view all slides
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+            <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
               {project.pitchDecks.map((deck, i) => (
                 <PitchDeckCard key={i} deck={deck} index={i} onOpen={setActiveDeck} />
               ))}
@@ -2061,7 +2062,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
                 <p className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: "0.45em", color: "#E8181C", marginBottom: 56 }}>
                   Brand Identity · {String(idx + 1).padStart(2, "0")}
                 </p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 72, alignItems: "flex-start" }}>
+                <div className="m-stack m-gap" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 72, alignItems: "flex-start" }}>
 
                   {/* Left: project info */}
                   <div>
@@ -2179,7 +2180,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
                 <p className="font-mono uppercase text-center" style={{ fontSize: 9, letterSpacing: "0.45em", color: "rgba(255,255,255,0.18)", marginBottom: 64 }}>
                   {tp.logofolio}
                 </p>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
+                <div className="m-stack-2" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
                   {Array.from({ length: 8 }).map((_, i) => (
                     <div
                       key={i}
@@ -2417,7 +2418,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
               </h3>
             </div>
             {/* 3 portrait reel cards */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+            <div className="m-stack-2" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
               {project.recipeReels.map((reel, i) => (
                 <motion.div
                   key={i}
@@ -2487,7 +2488,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
 
             {project.videos ? (
               /* ── Multi-video grid ── */
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10 }}>
+              <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10 }}>
                 {project.videos.map((video, i) => (
                   <VideoCard key={i} video={video} onPlay={(id) => setActiveVideo({ id, portrait: false })} objPos={objPos(video.cover ?? "")} />
                 ))}
@@ -2621,7 +2622,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
           SECTION 5 — CREDITS
       ══════════════════════════════════ */}
       <section style={{ borderBottom: "1px solid #1f1f1f", padding: "28px", background: "#f5f0e8" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr", gap: "1.2rem", alignItems: "stretch" }}>
+        <div className="m-stack m-gap-sm" style={{ display: "grid", gridTemplateColumns: "1fr 3fr", gap: "1.2rem", alignItems: "stretch" }}>
 
           {/* ── Left: cover image card ── */}
           <div style={{ position: "relative", borderRadius: 6, overflow: "hidden", minHeight: 360 }}>
@@ -2646,7 +2647,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
 
             {/* Row 1 — featured (Director / Editor), black bg, dashed divider */}
             <div style={{ borderRadius: 6, overflow: "hidden", background: "#0a0a0a" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+              <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
                 {featuredCrew.map((member, i) => (
                   <div
                     key={member.role}
@@ -2860,7 +2861,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
           SECTION 8 — NEXT PROJECT
       ══════════════════════════════════ */}
       <section style={{ padding: "0 28px 28px", paddingTop: 28, background: "#f5f0e8" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 10 }}>
+        <div className="m-stack m-gap-sm" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 10 }}>
           {/* All Work card */}
           <Link
             href="/work"

@@ -658,7 +658,7 @@ export default function ServicesPage() {
 
         {/* ── Hero ──────────────────────────────────────────── */}
         <section style={{ paddingTop: 140, paddingBottom: 80, borderBottom: "1px solid #141414" }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+          <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -673,7 +673,7 @@ export default function ServicesPage() {
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                className="font-display font-bold uppercase text-[#f0ede8] leading-none"
+                className="font-display font-bold uppercase text-[#f0ede8] leading-none m-h-hero"
                 style={{ fontSize: "clamp(4.5rem,11vw,10.5rem)", letterSpacing: "-0.025em" }}
               >
                 {ts.hero.heading}
@@ -731,7 +731,7 @@ export default function ServicesPage() {
 
         {/* ── How We Work ───────────────────────────────────── */}
         <section style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+          <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -780,7 +780,7 @@ export default function ServicesPage() {
             id={service.id}
             style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}
           >
-            <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+            <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
               {/* Section header */}
               <div
                 style={{
@@ -808,7 +808,7 @@ export default function ServicesPage() {
                       whileInView={{ y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                      className="font-display font-bold uppercase text-[#f0ede8] leading-none"
+                      className="font-display font-bold uppercase text-[#f0ede8] leading-none m-h-xl"
                       style={{ fontSize: "clamp(3rem,7vw,7rem)", letterSpacing: "-0.025em" }}
                     >
                       {service.label}
@@ -829,6 +829,7 @@ export default function ServicesPage() {
 
               {/* Offerings grid */}
               <div
+                className="m-stack"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
@@ -846,7 +847,7 @@ export default function ServicesPage() {
 
         {/* ── What's Included ───────────────────────────────── */}
         <section style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+          <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -863,7 +864,7 @@ export default function ServicesPage() {
                 whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="font-display font-bold uppercase text-[#f0ede8] leading-none"
+                className="font-display font-bold uppercase text-[#f0ede8] leading-none m-h-xl"
                 style={{ fontSize: "clamp(2.5rem,5.5vw,5.5rem)", letterSpacing: "-0.025em" }}
               >
                 {ts.included.heading1}<br />{ts.included.heading2}
@@ -871,6 +872,7 @@ export default function ServicesPage() {
             </div>
 
             <div
+              className="m-stack"
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
@@ -883,6 +885,7 @@ export default function ServicesPage() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                className="m-pad"
                 style={{ background: "#0a0a0a", padding: "52px 44px" }}
               >
                 <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.22em", marginBottom: 32 }}>
@@ -906,6 +909,7 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
+                className="m-pad"
                 style={{ background: "#0a0a0a", padding: "52px 44px" }}
               >
                 <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.22em", marginBottom: 32 }}>
@@ -928,8 +932,8 @@ export default function ServicesPage() {
 
         {/* ── FAQ ───────────────────────────────────────────── */}
         <section style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}>
+          <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+            <div className="m-stack m-gap" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}>
 
               {/* Left label column */}
               <div>
@@ -948,7 +952,7 @@ export default function ServicesPage() {
                     whileInView={{ y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className="font-display font-bold uppercase text-[#f0ede8] leading-none"
+                    className="font-display font-bold uppercase text-[#f0ede8] leading-none m-h-lg"
                     style={{ fontSize: "clamp(2.5rem,4vw,4.5rem)", letterSpacing: "-0.025em" }}
                   >
                     {ts.faq.heading1}<br />{ts.faq.heading2}
@@ -995,7 +999,7 @@ export default function ServicesPage() {
         </section>
 
         {/* ── CTA ───────────────────────────────────────────── */}
-        <section style={{ margin: "0 32px 32px", background: "#E8181C", padding: "100px 60px" }}>
+        <section className="m-cta" style={{ margin: "0 32px 32px", background: "#E8181C", padding: "100px 60px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <motion.p
               initial={{ opacity: 0 }}
@@ -1021,7 +1025,7 @@ export default function ServicesPage() {
                   whileInView={{ y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="font-display font-bold uppercase text-[#0a0a0a] leading-none"
+                  className="font-display font-bold uppercase text-[#0a0a0a] leading-none m-h-xl"
                   style={{ fontSize: "clamp(2.5rem,6vw,6.5rem)", letterSpacing: "-0.025em", maxWidth: 680 }}
                 >
                   {ts.cta.heading}

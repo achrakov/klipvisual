@@ -97,6 +97,7 @@ export function HeroGallery() {
       ref={sectionRef}
       data-lenis-prevent
       className="relative h-screen bg-[#080808] overflow-hidden select-none"
+      style={{ touchAction: "none" }}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
     >
@@ -245,8 +246,8 @@ export function HeroGallery() {
               borderTop: "1px solid rgba(255,255,255,0.1)",
             }}
           >
-            {/* Director / Year / Type — left */}
-            <div style={{ display: "flex", gap: 0 }}>
+            {/* Director / Year / Type — left (hidden on mobile to avoid crowding) */}
+            <div className="m-hide" style={{ display: "flex", gap: 0 }}>
               {[
                 { label: "DIRECTOR", value: project.client ?? "" },
                 { label: "YEAR", value: project.year },

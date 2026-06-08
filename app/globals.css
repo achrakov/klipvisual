@@ -207,6 +207,47 @@ body.overlay-open .pos-editor-frame.dragging * { cursor: grabbing !important; }
   .grain-overlay { animation: none; }
 }
 
+/* ── Mobile responsive utilities ─────────────────────
+   !important inside a media query overrides inline styles on
+   small screens only, leaving the desktop design untouched. */
+@media (max-width: 768px) {
+  /* Collapse any multi-column grid to a single column */
+  .m-stack { grid-template-columns: 1fr !important; }
+  /* Two-up grid (stat blocks, logo grids) */
+  .m-stack-2 { grid-template-columns: 1fr 1fr !important; }
+  /* Tame oversized fixed gaps */
+  .m-gap { gap: 28px !important; }
+  .m-gap-sm { gap: 16px !important; }
+  /* Tighter container horizontal padding (was 40/60px) */
+  .m-px { padding-left: 22px !important; padding-right: 22px !important; }
+  /* Cap oversized cell padding */
+  .m-pad { padding: 32px 24px !important; }
+  /* Heading size caps to stop overflow/clipping in overflow:hidden parents */
+  .m-h-hero { font-size: clamp(2.6rem, 13vw, 5rem) !important; }
+  .m-h-xl   { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
+  .m-h-lg   { font-size: clamp(1.7rem, 8vw, 3rem) !important; }
+  /* Stack flex rows that used space-between */
+  .m-col { flex-direction: column !important; align-items: flex-start !important; }
+  /* CTA insets (margin + padding eat too much width) */
+  .m-cta { margin-left: 16px !important; margin-right: 16px !important; padding-left: 24px !important; padding-right: 24px !important; }
+  /* Minimum 44px tap targets */
+  .m-tap { min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+  /* Prevent iOS focus-zoom on form fields */
+  .m-input { font-size: 16px !important; }
+  /* Hide purely-decorative elements on mobile */
+  .m-hide { display: none !important; }
+  /* Drop large left indents on mobile */
+  .m-pl0 { padding-left: 0 !important; }
+  /* Scale down the decorative 3D image cluster (about page) */
+  .m-globe { transform: scale(0.42) !important; }
+  /* Placement-based image mosaics -> safe 2-up (reset explicit spans) */
+  .m-mosaic { grid-template-columns: 1fr 1fr !important; }
+  .m-mosaic > * { grid-column: auto !important; grid-row: auto !important; }
+  /* Fixed-height triptych -> single column, natural height */
+  .m-triptych { grid-template-columns: 1fr !important; height: auto !important; }
+  .m-triptych > * { height: 56vh !important; }
+}
+
 /* ── Utility ─────────────────────────────────────── */
 .text-balance { text-wrap: balance; }
 

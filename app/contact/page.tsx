@@ -23,7 +23,7 @@ const inputStyle: React.CSSProperties = {
   border: "1px solid #1f1f1f",
   color: "#f0ede8",
   padding: "16px 20px",
-  fontSize: 14,
+  fontSize: 16,
   fontWeight: 300,
   outline: "none",
 }
@@ -69,7 +69,7 @@ export default function ContactPage() {
   return (
     <>
       <main style={{ minHeight: "100vh", paddingTop: 112, paddingBottom: 0 }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px" }}>
+        <div className="m-px" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px" }}>
 
           <div style={{ marginBottom: 72 }}>
             <motion.p
@@ -84,7 +84,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-bold uppercase leading-none text-[#f0ede8]"
+              className="font-display font-bold uppercase leading-none text-[#f0ede8] m-h-xl"
               style={{ fontSize: "clamp(3rem,8vw,7rem)" }}
             >
               {tc.hero.heading1}<br />

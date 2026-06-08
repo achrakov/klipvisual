@@ -154,6 +154,7 @@ function ServiceAccordion() {
                 style={{ overflow: "hidden" }}
               >
                 <div
+                  className="m-col m-gap-sm m-pl0"
                   style={{
                     paddingBottom: 36,
                     paddingLeft: 62,
@@ -203,7 +204,7 @@ export default function HomePage() {
 
         {/* ── Stats ── */}
         <section style={{ borderTop: "1px solid #1f1f1f" }}>
-          <div className="grid grid-cols-3 md:grid-cols-6">
+          <div className="grid grid-cols-2 md:grid-cols-6">
             {t.home.stats.map((s, i) => (
               <motion.div
                 key={s.label}
@@ -247,7 +248,7 @@ export default function HomePage() {
 
         {/* ── Selected Work ── */}
         <section style={{ padding: "80px 28px", borderBottom: "1px solid #1f1f1f" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 32, padding: "0 4px" }}>
+          <div className="m-col m-gap-sm" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 32, padding: "0 4px" }}>
             <div>
               <p className="font-mono text-[#444] uppercase" style={{ fontSize: 10, letterSpacing: "0.3em", marginBottom: 14 }}>
                 {t.home.selectedWork.label}
@@ -290,8 +291,9 @@ export default function HomePage() {
 
         {/* ── Services Accordion ── */}
         <section style={{ padding: "80px 0 80px", borderBottom: "1px solid #1f1f1f" }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px" }}>
+          <div className="m-px" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px" }}>
             <div
+              className="m-col m-gap-sm"
               style={{
                 display: "flex",
                 alignItems: "flex-end",
@@ -332,7 +334,7 @@ export default function HomePage() {
         </section>
 
         {/* ── Clients ── */}
-        <section style={{ padding: "80px 40px", borderBottom: "1px solid #1f1f1f" }}>
+        <section className="m-px" style={{ padding: "80px 40px", borderBottom: "1px solid #1f1f1f" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <p className="font-mono text-center uppercase" style={{ fontSize: 9, letterSpacing: "0.4em", marginBottom: 52, color: "#333" }}>
               {t.home.clients.label}
@@ -372,7 +374,7 @@ export default function HomePage() {
         </section>
 
         {/* ── Philosophy ── */}
-        <section style={{ padding: "120px 40px" }}>
+        <section className="m-px" style={{ padding: "120px 40px" }}>
           <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
             <motion.p
               initial={{ opacity: 0 }}
@@ -388,7 +390,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-bold uppercase text-[#f0ede8]"
+              className="font-display font-bold uppercase text-[#f0ede8] m-h-xl"
               style={{ fontSize: "clamp(3rem,6vw,6rem)", lineHeight: 0.9, marginBottom: 40 }}
             >
               {t.home.philosophy.line1}<br />
@@ -409,14 +411,14 @@ export default function HomePage() {
         </section>
 
         {/* ── CTA ── */}
-        <div style={{ margin: "0 32px 32px", background: "#E8181C", padding: "80px 40px" }}>
+        <div className="m-cta" style={{ margin: "0 32px 32px", background: "#E8181C", padding: "80px 40px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <div className="flex flex-col md:flex-row items-center justify-between gap-12">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="font-display font-bold uppercase leading-none text-[#0a0a0a]"
+                className="font-display font-bold uppercase leading-none text-[#0a0a0a] m-h-lg"
                 style={{ fontSize: "clamp(2.5rem,5vw,4.5rem)" }}
               >
                 {t.home.cta.line1}<br />{t.home.cta.line2}<br />{t.home.cta.line3}

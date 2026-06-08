@@ -2,13 +2,16 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { useLang } from "../i18n/LanguageContext"
 import { LanguageSwitcher } from "./LanguageSwitcher"
+import { BurgerMenu } from "./BurgerMenu"
 
 export function Navbar() {
   const pathname = usePathname()
   const { t } = useLang()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   if (pathname === "/" || pathname === "/work" || /^\/work\/.+/.test(pathname)) return null
 
@@ -44,7 +47,7 @@ export function Navbar() {
         />
       </Link>
 
-      <div style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", gap: "2rem" }}>
+      <div className="m-hide" style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", gap: "2rem" }}>
         <ul style={{ display: "flex", alignItems: "center", gap: "2.5rem", listStyle: "none" }}>
           {links.map(({ href, label }) => (
             <li key={href}>
@@ -66,6 +69,20 @@ export function Navbar() {
         </ul>
         <LanguageSwitcher variant="dark" />
       </div>
+
+      {/* Mobile burger */}
+      <button
+        onClick={() => setMenuOpen(true)}
+        aria-label={t.burger.toggleLabel}
+        className="hidden max-[768px]:flex"
+        style={{ position: "relative", zIndex: 10, flexDirection: "column", gap: 5, padding: "12px 6px", background: "transparent", border: "none" }}
+      >
+        <span style={{ width: 24, height: 1.5, background: "#f0ede8", display: "block" }} />
+        <span style={{ width: 24, height: 1.5, background: "#f0ede8", display: "block" }} />
+        <span style={{ width: 24, height: 1.5, background: "#f0ede8", display: "block" }} />
+      </button>
+
+      <BurgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </nav>
   )
 }

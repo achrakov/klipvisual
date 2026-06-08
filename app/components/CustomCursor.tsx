@@ -9,6 +9,12 @@ export function CustomCursor() {
     const dot = dotRef.current
     if (!dot) return
 
+    // No custom cursor on touch devices: skip the rAF loop + MutationObserver entirely.
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) {
+      dot.style.display = "none"
+      return
+    }
+
     let mouseX = 0
     let mouseY = 0
     let curX = 0
