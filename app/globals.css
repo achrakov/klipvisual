@@ -251,6 +251,10 @@ body.overlay-open .pos-editor-frame.dragging * { cursor: grabbing !important; }
 /* ── Utility ─────────────────────────────────────── */
 .text-balance { text-wrap: balance; }
 
+/* Horizontal scroll without a visible scrollbar (sticky sub-nav on mobile) */
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
 .hover-underline {
   position: relative;
   display: inline-block;

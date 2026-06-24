@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Footer } from "../components/Footer"
@@ -44,7 +44,7 @@ const services = [
     offerings: [
       {
         name: "Brand Video",
-        price: "From $2,000",
+        price: "From $2,500",
         timeline: "1–2 weeks post-shoot",
         best: "Startups, product launches, brand identity",
         deliverables: [
@@ -60,6 +60,7 @@ const services = [
       },
       {
         name: "Content Day / Half Day",
+        popular: true,
         price: "$1,200",
         timeline: "5–7 business days",
         best: "Social media, reels, campaigns",
@@ -138,7 +139,8 @@ const services = [
     offerings: [
       {
         name: "Food & Product / Half Day",
-        price: "$700",
+        popular: true,
+        price: "$900",
         timeline: "3–5 business days",
         best: "Restaurants, e-commerce, brands",
         deliverables: [
@@ -164,7 +166,7 @@ const services = [
       },
       {
         name: "Event / Half Day",
-        price: "$800",
+        price: "$1,000",
         timeline: "5–7 business days",
         best: "Conferences, launches, exhibitions",
         deliverables: [
@@ -188,25 +190,25 @@ const services = [
         ],
       },
       {
-        name: "Portrait / 1 Hour",
+        name: "Portrait / Express",
         price: "$400",
         timeline: "3–5 business days",
         best: "Headshots, personal branding, artists",
         deliverables: [
+          "20 retouched photos",
           "1-hour studio or location session",
-          "Up to 20 edited selects",
           "Private online gallery",
           "High-res + web-ready exports",
         ],
       },
       {
-        name: "Portrait / 2 Hours",
+        name: "Portrait / Complete",
         price: "$700",
         timeline: "3–5 business days",
         best: "Brands, artists, actors, influencers",
         deliverables: [
+          "45 retouched photos",
           "2-hour studio or location session",
-          "Up to 45 edited selects",
           "Multiple look changes",
           "Private online gallery",
           "High-res + web-ready exports",
@@ -335,6 +337,51 @@ const services = [
       },
     ],
   },
+]
+
+// Signature packages — the three most-requested offers, surfaced above the full menu.
+const signaturePackages = [
+  {
+    name: "Content Day",
+    promise: "A day of shooting turned into a month of scroll-stopping content.",
+    price: "From $1,200",
+    anchor: "#video",
+    tag: "Video",
+  },
+  {
+    name: "Brand Website",
+    promise: "A fast, bilingual, custom-built site designed to convert. No templates.",
+    price: "From $3,500",
+    anchor: "#web",
+    tag: "Web",
+  },
+  {
+    name: "Launch Package",
+    promise: "Identity, video, photo and templates. Everything to launch at full volume.",
+    price: "$4,500",
+    anchor: "#bundles",
+    tag: "Bundle",
+  },
+]
+
+// Add-ons / options — compact extras list, quoted on top of any package.
+const addOns: { name: string; price: string; note?: string }[] = [
+  { name: "Travel", price: "$0.70/km", note: "round trip" },
+  { name: "Second photographer / videographer", price: "$200/hr" },
+  { name: "Assistant", price: "$60/hr" },
+  { name: "Aerial drone (photo / video)", price: "$800 half-day · $1,500 full-day" },
+  { name: "Hair & makeup (MUA)", price: "$125" },
+  { name: "Rush / express delivery", price: "+25%" },
+  { name: "Extended commercial usage rights", price: "On quote", note: "standard marketing use is already included" },
+]
+
+// Sticky sub-nav anchors — map to the service section ids rendered below.
+const navSections = [
+  { id: "video", label: "Video" },
+  { id: "photography", label: "Photo" },
+  { id: "design", label: "Design" },
+  { id: "web", label: "Web" },
+  { id: "bundles", label: "Bundles" },
 ]
 
 // Web Design & Development — bilingual section spliced between Design (03) and Bundles (05).
@@ -588,6 +635,7 @@ function OfferingCard({
   index: number
 }) {
   const { t } = useLang()
+  const popular = (offering as { popular?: boolean }).popular
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -595,16 +643,37 @@ function OfferingCard({
       viewport={{ once: true }}
       transition={{ delay: index * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       style={{
+        position: "relative",
         background: "#0a0a0a",
         display: "flex",
         flexDirection: "column",
+        outline: popular ? "1px solid rgba(232,24,28,0.45)" : "none",
+        outlineOffset: -1,
       }}
     >
       {/* Header */}
       <div style={{ padding: "28px 28px 24px", borderBottom: "1px solid #141414" }}>
-        <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.25em", marginBottom: 12 }}>
-          {offering.timeline}
-        </p>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
+          <p className="font-mono text-[#3a3a3a] uppercase" style={{ fontSize: 10, letterSpacing: "0.25em" }}>
+            {offering.timeline}
+          </p>
+          {popular && (
+            <span
+              className="font-mono uppercase"
+              style={{
+                fontSize: 9,
+                letterSpacing: "0.18em",
+                color: "#E8181C",
+                border: "1px solid rgba(232,24,28,0.4)",
+                padding: "4px 9px",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
+              }}
+            >
+              Most Popular
+            </span>
+          )}
+        </div>
 
         <h3
           className="font-display font-bold uppercase text-[#f0ede8]"
@@ -642,6 +711,77 @@ function OfferingCard({
         </p>
       </div>
     </motion.div>
+  )
+}
+
+function StickySubNav() {
+  const [active, setActive] = useState<string>("")
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id)
+        })
+      },
+      { rootMargin: "-30% 0px -65% 0px", threshold: 0 }
+    )
+    navSections.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div
+      style={{
+        position: "sticky",
+        top: 64,
+        zIndex: 7000,
+        background: "rgba(10,10,10,0.82)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        borderTop: "1px solid #141414",
+        borderBottom: "1px solid #141414",
+      }}
+    >
+      <div
+        className="m-px hide-scrollbar"
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "0 40px",
+          display: "flex",
+          gap: 4,
+          overflowX: "auto",
+        }}
+      >
+        {navSections.map((s) => {
+          const isActive = active === s.id
+          return (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              className="font-mono uppercase transition-colors duration-200"
+              style={{
+                fontSize: 10,
+                letterSpacing: "0.2em",
+                padding: "15px 16px",
+                color: isActive ? "#E8181C" : "#666",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
+                borderBottom: `1px solid ${isActive ? "#E8181C" : "transparent"}`,
+                marginBottom: -1,
+              }}
+            >
+              {s.label}
+            </a>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
@@ -729,6 +869,9 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        {/* ── Sticky category sub-nav ────────────────────────── */}
+        <StickySubNav />
+
         {/* ── How We Work ───────────────────────────────────── */}
         <section style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}>
           <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
@@ -773,12 +916,136 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        {/* ── Signature Packages ────────────────────────────── */}
+        <section style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}>
+          <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="font-mono text-[#3a3a3a] uppercase"
+              style={{ fontSize: 10, letterSpacing: "0.32em", marginBottom: 14 }}
+            >
+              Most Requested
+            </motion.p>
+            <div style={{ overflow: "hidden", marginBottom: 56 }}>
+              <motion.h2
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="font-display font-bold uppercase text-[#f0ede8] leading-none m-h-lg"
+                style={{ fontSize: "clamp(2.2rem,4.5vw,4rem)", letterSpacing: "-0.025em" }}
+              >
+                Signature Packages
+              </motion.h2>
+            </div>
+
+            <div
+              className="m-stack"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: 1,
+                background: "#141414",
+              }}
+            >
+              {signaturePackages.map((pkg, i) => (
+                <motion.div
+                  key={pkg.name}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="m-pad"
+                  style={{ background: "#0a0a0a", padding: "40px 36px", display: "flex", flexDirection: "column" }}
+                >
+                  <p className="font-mono text-[#E8181C] uppercase" style={{ fontSize: 10, letterSpacing: "0.22em", marginBottom: 22 }}>
+                    {pkg.tag}
+                  </p>
+                  <h3
+                    className="font-display font-bold uppercase text-[#f0ede8]"
+                    style={{ fontSize: "clamp(1.6rem,2.4vw,2.1rem)", lineHeight: 1.05, marginBottom: 16 }}
+                  >
+                    {pkg.name}
+                  </h3>
+                  <p className="font-sans text-[#777] font-light leading-relaxed" style={{ fontSize: 14, marginBottom: 28, flex: 1 }}>
+                    {pkg.promise}
+                  </p>
+                  <p className="font-mono text-[#f0ede8]" style={{ fontSize: "1.15rem", letterSpacing: "0.04em", marginBottom: 24 }}>
+                    {pkg.price}
+                  </p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                    <Link
+                      href="/contact"
+                      className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#f0ede8]/70 uppercase m-tap"
+                      style={{
+                        border: "1px solid #1f1f1f",
+                        padding: "12px 22px",
+                        fontSize: 10,
+                        letterSpacing: "0.2em",
+                        textDecoration: "none",
+                      }}
+                    >
+                      <span className="absolute inset-0 bg-[#E8181C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                      <span className="relative z-10 group-hover:text-white transition-colors duration-300">Get a Quote</span>
+                      <span className="relative z-10 group-hover:text-white transition-colors duration-300">→</span>
+                    </Link>
+                    <a
+                      href={pkg.anchor}
+                      className="font-mono text-[#555] uppercase hover:text-[#f0ede8] transition-colors duration-200"
+                      style={{ fontSize: 10, letterSpacing: "0.18em", textDecoration: "none" }}
+                    >
+                      Details
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Pricing intro: value anchor + tax note ────────── */}
+        <section style={{ padding: "72px 0", borderBottom: "1px solid #141414" }}>
+          <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="font-mono text-[#3a3a3a] uppercase"
+              style={{ fontSize: 10, letterSpacing: "0.32em", marginBottom: 24 }}
+            >
+              Pricing
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="font-sans text-[#f0ede8] font-light leading-relaxed text-balance"
+              style={{ fontSize: "clamp(1.15rem,2vw,1.6rem)", maxWidth: 760 }}
+            >
+              Studio rates: clear and fair. Around half the cost of an agency, with no surprise fees.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              className="font-mono text-[#666] uppercase"
+              style={{ fontSize: 10, letterSpacing: "0.18em", marginTop: 28 }}
+            >
+              All prices are before taxes (GST/QST)
+            </motion.p>
+          </div>
+        </section>
+
         {/* ── Service Sections ──────────────────────────────── */}
         {sections.map((service) => (
           <section
             key={service.id}
             id={service.id}
-            style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}
+            style={{ padding: "100px 0", borderBottom: "1px solid #141414", scrollMarginTop: 110 }}
           >
             <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
               {/* Section header */}
@@ -841,9 +1108,131 @@ export default function ServicesPage() {
                   <OfferingCard key={offering.name} offering={offering} index={i} />
                 ))}
               </div>
+
+              {/* Photography: hourly / custom rate, kept separate from the package value */}
+              {service.id === "photography" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="m-col"
+                  style={{
+                    marginTop: 1,
+                    background: "#0a0a0a",
+                    border: "1px solid #141414",
+                    padding: "26px 28px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 20,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <div>
+                    <p className="font-display font-bold uppercase text-[#f0ede8]" style={{ fontSize: "clamp(1.1rem,1.6vw,1.35rem)", lineHeight: 1.1 }}>
+                      Hourly / Custom Shoot
+                    </p>
+                    <p className="font-sans text-[#666] font-light" style={{ fontSize: 13, marginTop: 6 }}>
+                      For small à-la-carte jobs.
+                    </p>
+                  </div>
+                  <p className="font-mono text-[#E8181C]" style={{ fontSize: "clamp(1rem,1.4vw,1.15rem)", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
+                    $150/hr <span style={{ color: "#555", fontSize: 11 }}>(2 hr minimum)</span>
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Proof: link to portfolio under the two visual disciplines */}
+              {(service.id === "video" || service.id === "photography") && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  style={{ marginTop: 36 }}
+                >
+                  <Link
+                    href="/work"
+                    className="group inline-flex items-center gap-3 font-mono text-[#777] uppercase hover:text-[#f0ede8] transition-colors duration-200 m-tap"
+                    style={{ fontSize: 11, letterSpacing: "0.2em", textDecoration: "none" }}
+                  >
+                    See it in action
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </Link>
+                </motion.div>
+              )}
             </div>
           </section>
         ))}
+
+        {/* ── Add-ons / Options ─────────────────────────────── */}
+        <section style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}>
+          <div className="m-px" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="font-mono text-[#3a3a3a] uppercase"
+              style={{ fontSize: 10, letterSpacing: "0.32em", marginBottom: 14 }}
+            >
+              Optional Extras
+            </motion.p>
+            <div style={{ overflow: "hidden", marginBottom: 56 }}>
+              <motion.h2
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="font-display font-bold uppercase text-[#f0ede8] leading-none m-h-lg"
+                style={{ fontSize: "clamp(2.2rem,4.5vw,4rem)", letterSpacing: "-0.025em" }}
+              >
+                Add-ons
+              </motion.h2>
+            </div>
+
+            <div
+              className="m-stack"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 1,
+                background: "#141414",
+              }}
+            >
+              {addOns.map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (i % 2) * 0.05, duration: 0.5 }}
+                  style={{
+                    background: "#0a0a0a",
+                    padding: "24px 28px",
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "space-between",
+                    gap: 20,
+                  }}
+                >
+                  <div style={{ flex: 1 }}>
+                    <p className="font-sans text-[#f0ede8] font-light" style={{ fontSize: 15, lineHeight: 1.4 }}>
+                      {item.name}
+                    </p>
+                    {item.note && (
+                      <p className="font-mono text-[#444] uppercase" style={{ fontSize: 9, letterSpacing: "0.14em", marginTop: 7 }}>
+                        {item.note}
+                      </p>
+                    )}
+                  </div>
+                  <p className="font-mono text-[#E8181C]" style={{ fontSize: 13, letterSpacing: "0.03em", flexShrink: 0, textAlign: "right", maxWidth: "45%" }}>
+                    {item.price}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ── What's Included ───────────────────────────────── */}
         <section style={{ padding: "100px 0", borderBottom: "1px solid #141414" }}>
