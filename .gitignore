@@ -43,3 +43,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# lead-gen tooling and scraped lead data (never commit: personal info)
+/google_maps_scrapper/
+leads_*.xlsx

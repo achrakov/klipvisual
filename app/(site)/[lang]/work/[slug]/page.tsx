@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { projects, getProjectBySlug } from "@/app/data/projects"
+import { localizedProject } from "@/app/data/projectsSeo"
 import { JsonLd } from "@/app/components/JsonLd"
 import { LOCALES, isLang, alternates } from "@/app/lib/seo"
 import { breadcrumbSchema, caseStudySchema } from "@/app/lib/schema"
@@ -16,28 +17,28 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { lang, slug } = await params
   if (!isLang(lang)) return {}
 
-  const project = getProjectBySlug(slug)
-  if (!project) return {}
+  const seo = localizedProject(slug, lang)
+  if (!seo) return {}
 
   const path = `/work/${slug}`
   const alts = alternates(lang, path)
-  const title = `${project.title} | KLIPVISUAL`
+  const title = `${seo.title} | KLIPVISUAL`
 
   return {
-    title: project.title,
-    description: project.description,
+    title: seo.title,
+    description: seo.description,
     alternates: alts,
     openGraph: {
       type: "article",
       siteName: "KLIPVISUAL",
       title,
-      description: project.description,
+      description: seo.description,
       url: alts.canonical,
     },
     twitter: {
       card: "summary_large_image",
       title,
-      description: project.description,
+      description: seo.description,
     },
   }
 }
@@ -49,13 +50,14 @@ export default async function CaseStudyPage({ params }: Params) {
   const project = getProjectBySlug(slug)
   if (!project) notFound()
 
+  const seo = localizedProject(slug, lang)!
   const currentIndex = projects.findIndex((p) => p.slug === slug)
   const nextProject = projects[(currentIndex + 1) % projects.length]
 
   const crumbs = [
     { name: "KLIPVISUAL", path: "" },
     { name: lang === "fr" ? "Réalisations" : "Work", path: "/work" },
-    { name: project.title, path: `/work/${slug}` },
+    { name: seo.title, path: `/work/${slug}` },
   ]
 
   return (
@@ -65,8 +67,8 @@ export default async function CaseStudyPage({ params }: Params) {
           breadcrumbSchema(lang, crumbs),
           caseStudySchema(lang, {
             slug: project.slug,
-            title: project.title,
-            description: project.description,
+            title: seo.title,
+            description: seo.description,
           }),
         ]}
       />

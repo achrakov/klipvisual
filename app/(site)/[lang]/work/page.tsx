@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import WorkClient from "./WorkClient"
 import { JsonLd } from "@/app/components/JsonLd"
 import { projects } from "@/app/data/projects"
+import { localizedProject } from "@/app/data/projectsSeo"
 import { LOCALES, isLang, pageMetadata } from "@/app/lib/seo"
 import { breadcrumbSchema, portfolioSchema } from "@/app/lib/schema"
 
@@ -34,7 +35,10 @@ export default async function Page({ params }: Params) {
           breadcrumbSchema(lang, crumbs),
           portfolioSchema(
             lang,
-            projects.map((p) => ({ slug: p.slug, title: p.title, description: p.description }))
+            projects.map((p) => {
+              const seo = localizedProject(p.slug, lang)!
+              return { slug: p.slug, title: seo.title, description: seo.description }
+            })
           ),
         ]}
       />
