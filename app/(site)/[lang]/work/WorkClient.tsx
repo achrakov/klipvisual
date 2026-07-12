@@ -2,10 +2,10 @@
 
 import { useRef, useEffect, useState } from "react"
 import Link from "next/link"
-import { projects } from "../data/projects"
-import { useLang } from "../i18n/LanguageContext"
-import { LanguageSwitcher } from "../components/LanguageSwitcher"
-import { BurgerMenu } from "../components/BurgerMenu"
+import { projects } from "@/app/data/projects"
+import { useLang } from "@/app/i18n/LanguageContext"
+import { LanguageSwitcher } from "@/app/components/LanguageSwitcher"
+import { BurgerMenu } from "@/app/components/BurgerMenu"
 
 const GAP = 20
 const LERP = 0.075
@@ -95,7 +95,7 @@ export default function WorkPage() {
     drag.current.active = false
   }
 
-  const { t } = useLang()
+  const { t, href } = useLang()
 
   if (!mounted) return null
 
@@ -131,7 +131,7 @@ export default function WorkPage() {
           padding: "1.4rem 2.1rem",
         }}
       >
-        <a href="/" draggable={false}>
+        <a href={href("/")} draggable={false}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/Logos/Logo.png"
@@ -217,7 +217,7 @@ export default function WorkPage() {
             return (
               <Link
                 key={project.slug}
-                href={`/work/${project.slug}`}
+                href={href(`/work/${project.slug}`)}
                 draggable={false}
                 onClick={e => {
                   if (Math.abs(vel.current) > 1.5 || drag.current.active) e.preventDefault()
@@ -408,7 +408,7 @@ export default function WorkPage() {
       {/* Explore button — links to active project */}
       <div style={{ position: "absolute", bottom: "2rem", right: "2.1rem", zIndex: 20 }}>
         <Link
-          href={`/work/${projects[activeIdx]?.slug}`}
+          href={href(`/work/${projects[activeIdx]?.slug}`)}
           onPointerDown={e => e.stopPropagation()}
           className="group flex items-center gap-3 font-mono uppercase overflow-hidden"
           style={{

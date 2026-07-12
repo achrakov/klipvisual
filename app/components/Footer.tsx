@@ -6,13 +6,13 @@ import { useLang } from "../i18n/LanguageContext"
 
 export function Footer() {
   const year = new Date().getFullYear()
-  const { t } = useLang()
+  const { t, href } = useLang()
 
   const navLinks = [
-    { label: t.nav.work,     href: "/work"     },
-    { label: t.nav.services, href: "/services" },
-    { label: t.nav.about,    href: "/about"    },
-    { label: t.nav.contact,  href: "/contact"  },
+    { label: t.nav.work,     href: href("/work")     },
+    { label: t.nav.services, href: href("/services") },
+    { label: t.nav.about,    href: href("/about")    },
+    { label: t.nav.contact,  href: href("/contact")  },
   ]
 
   return (

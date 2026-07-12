@@ -18,7 +18,7 @@ interface BurgerMenuProps {
 }
 
 export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
-  const { t } = useLang()
+  const { t, href } = useLang()
 
   const NAV = [
     { num: "01", label: t.nav.work,     href: "/work"     },
@@ -93,7 +93,7 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
               </button>
 
               <nav style={{ padding: "28px 28px 16px" }}>
-                {NAV.map(({ num, label, href }, i) => (
+                {NAV.map(({ num, label, href: to }, i) => (
                   <motion.div
                     key={num}
                     initial={{ opacity: 0, x: -10 }}
@@ -101,7 +101,7 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
                     transition={{ delay: 0.04 + i * 0.05, duration: 0.28 }}
                   >
                     <Link
-                      href={href}
+                      href={href(to)}
                       onClick={onClose}
                       className="group flex items-baseline gap-2.5 hover:opacity-60 transition-opacity"
                       style={{ paddingBottom: 2 }}
@@ -146,7 +146,7 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
                     ].map(({ key, label }) => (
                       <Link
                         key={key}
-                        href={`/${key}`}
+                        href={href(`/${key}`)}
                         onClick={onClose}
                         style={{
                           fontFamily: "var(--font-space-mono)",

@@ -1,17 +1,33 @@
 "use client"
 
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useLang } from "../i18n/LanguageContext"
+import type { Lang } from "../i18n/translations"
 
 interface Props {
   variant?: "dark" | "light"
 }
 
-export function LanguageSwitcher({ variant = "dark" }: Props) {
-  const { lang, setLang } = useLang()
+const LOCALES: Lang[] = ["en", "fr"]
 
-  const active   = variant === "dark" ? "rgba(240,237,232,0.85)" : "rgba(0,0,0,0.75)"
+/**
+ * Real links, not buttons. Google has to be able to crawl from /en/work to
+ * /fr/work, which it cannot do through an onClick handler.
+ */
+export function LanguageSwitcher({ variant = "dark" }: Props) {
+  const { lang } = useLang()
+  const pathname = usePathname() || `/${lang}`
+
+  // Swap the leading locale segment, keep the rest of the path.
+  const swapTo = (target: Lang) => {
+    const rest = pathname.replace(/^\/(en|fr)(?=\/|$)/, "")
+    return `/${target}${rest}`
+  }
+
+  const active = variant === "dark" ? "rgba(240,237,232,0.85)" : "rgba(0,0,0,0.75)"
   const inactive = variant === "dark" ? "rgba(240,237,232,0.28)" : "rgba(0,0,0,0.3)"
-  const divider  = variant === "dark" ? "rgba(240,237,232,0.15)" : "rgba(0,0,0,0.15)"
+  const divider = variant === "dark" ? "rgba(240,237,232,0.15)" : "rgba(0,0,0,0.15)"
 
   return (
     <div
@@ -25,41 +41,29 @@ export function LanguageSwitcher({ variant = "dark" }: Props) {
         textTransform: "uppercase",
       }}
     >
-      <button
-        onClick={() => setLang("en")}
-        style={{
-          background: "none",
-          border: "none",
-          padding: "4px 8px",
-          cursor: lang === "en" ? "default" : "pointer",
-          color: lang === "en" ? active : inactive,
-          fontFamily: "inherit",
-          fontSize: "inherit",
-          letterSpacing: "inherit",
-          textTransform: "inherit",
-          transition: "color 0.2s",
-        }}
-      >
-        EN
-      </button>
-      <span style={{ color: divider, fontSize: 8 }}>|</span>
-      <button
-        onClick={() => setLang("fr")}
-        style={{
-          background: "none",
-          border: "none",
-          padding: "4px 8px",
-          cursor: lang === "fr" ? "default" : "pointer",
-          color: lang === "fr" ? active : inactive,
-          fontFamily: "inherit",
-          fontSize: "inherit",
-          letterSpacing: "inherit",
-          textTransform: "inherit",
-          transition: "color 0.2s",
-        }}
-      >
-        FR
-      </button>
+      {LOCALES.map((l, i) => (
+        <span key={l} style={{ display: "inline-flex", alignItems: "center" }}>
+          {i > 0 && <span style={{ color: divider, fontSize: 8 }}>|</span>}
+          <Link
+            href={swapTo(l)}
+            hrefLang={l}
+            aria-current={lang === l ? "true" : undefined}
+            style={{
+              padding: "4px 8px",
+              cursor: lang === l ? "default" : "pointer",
+              color: lang === l ? active : inactive,
+              textDecoration: "none",
+              fontFamily: "inherit",
+              fontSize: "inherit",
+              letterSpacing: "inherit",
+              textTransform: "inherit",
+              transition: "color 0.2s",
+            }}
+          >
+            {l.toUpperCase()}
+          </Link>
+        </span>
+      ))}
     </div>
   )
 }

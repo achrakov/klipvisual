@@ -9,11 +9,13 @@ import { ScrambleText } from "./ScrambleText"
 import { ScrollCursor } from "./ScrollCursor"
 import { FilmTicket } from "./FilmTicket"
 import { BurgerMenu } from "./BurgerMenu"
+import { useLang } from "../i18n/LanguageContext"
 
 /* Slightly uneven radii — each corner differs by 1-2px for the retro projected-film feel */
 const FRAME_RADIUS = "10px 12px 11px 10px / 11px 10px 12px 10px"
 
 export function HeroGallery() {
+  const { href } = useLang()
   const [active, setActive] = useState(0)
   const [locked, setLocked] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -113,7 +115,7 @@ export function HeroGallery() {
         className="absolute z-[8400]"
         style={{ top: 12, left: 28 }}
       >
-        <Link href="/" aria-label="KLIPVISUAL home">
+        <Link href={href("/")} aria-label="KLIPVISUAL home">
           <Image
             src="/Logos/Logo.png"
             alt="KLIPVISUAL"
@@ -325,7 +327,7 @@ export function HeroGallery() {
 
               {/* Explore button */}
               <Link
-                href={`/work/${project.slug}`}
+                href={href(`/work/${project.slug}`)}
                 className="group flex items-stretch"
                 style={{
                   border: "1px solid rgba(255,255,255,0.22)",

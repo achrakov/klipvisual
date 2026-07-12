@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import type { Project, ProjectVideo, PhotoAlbum, EventEntry, EventTheme, EventReel, PitchDeck, BrandCaseStudy } from "../../data/projects"
-import { Footer } from "../../components/Footer"
-import { BurgerMenu } from "../../components/BurgerMenu"
-import { useLang } from "../../i18n/LanguageContext"
+import type { Project, ProjectVideo, PhotoAlbum, EventEntry, EventTheme, EventReel, PitchDeck, BrandCaseStudy } from "@/app/data/projects"
+import { Footer } from "@/app/components/Footer"
+import { BurgerMenu } from "@/app/components/BurgerMenu"
+import { useLang } from "@/app/i18n/LanguageContext"
 
 const FRAME_RADIUS = "10px 12px 11px 10px / 11px 10px 12px 10px"
 
@@ -75,7 +75,7 @@ function SerratedEdge({ side = "right" }: { side?: "left" | "right" }) {
 
 /* ─── Gallery badge ───────────────────────────────── */
 function GalleryBadge() {
-  const { t } = useLang()
+  const { t, href } = useLang()
   return (
     <div
       style={{
@@ -131,7 +131,7 @@ function StillsViewer({
   onClose: () => void
 }) {
   const [current, setCurrent] = useState(startIndex)
-  const { t } = useLang()
+  const { t, href } = useLang()
 
   useEffect(() => {
     document.body.classList.add("overlay-open")
@@ -423,7 +423,7 @@ function EventCard({ event, onPlay }: { event: EventEntry; onPlay: (id: string) 
 }
 
 function ThemeCard({ theme, index, onOpen, imgStyle }: { theme: EventTheme; index: number; onOpen: (t: EventTheme) => void; imgStyle: (src: string) => React.CSSProperties }) {
-  const { t } = useLang()
+  const { t, href } = useLang()
   const coverStyle = theme.cover ? imgStyle(theme.cover) : {}
   const { transform, transformOrigin, ...imgOnlyStyle } = coverStyle
   return (
@@ -478,7 +478,7 @@ function ThemeCard({ theme, index, onOpen, imgStyle }: { theme: EventTheme; inde
 }
 
 function ReelCard({ reel, onPlay }: { reel: EventReel; onPlay: (id: string) => void }) {
-  const { t } = useLang()
+  const { t, href } = useLang()
   return (
     <motion.div
       initial="rest"
@@ -554,7 +554,7 @@ function ConcertSection({
   onPlay: (id: string) => void
   imgStyle: (s: string) => React.CSSProperties
 }) {
-  const { t } = useLang()
+  const { t, href } = useLang()
   const photos = gallery.slice(0, 12)
   const overflow = gallery.slice(12, 17)
   const [lightbox, setLightbox] = useState<string | null>(null)
@@ -942,7 +942,7 @@ function SlideshowLightbox({ deck, onClose }: { deck: PitchDeck; onClose: () => 
 function GalleryLightbox({ theme, onClose }: { theme: EventTheme; onClose: () => void }) {
   const [zoomed, setZoomed] = useState<string | null>(null)
   const cols = theme.aspectRatio === "16/9" ? 3 : 5
-  const { t } = useLang()
+  const { t, href } = useLang()
 
   useEffect(() => {
     document.body.style.overflow = "hidden"
@@ -1562,7 +1562,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
   const [activeDeck, setActiveDeck] = useState<PitchDeck | null>(null)
   const [activeImage, setActiveImage] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { t } = useLang()
+  const { t, href } = useLang()
   const tp = t.project
   const { pos: objPos, style: imgStyle } = useObjPos(project)
 
@@ -1589,7 +1589,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
     <>
       {/* ── Logo (fixed — stays while scrolling) ── */}
       <div style={{ position: "fixed", top: 20, left: 28, zIndex: 9000 }}>
-        <Link href="/" aria-label="KLIPVISUAL home">
+        <Link href={href("/")} aria-label="KLIPVISUAL home">
           <Image
             src="/Logos/Logo.png"
             alt="KLIPVISUAL"
@@ -1655,7 +1655,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
       >
         {/* ── Back button (absolute — scrolls away with hero) ── */}
         <Link
-          href="/work"
+          href={href("/work")}
           className="flex items-center gap-3 font-mono uppercase text-[#f0ede8]/60 hover:text-[#f0ede8] transition-colors duration-200"
           style={{ position: "absolute", top: 80, left: 28, zIndex: 100, fontSize: 9, letterSpacing: "0.25em" }}
         >
@@ -2864,7 +2864,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
         <div className="m-stack m-gap-sm" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 10 }}>
           {/* All Work card */}
           <Link
-            href="/work"
+            href={href("/work")}
             className="group"
             style={{
               border: "1px dashed rgba(0,0,0,0.2)",
@@ -2910,7 +2910,7 @@ export default function ProjectClient({ project, nextProject }: Props) {
 
           {/* Next project card */}
           <Link
-            href={`/work/${nextProject.slug}`}
+            href={href(`/work/${nextProject.slug}`)}
             className="group relative overflow-hidden"
             style={{
               borderRadius: "10px 10px 10px 10px",

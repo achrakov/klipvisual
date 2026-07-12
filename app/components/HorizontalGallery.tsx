@@ -4,8 +4,10 @@ import { useRef, useEffect, useState, useCallback } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { projects } from "../data/projects"
+import { useLang } from "../i18n/LanguageContext"
 
 export function HorizontalGallery() {
+  const { href } = useLang()
   const [active, setActive] = useState(0)
   const [direction, setDirection] = useState<1 | -1>(1)
   const [locked, setLocked] = useState(false)
@@ -147,7 +149,7 @@ export function HorizontalGallery() {
 
             {/* Explore button */}
             <Link
-              href={`/work/${project.slug}`}
+              href={href(`/work/${project.slug}`)}
               className="group flex items-stretch border border-white/20 overflow-hidden cursor-pointer"
             >
               <span className="relative overflow-hidden px-7 py-3">

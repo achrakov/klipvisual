@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { Footer } from "../components/Footer"
-import { useLang } from "../i18n/LanguageContext"
+import { Footer } from "@/app/components/Footer"
+import { useLang } from "@/app/i18n/LanguageContext"
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -634,7 +634,7 @@ function OfferingCard({
   offering: (typeof services)[0]["offerings"][0]
   index: number
 }) {
-  const { t } = useLang()
+  const { t, href } = useLang()
   const popular = (offering as { popular?: boolean }).popular
   return (
     <motion.div
@@ -788,7 +788,7 @@ function StickySubNav() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
-  const { t, lang } = useLang()
+  const { t, lang, href } = useLang()
   const ts = t.services
   // Insert Web (04) between Design (03) and Bundles (05); nav + sections derive from this.
   const sections = [...services.slice(0, 3), webService[lang], ...services.slice(3)]
@@ -977,7 +977,7 @@ export default function ServicesPage() {
                   </p>
                   <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
                     <Link
-                      href="/contact"
+                      href={href("/contact")}
                       className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#f0ede8]/70 uppercase m-tap"
                       style={{
                         border: "1px solid #1f1f1f",
@@ -1152,7 +1152,7 @@ export default function ServicesPage() {
                   style={{ marginTop: 36 }}
                 >
                   <Link
-                    href="/work"
+                    href={href("/work")}
                     className="group inline-flex items-center gap-3 font-mono text-[#777] uppercase hover:text-[#f0ede8] transition-colors duration-200 m-tap"
                     style={{ fontSize: 11, letterSpacing: "0.2em", textDecoration: "none" }}
                   >
@@ -1358,7 +1358,7 @@ export default function ServicesPage() {
                   {ts.faq.body}
                 </motion.p>
                 <Link
-                  href="/contact"
+                  href={href("/contact")}
                   className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#f0ede8]/60 uppercase"
                   style={{
                     border: "1px solid #1f1f1f",
@@ -1423,7 +1423,7 @@ export default function ServicesPage() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
                 <Link
-                  href="/contact"
+                  href={href("/contact")}
                   className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#0a0a0a] uppercase"
                   style={{
                     border: "2px solid #0a0a0a",
@@ -1441,7 +1441,7 @@ export default function ServicesPage() {
                   <span className="relative z-10 group-hover:text-[#f0ede8] transition-colors duration-300">→</span>
                 </Link>
                 <Link
-                  href="/work"
+                  href={href("/work")}
                   className="font-mono text-[#0a0a0a]/60 uppercase hover:text-[#0a0a0a] transition-colors duration-200"
                   style={{ fontSize: 10, letterSpacing: "0.2em", textAlign: "center", textDecoration: "none" }}
                 >

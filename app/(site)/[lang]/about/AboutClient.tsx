@@ -3,8 +3,8 @@
 import { useRef, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
-import { Footer } from "../components/Footer"
-import { useLang } from "../i18n/LanguageContext"
+import { Footer } from "@/app/components/Footer"
+import { useLang } from "@/app/i18n/LanguageContext"
 
 const CDN = "https://cdn.prod.website-files.com/673306db3b111afa559bc378"
 
@@ -52,7 +52,7 @@ const globeItems = [
 ]
 
 export default function AboutPage() {
-  const { t } = useLang()
+  const { t, href } = useLang()
   const ta = t.about
 
   const heroRef = useRef<HTMLElement>(null)
@@ -428,7 +428,7 @@ export default function AboutPage() {
               {ta.ourWork.heading}
             </h2>
             <Link
-              href="/work"
+              href={href("/work")}
               className="group"
               style={{ display: "inline-flex", alignItems: "stretch", textDecoration: "none", border: "1px solid rgba(240,237,232,0.45)", overflow: "hidden", position: "relative" }}
             >

@@ -1,9 +1,11 @@
 "use client"
 
 import Link from "next/link"
-import { Footer } from "../components/Footer"
+import { Footer } from "@/app/components/Footer"
+import { useLang } from "@/app/i18n/LanguageContext"
 
 export default function TermsPage() {
+  const { href } = useLang()
   return (
     <>
       <main style={{ minHeight: "100vh", paddingTop: 120, paddingBottom: 0, background: "#0a0a0a" }}>
@@ -112,7 +114,7 @@ export default function TermsPage() {
 
           <div style={{ marginTop: 48 }}>
             <Link
-              href="/"
+              href={href("/")}
               className="font-mono uppercase text-[#555] hover:text-[#f0ede8] transition-colors duration-200"
               style={{ fontSize: 10, letterSpacing: "0.25em" }}
             >

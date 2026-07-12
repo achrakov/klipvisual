@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { motion } from "framer-motion"
-import { Footer } from "../components/Footer"
-import { useLang } from "../i18n/LanguageContext"
+import { Footer } from "@/app/components/Footer"
+import { useLang } from "@/app/i18n/LanguageContext"
 
 type FormValues = {
   name: string

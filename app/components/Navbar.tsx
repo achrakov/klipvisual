@@ -10,16 +10,18 @@ import { BurgerMenu } from "./BurgerMenu"
 
 export function Navbar() {
   const pathname = usePathname()
-  const { t } = useLang()
+  const { t, href } = useLang()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  if (pathname === "/" || pathname === "/work" || /^\/work\/.+/.test(pathname)) return null
+  // Route matching ignores the /en or /fr prefix.
+  const route = (pathname || "/").replace(/^\/(en|fr)(?=\/|$)/, "") || "/"
+  if (route === "/" || route === "/work" || /^\/work\/.+/.test(route)) return null
 
   const links = [
-    { href: "/work",     label: t.nav.work     },
-    { href: "/services", label: t.nav.services  },
-    { href: "/about",    label: t.nav.about     },
-    { href: "/contact",  label: t.nav.contact   },
+    { href: href("/work"),     label: t.nav.work,     match: "/work"     },
+    { href: href("/services"), label: t.nav.services, match: "/services" },
+    { href: href("/about"),    label: t.nav.about,    match: "/about"    },
+    { href: href("/contact"),  label: t.nav.contact,  match: "/contact"  },
   ]
 
   return (
@@ -36,7 +38,7 @@ export function Navbar() {
     >
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/75 via-[#0a0a0a]/20 to-transparent pointer-events-none" />
 
-      <Link href="/" style={{ position: "relative", zIndex: 10, flexShrink: 0, display: "block" }} aria-label="KLIPVISUAL home">
+      <Link href={href("/")} style={{ position: "relative", zIndex: 10, flexShrink: 0, display: "block" }} aria-label="KLIPVISUAL home">
         <Image
           src="/Logos/Logo.png"
           alt="KLIPVISUAL"
@@ -49,15 +51,15 @@ export function Navbar() {
 
       <div className="m-hide" style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", gap: "2rem" }}>
         <ul style={{ display: "flex", alignItems: "center", gap: "2.5rem", listStyle: "none" }}>
-          {links.map(({ href, label }) => (
-            <li key={href}>
+          {links.map(({ href: linkHref, label, match }) => (
+            <li key={match}>
               <Link
-                href={href}
+                href={linkHref}
                 className="font-mono uppercase hover-underline"
                 style={{
                   fontSize: "0.65rem",
                   letterSpacing: "0.22em",
-                  color: pathname === href || pathname.startsWith(href + "/") ? "#E8181C" : "rgba(240,237,232,0.75)",
+                  color: route === match || route.startsWith(match + "/") ? "#E8181C" : "rgba(240,237,232,0.75)",
                   textDecoration: "none",
                   transition: "color 0.2s ease",
                 }}

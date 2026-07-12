@@ -37,7 +37,7 @@ yarn-error.log*
 .vercel
 
 # local-only admin panel (never deploy to Vercel)
-/app/admin/
+/app/(admin)/admin/
 /app/api/
 
 # typescript

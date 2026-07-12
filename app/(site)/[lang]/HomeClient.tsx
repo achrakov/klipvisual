@@ -3,12 +3,12 @@
 import { useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { LoadingIntro } from "./components/LoadingIntro"
-import { HeroGallery } from "./components/HeroGallery"
-import { Footer } from "./components/Footer"
-import { featuredProjects } from "./data/projects"
-import type { Project } from "./data/projects"
-import { useLang } from "./i18n/LanguageContext"
+import { LoadingIntro } from "@/app/components/LoadingIntro"
+import { HeroGallery } from "@/app/components/HeroGallery"
+import { Footer } from "@/app/components/Footer"
+import { featuredProjects } from "@/app/data/projects"
+import type { Project } from "@/app/data/projects"
+import { useLang } from "@/app/i18n/LanguageContext"
 
 const FRAME_RADIUS = "10px 12px 11px 10px / 11px 10px 12px 10px"
 
@@ -22,8 +22,9 @@ const clients = [
 ]
 
 function SelectedWorkCard({ project, index }: { project: Project; index: number }) {
+  const { href } = useLang()
   return (
-    <Link href={`/work/${project.slug}`} style={{ display: "block", textDecoration: "none" }}>
+    <Link href={href(`/work/${project.slug}`)} style={{ display: "block", textDecoration: "none" }}>
       <motion.div
         initial="rest"
         whileHover="hover"
@@ -111,7 +112,7 @@ function SelectedWorkCard({ project, index }: { project: Project; index: number 
 
 function ServiceAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const { t } = useLang()
+  const { t, href } = useLang()
   const items = t.home.services.items
 
   return (
@@ -189,7 +190,7 @@ function ServiceAccordion() {
 
 export default function HomePage() {
   const [entered, setEntered] = useState(false)
-  const { t } = useLang()
+  const { t, href } = useLang()
 
   return (
     <>
@@ -264,7 +265,7 @@ export default function HomePage() {
               </motion.h2>
             </div>
             <Link
-              href="/work"
+              href={href("/work")}
               className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#555] uppercase flex-shrink-0"
               style={{ border: "1px solid #1f1f1f", padding: "14px 28px", fontSize: 10, letterSpacing: "0.25em" }}
             >
@@ -319,7 +320,7 @@ export default function HomePage() {
               </div>
               <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
                 <Link
-                  href="/services"
+                  href={href("/services")}
                   className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#555] uppercase"
                   style={{ border: "1px solid #1f1f1f", padding: "14px 28px", fontSize: 10, letterSpacing: "0.25em" }}
                 >
@@ -431,7 +432,7 @@ export default function HomePage() {
                 className="flex-shrink-0"
               >
                 <Link
-                  href="/contact"
+                  href={href("/contact")}
                   className="group relative inline-flex items-center gap-3 overflow-hidden font-mono text-[#0a0a0a] uppercase"
                   style={{ border: "2px solid #0a0a0a", padding: "20px 44px", fontSize: 11, letterSpacing: "0.25em" }}
                 >

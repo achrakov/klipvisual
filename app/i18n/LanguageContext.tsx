@@ -1,37 +1,31 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import { createContext, useContext, type ReactNode } from "react"
 import { translations, type Lang, type Translations } from "./translations"
 
 interface LangCtx {
   lang: Lang
-  setLang: (l: Lang) => void
+  /** Prefix a locale-less route with the active locale: href("/work") -> "/fr/work" */
+  href: (path: string) => string
   t: Translations
 }
 
 const Ctx = createContext<LangCtx>({
   lang: "en",
-  setLang: () => {},
+  href: (p) => `/en${p === "/" ? "" : p}`,
   t: translations.en,
 })
 
-const STORAGE_KEY = "klip_lang"
-
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en")
-
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Lang | null
-    if (stored === "en" || stored === "fr") setLangState(stored)
-  }, [])
-
-  const setLang = (l: Lang) => {
-    setLangState(l)
-    localStorage.setItem(STORAGE_KEY, l)
-  }
+/**
+ * The locale comes from the URL segment, not from state. That is what makes
+ * /en and /fr separately crawlable. There is no setLang: switching language is
+ * a navigation, handled by LanguageSwitcher.
+ */
+export function LanguageProvider({ lang, children }: { lang: Lang; children: ReactNode }) {
+  const href = (path: string) => `/${lang}${path === "/" ? "" : path}`
 
   return (
-    <Ctx.Provider value={{ lang, setLang, t: translations[lang] }}>
+    <Ctx.Provider value={{ lang, href, t: translations[lang] }}>
       {children}
     </Ctx.Provider>
   )
