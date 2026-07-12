@@ -1,6 +1,9 @@
 import type { Lang } from "@/app/i18n/translations"
 
-export const SITE_URL = "https://klipvisual.com"
+// Vercel serves the site on www and redirects the apex to it. Canonicals,
+// hreflang and the sitemap must name the host that actually answers with a 200,
+// otherwise every URL we hand Google points at a redirect.
+export const SITE_URL = "https://www.klipvisual.com"
 export const LOCALES: Lang[] = ["en", "fr"]
 export const DEFAULT_LOCALE: Lang = "en"
 
