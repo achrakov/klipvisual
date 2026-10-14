@@ -38,7 +38,9 @@ yarn-error.log*
 
 # local-only admin panel (never deploy to Vercel)
 /app/(admin)/admin/
-/app/api/
+/app/api/*
+# …except the contact-form → dashboard bridge, which must be live.
+!/app/api/lead/
 
 # typescript
 *.tsbuildinfo

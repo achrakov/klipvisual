@@ -12,6 +12,7 @@ type FormValues = {
   service: string
   budget: string
   message: string
+  company_website?: string // honeypot: hidden from humans, filled by bots
 }
 
 const services = ["Video Production", "Photography", "Design & Branding", "Content Strategy", "Bundle Package", "Other"]
@@ -47,18 +48,28 @@ function Field({ label, error, children }: { label: string; error?: string; chil
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const tc = t.contact
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>()
 
   const onSubmit = async (data: FormValues) => {
     setSubmitting(true)
+    // Also drop the message into the dashboard as a lead (app/api/lead). Never
+    // blocks the form: Formspree's email is still the safety net.
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...data, lang }),
+      keepalive: true,
+    }).catch(() => { /* silent */ })
     try {
+      const { company_website, ...forFormspree } = data
+      if (company_website) { setSubmitted(true); return } // honeypot: a bot
       const res = await fetch("https://formspree.io/f/xpwroqgw", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(forFormspree),
       })
       if (res.ok) setSubmitted(true)
     } catch { /* silent */ } finally {
@@ -120,6 +131,15 @@ export default function ContactPage() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                  {/* Honeypot: invisible to people and screen readers, bots fill it. */}
+                  <input
+                    {...register("company_website")}
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ position: "absolute", left: "-10000px", width: 1, height: 1, opacity: 0 }}
+                  />
                   <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 24 }}>
                     <Field label={tc.form.nameLabel} error={errors.name?.message}>
                       <input
