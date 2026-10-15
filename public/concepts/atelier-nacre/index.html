@@ -376,6 +376,11 @@ html:not([lang="en"]) .foot .lang [data-l="fr"],html[lang="en"] .foot .lang [dat
 .js .rv{opacity:0;transform:translateY(36px)}
 .js .rv.tilt{transform:translateY(46px) rotate(var(--tilt,2deg)) scale(.96)}
 .js .rv.in{opacity:1;transform:none;transition:opacity .9s var(--ease), transform 1s var(--ease);transition-delay:var(--dl,0s)}
+.js .rv:not(.in){will-change:opacity,transform}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
+.lenis [data-lenis-prevent]{overscroll-behavior:contain}
 
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce){
@@ -797,10 +802,16 @@ html:not([lang="en"]) .foot .lang [data-l="fr"],html[lang="en"] .foot .lang [dat
   <button class="lb-btn lb-next" type="button" id="lbN" aria-label="Photo suivante" data-aria-en="Next photo"><svg aria-hidden="true"><use href="#i-r"/></svg></button>
 </div>
 
+<script src="assets/lenis.min.js"></script>
 <script>
 (function(){
   var d = document.documentElement;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ---------- smooth scroll (same feel as klipvisual.com) ---------- */
+  var lenis = null;
+  if (!reduce && window.Lenis && !window.matchMedia('(hover: none), (pointer: coarse)').matches) {
+    lenis = new Lenis({ duration: 1.1, easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, anchors: true, autoRaf: true });
+  }
   var TITLES = {
     fr: 'Atelier Nacre · Ongles & Spa',
     en: 'Atelier Nacre · Nails & Spa'
@@ -937,12 +948,14 @@ html:not([lang="en"]) .foot .lang [data-l="fr"],html[lang="en"] .foot .lang [dat
     lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    if (lenis) lenis.stop();
     document.getElementById('lbX').focus();
   }
   function close(){
     lb.classList.remove('open');
     lb.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    if (lenis) lenis.start();
     if (lastFocus) lastFocus.focus();
   }
   tiles.forEach(function(t, i){ t.addEventListener('click', function(){ open(i); }); });

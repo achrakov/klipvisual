@@ -1,7 +1,7 @@
 // Records a page scroll-through at TRUE speed (every frame keeps its real timestamp)
 // for the video previews on /websites. Same setup as capture-site.cjs: run from a
 // folder where puppeteer-core is installed. Then encode with ffmpeg:
-//   ffmpeg -f concat -safe 0 -i <outDir>/list.txt -vf "fps=30,scale=1280:-2" -c:v libx264 -crf 29 -pix_fmt yuv420p -movflags +faststart -an desktop.mp4
+//   ffmpeg -f concat -safe 0 -i <outDir>/list.txt -vf "fps=60,scale=1280:-2" -c:v libx264 -crf 29 -pix_fmt yuv420p -movflags +faststart -an desktop.mp4
 //   (phone: scale=432:-2, -crf 28). The #fan / .row / .tile selectors are the Atelier
 //   Nacre ones (card shuffle, hover targets); adjust them for another site.
 
@@ -59,13 +59,31 @@ const DEV = {
   }
   await sleep(1600)
 
-  const speed = dev === "mobile" ? 520 : 380 // px per second
+  // Scroll inside the page on every animation frame, with a gentle start and stop
+  // (trapezoid speed: 0.8 s ramp, steady cruise, 0.8 s ramp), so no step is uneven.
+  const speed = dev === "mobile" ? 520 : 380 // average px per second
   const max = await page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight)
-  const t0 = Date.now()
-  let y = 0
-  while (y < max) {
-    y = Math.min(max, ((Date.now() - t0) / 1000) * speed)
-    await page.evaluate((v) => window.scrollTo(0, v), y)
+  const total = (max / speed) * 1000
+  // The page's own CSS smooth-scroll would ease every scrollTo; the recorder drives each frame itself.
+  await page.addStyleTag({ content: "html{scroll-behavior:auto!important}" })
+  await page.evaluate((max, T) => {
+    const r = Math.min(800, T / 3)
+    const v = max / (T - r)
+    const pos = (t) => t < r ? (v * t * t) / (2 * r)
+      : t < T - r ? (v * r) / 2 + v * (t - r)
+      : max - (v * (T - t) * (T - t)) / (2 * r)
+    window.__recDone = false
+    const t0 = performance.now()
+    const tick = (now) => {
+      const t = Math.min(T, now - t0)
+      window.scrollTo(0, pos(t))
+      if (t < T) requestAnimationFrame(tick)
+      else window.__recDone = true
+    }
+    requestAnimationFrame(tick)
+  }, max, total)
+  // Meanwhile on desktop the mouse glides onto whatever service row or tile is mid-screen.
+  while (!(await page.evaluate(() => window.__recDone))) {
     if (dev === "desktop") {
       const target = await page.evaluate(() => {
         const mid = window.innerHeight * 0.5
@@ -77,9 +95,9 @@ const DEV = {
         const r = el.getBoundingClientRect()
         return { x: r.left + r.width * 0.6, y: mid }
       })
-      await page.mouse.move(target ? target.x : 720, target ? target.y : 450)
+      await page.mouse.move(target ? target.x : 720, target ? target.y : 450, { steps: 4 })
     }
-    await sleep(16)
+    await sleep(120)
   }
   await sleep(2200)
   await cdp.send("Page.stopScreencast")
