@@ -3,6 +3,7 @@ export type Lang = "en" | "fr"
 const en = {
   nav: {
     work: "Work",
+    websites: "Websites",
     services: "Services",
     about: "About",
     contact: "Contact",
@@ -271,6 +272,7 @@ const en = {
 const fr: typeof en = {
   nav: {
     work: "Portfolio",
+    websites: "Sites web",
     services: "Services",
     about: "À propos",
     contact: "Contact",

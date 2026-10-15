@@ -19,6 +19,7 @@ export function Navbar() {
 
   const links = [
     { href: href("/work"),     label: t.nav.work,     match: "/work"     },
+    { href: href("/websites"), label: t.nav.websites, match: "/websites" },
     { href: href("/services"), label: t.nav.services, match: "/services" },
     { href: href("/about"),    label: t.nav.about,    match: "/about"    },
     { href: href("/contact"),  label: t.nav.contact,  match: "/contact"  },

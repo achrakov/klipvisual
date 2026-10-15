@@ -22,9 +22,10 @@ export function BurgerMenu({ open, onClose }: BurgerMenuProps) {
 
   const NAV = [
     { num: "01", label: t.nav.work,     href: "/work"     },
-    { num: "02", label: t.nav.services, href: "/services" },
-    { num: "03", label: t.nav.about,    href: "/about"    },
-    { num: "04", label: t.nav.contact,  href: "/contact"  },
+    { num: "02", label: t.nav.websites, href: "/websites" },
+    { num: "03", label: t.nav.services, href: "/services" },
+    { num: "04", label: t.nav.about,    href: "/about"    },
+    { num: "05", label: t.nav.contact,  href: "/contact"  },
   ]
 
   return (

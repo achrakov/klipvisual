@@ -102,6 +102,18 @@ export const PAGE_META: Record<string, Record<Lang, PageMeta>> = {
         "Projets de production vidéo et de photographie à Montréal : films de marque, couverture d'événements, photographie culinaire et de produits, portraits et identité de marque.",
     },
   },
+  websites: {
+    en: {
+      title: "Websites",
+      description:
+        "Websites for Montreal businesses: bilingual, designed for phones first, and built so people who find you on Google want to call. See the projects and ask for a free preview.",
+    },
+    fr: {
+      title: "Sites web",
+      description:
+        "Sites web pour les commerces de Montréal : bilingues, pensés d'abord pour le téléphone, et faits pour que les gens qui vous trouvent sur Google aient envie d'appeler. Voyez les projets et demandez un aperçu gratuit.",
+    },
+  },
   services: {
     en: {
       title: "Services & Pricing",

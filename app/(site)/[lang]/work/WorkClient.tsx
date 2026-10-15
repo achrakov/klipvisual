@@ -141,10 +141,10 @@ export default function WorkPage() {
           />
         </a>
         <div className="m-hide" style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
-          {[{ href: "/services", label: t.nav.services }, { href: "/about", label: t.nav.about }, { href: "/contact", label: t.nav.contact }].map(({ href, label }) => (
+          {[{ path: "/websites", label: t.nav.websites }, { path: "/services", label: t.nav.services }, { path: "/about", label: t.nav.about }, { path: "/contact", label: t.nav.contact }].map(({ path, label }) => (
             <a
-              key={href}
-              href={href}
+              key={path}
+              href={href(path)}
               className="font-mono uppercase hover-underline"
               style={{ fontSize: "0.65rem", letterSpacing: "0.22em", color: "rgba(240,237,232,0.5)", textDecoration: "none", outline: "none", transition: "color 0.2s ease" }}
               onMouseEnter={e => (e.currentTarget.style.color = "#f0ede8")}
