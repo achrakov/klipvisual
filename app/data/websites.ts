@@ -30,13 +30,29 @@ export interface WebsitePage {
   mobileH: number
 }
 
+/**
+ * For sites whose animations are the point: a real scroll-through recording
+ * (desktop 1440x900 and phone 390x844 viewports) plays in the frames instead of
+ * the page-by-page captures. Recorded with scripts/record-site.cjs.
+ */
+export interface WebsiteVideo {
+  /** Shown in the fake address bar after the host. */
+  path: string
+  desktop: string
+  desktopPoster: string
+  mobile: string
+  mobilePoster: string
+}
+
 export interface WebsiteProject {
   slug: string
   name: string
   url: string
   year: number
   kind: WebsiteKind
-  pages: WebsitePage[]
+  /** Either `pages` (captures, scrolled page by page) or `video`. */
+  pages?: WebsitePage[]
+  video?: WebsiteVideo
   tags: Record<Lang, string[]>
   summary: Record<Lang, string>
 }
@@ -71,6 +87,29 @@ export const websites: WebsiteProject[] = [
     summary: {
       en: "A dark, cinematic portfolio, designed and built from scratch. A horizontal gallery you drag like film, a case study for every project, French and English versions, and a contact form wired straight into the KLIPVISUAL dashboard.",
       fr: "Un portfolio sombre et cinématographique, conçu et développé de A à Z. Une galerie horizontale qu'on fait défiler comme une pellicule, une étude de cas pour chaque projet, une version française et anglaise, et un formulaire de contact relié directement au tableau de bord de KLIPVISUAL.",
+    },
+  },
+  {
+    // Concept: a made-up salon (source + Flow originals in 3-DEMOS/concepts/atelier-nacre).
+    slug: "atelier-nacre",
+    name: "Atelier Nacre",
+    url: "https://www.klipvisual.com/concepts/atelier-nacre/index.html",
+    year: 2026,
+    kind: "concept",
+    video: {
+      path: "/concepts/atelier-nacre",
+      desktop: "/images/websites/atelier-nacre/desktop.mp4",
+      desktopPoster: "/images/websites/atelier-nacre/desktop-poster.webp",
+      mobile: "/images/websites/atelier-nacre/mobile.mp4",
+      mobilePoster: "/images/websites/atelier-nacre/mobile-poster.webp",
+    },
+    tags: {
+      en: ["Design", "Animations", "Bilingual", "Mobile first"],
+      fr: ["Design", "Animations", "Bilingue", "Pensé mobile"],
+    },
+    summary: {
+      en: "A website concept for an imaginary nail salon in Mile End. A deck of photos you shuffle with a tap, bands of text that slide by, a menu that reveals the work as you hover, a gallery you can open up, and a call button always within thumb's reach on a phone. Business and photos are fictional, the photos made with AI.",
+      fr: "Un concept de site pour un salon d'ongles imaginaire du Mile End. Un jeu de photos qu'on brasse du bout du doigt, des bandeaux qui défilent, un menu qui dévoile les réalisations au survol, une galerie qu'on peut agrandir et un bouton d'appel toujours sous le pouce sur téléphone. Commerce et photos fictifs, photos créées par IA.",
     },
   },
 ]
