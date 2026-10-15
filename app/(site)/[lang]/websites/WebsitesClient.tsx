@@ -4,7 +4,8 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Footer } from "@/app/components/Footer"
 import { useLang } from "@/app/i18n/LanguageContext"
-import { websites, KIND_LABEL, type WebsiteProject } from "@/app/data/websites"
+import { websites, KIND_LABEL } from "@/app/data/websites"
+import { SitePreview } from "./SitePreview"
 
 const COPY = {
   en: {
@@ -34,55 +35,6 @@ const COPY = {
 }
 
 const EASE = [0.22, 1, 0.36, 1] as const
-
-/** Desktop screenshot in a browser frame, with the phone version overlapping it. */
-function Mockup({ site }: { site: WebsiteProject }) {
-  const host = site.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
-  return (
-    <div style={{ position: "relative", paddingBottom: "6%", paddingRight: "7%" }}>
-      <div
-        style={{
-          border: "1px solid #1f1f1f",
-          borderRadius: 10,
-          overflow: "hidden",
-          background: "#111",
-          boxShadow: "0 40px 80px -30px rgba(0,0,0,0.9)",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 14px", borderBottom: "1px solid #1a1a1a" }}>
-          {[0, 1, 2].map((i) => (
-            <span key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: "#2a2a2a" }} />
-          ))}
-          <span
-            className="font-mono"
-            style={{ marginLeft: 12, fontSize: 10, letterSpacing: "0.08em", color: "#555", background: "#0a0a0a", padding: "4px 12px", borderRadius: 999 }}
-          >
-            {host}
-          </span>
-        </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={site.desktop} alt={`${site.name}, desktop`} style={{ display: "block", width: "100%", height: "auto" }} loading="lazy" />
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          right: 0,
-          bottom: 0,
-          width: "24%",
-          borderRadius: 18,
-          border: "5px solid #1a1a1a",
-          overflow: "hidden",
-          background: "#0a0a0a",
-          boxShadow: "0 30px 60px -20px rgba(0,0,0,0.95)",
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={site.mobile} alt={`${site.name}, mobile`} style={{ display: "block", width: "100%", height: "auto" }} loading="lazy" />
-      </div>
-    </div>
-  )
-}
 
 export default function WebsitesPage() {
   const { lang, href } = useLang()
@@ -189,7 +141,7 @@ export default function WebsitesPage() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
               >
-                <Mockup site={site} />
+                <SitePreview site={site} />
               </motion.div>
             </div>
           </section>
