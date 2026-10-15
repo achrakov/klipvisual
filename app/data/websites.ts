@@ -13,10 +13,10 @@ import type { Lang } from "@/app/i18n/translations"
  *
  * `kind` is shown on the card so the page stays honest:
  *   "client"  = a site delivered to a paying client
- *   "concept" = a sample site for a made-up business (always labelled as such)
+ *   "studio"  = a self-initiated studio project (a made-up business), never shown as a client
  *   "own"     = KLIPVISUAL's own site
  */
-export type WebsiteKind = "client" | "concept" | "own"
+export type WebsiteKind = "client" | "studio" | "own"
 
 export interface WebsitePage {
   /** Shown in the fake address bar after the host, e.g. "/fr/services". */
@@ -59,7 +59,7 @@ export interface WebsiteProject {
 
 export const KIND_LABEL: Record<WebsiteKind, Record<Lang, string>> = {
   client: { en: "Client", fr: "Client" },
-  concept: { en: "Concept", fr: "Concept" },
+  studio: { en: "Studio project", fr: "Projet studio" },
   own: { en: "In-house", fr: "Projet maison" },
 }
 
@@ -90,12 +90,12 @@ export const websites: WebsiteProject[] = [
     },
   },
   {
-    // Concept: a made-up salon (source + Flow originals in 3-DEMOS/concepts/atelier-nacre).
+    // Studio project: a made-up salon (source + Flow originals in 3-DEMOS/concepts/atelier-nacre).
     slug: "atelier-nacre",
     name: "Atelier Nacre",
     url: "https://www.klipvisual.com/concepts/atelier-nacre/index.html",
     year: 2026,
-    kind: "concept",
+    kind: "studio",
     video: {
       path: "/concepts/atelier-nacre",
       desktop: "/images/websites/atelier-nacre/desktop.mp4",
@@ -108,8 +108,8 @@ export const websites: WebsiteProject[] = [
       fr: ["Design", "Animations", "Bilingue", "Pensé mobile"],
     },
     summary: {
-      en: "A website concept for an imaginary nail salon in Mile End. A deck of photos you shuffle with a tap, bands of text that slide by, a menu that reveals the work as you hover, a gallery you can open up, and a call button always within thumb's reach on a phone. Business and photos are fictional, the photos made with AI.",
-      fr: "Un concept de site pour un salon d'ongles imaginaire du Mile End. Un jeu de photos qu'on brasse du bout du doigt, des bandeaux qui défilent, un menu qui dévoile les réalisations au survol, une galerie qu'on peut agrandir et un bouton d'appel toujours sous le pouce sur téléphone. Commerce et photos fictifs, photos créées par IA.",
+      en: "A nail salon website designed by the studio to make people want to book. A deck of photos you shuffle with a tap, bands of text that slide by, a menu that reveals the work as you hover, a gallery you can open up, and a call button always within thumb's reach on a phone.",
+      fr: "Un site de salon d'ongles imaginé par le studio pour donner envie de réserver. Un jeu de photos qu'on brasse du bout du doigt, des bandeaux qui défilent, un menu qui dévoile les réalisations au survol, une galerie qu'on peut agrandir et un bouton d'appel toujours sous le pouce sur téléphone.",
     },
   },
 ]
