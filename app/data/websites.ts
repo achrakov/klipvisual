@@ -90,6 +90,29 @@ export const websites: WebsiteProject[] = [
     },
   },
   {
+    // Studio project: a made-up poke bar (Flow originals + tools in 3-DEMOS/concepts/nami).
+    slug: "nami",
+    name: "nami",
+    url: "https://www.klipvisual.com/concepts/nami/index.html",
+    year: 2026,
+    kind: "studio",
+    video: {
+      path: "/concepts/nami",
+      desktop: "/images/websites/nami/desktop.mp4",
+      desktopPoster: "/images/websites/nami/desktop-poster.webp",
+      mobile: "/images/websites/nami/mobile.mp4",
+      mobilePoster: "/images/websites/nami/mobile-poster.webp",
+    },
+    tags: {
+      en: ["Branding", "Scroll animations", "Bilingual", "Mobile first"],
+      fr: ["Image de marque", "Animations au scroll", "Bilingue", "Pensé mobile"],
+    },
+    summary: {
+      en: "A loud, playful poke bar identity built around the scroll. A bowl that watches you, a menu that slides sideways, ingredients that fly into the bowl one by one as you build it, a fish that swims the delivery route, and a footer where the toppings land on the logo.",
+      fr: "Une identité de poké bar pleine d'énergie, pensée autour du défilement. Un bol qui te suit des yeux, un menu qui glisse de côté, des ingrédients qui tombent un à un dans le bol pendant qu'on le compose, un poisson qui nage le trajet de livraison et un pied de page où les garnitures atterrissent sur le logo.",
+    },
+  },
+  {
     // Studio project: a made-up salon (source + Flow originals in 3-DEMOS/concepts/atelier-nacre).
     slug: "atelier-nacre",
     name: "Atelier Nacre",
