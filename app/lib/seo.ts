@@ -114,6 +114,18 @@ export const PAGE_META: Record<string, Record<Lang, PageMeta>> = {
         "Sites web pour les commerces de Montréal : bilingues, pensés d'abord pour le téléphone, et faits pour que les gens qui vous trouvent sur Google aient envie d'appeler. Voyez les projets et demandez un aperçu gratuit.",
     },
   },
+  production: {
+    en: {
+      title: "Video Production & Photography for Companies in Montreal",
+      description:
+        "Corporate and brand video, event coverage, content days and photography in Montreal. I direct, shoot and edit, with a fixed-price quote within 24 hours.",
+    },
+    fr: {
+      title: "Production vidéo et photo pour entreprises à Montréal",
+      description:
+        "Vidéo corporative et de marque, couverture d'événements, journées de contenu et photographie à Montréal. Je réalise, filme et monte, avec une soumission à prix fixe en moins de 24 h.",
+    },
+  },
   services: {
     en: {
       title: "Services & Pricing",
