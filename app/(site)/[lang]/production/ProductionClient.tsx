@@ -50,7 +50,7 @@ const SERVICES: { slug: string; title: Copy; body: Copy; from: Copy }[] = [
     slug: "terry-osias",
     title: { en: "Content and reels", fr: "Contenu et reels" },
     body: { en: "A content day that gives you weeks of reels, stories and photos, shot vertically and made to perform.", fr: "Une journée de contenu qui vous donne des semaines de reels, de stories et de photos, tournés à la verticale et faits pour performer." },
-    from: { en: "Half day $1,200", fr: "Demi-journée 1 200 $" },
+    from: { en: "Half day from $1,800", fr: "Demi-journée dès 1 800 $" },
   },
   {
     slug: "culinary-photography",
